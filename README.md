@@ -55,7 +55,7 @@
 ```
 ├── docs/               # Документация
 │   ├── OVERVIEW_RU.md      # Описание работы проекта
-│   ├── ASSEEMBLING_RU.md   # Перечень оборудования и схема сборки
+│   ├── ASSEMBLING_RU.md    # Перечень оборудования и схема сборки
 │   └── BT_PROTOCOL_RU.md   # Протокол обмена по Bluetooth
 ├── include/            # Заголовки конфигурации и протокола
 ├── lib/
@@ -75,10 +75,16 @@
   к Arduino (включая согласование уровней HC-05 и защиту от ЭДС насоса);
 - [docs/BT_PROTOCOL_RU.md](docs/BT_PROTOCOL_RU.md) — формат пакетов
   двоичного протокола Bluetooth, описание команд и структур данных.
+- [docs/manual/html/index.html](docs/manual/html/index.html) - описание
+  функций, перечислений, констант, классов и структур в формате HTML.
 
 ## Сборка и прошивка
 
 ```bash
+# клонирование репозитория
+git clone git@github.com:conner80/growbox_fw.git
+cd growbox_fw
+
 # сборка
 pio run
 
@@ -105,4 +111,4 @@ Copyright © 2026 John Doe.
 в составе производных работ) при условии сохранения тех же условий
 распространения и предоставления исходного кода.
 
-Полный текст лицензии: <https://www.gnu.org/licenses/gpl-3.0.html>.
+Полный текст лицензии: <https://github.com/sergeysova/Licenses/blob/master/GPLv3.md>.
