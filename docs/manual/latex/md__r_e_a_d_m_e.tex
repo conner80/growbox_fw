@@ -1,0 +1,91 @@
+\chapter{Growbox PIPAS }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Growbox PIPAS@{Growbox PIPAS}}
+\label{md__r_e_a_d_m_e_autotoc_md97}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md97}%
+
+
+Прошивка автоматизированной системы управления гроубоксом (закрытым растениеводческим боксом) на базе Arduino Uno. Система поддерживает заданные условия окружающей среды, управляя освещением, поливом, проветриванием и увлажнением по показаниям датчиков и расписаниям, а также принимает команды управления по \doxylink{class_bluetooth}{Bluetooth}.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Название прошивки:}} Growbox PIPAS
+\item {\bfseries{Версия прошивки:}} 1.\+0.\+0
+\item {\bfseries{Платформа:}} Arduino Uno (ATmega328P, 16 МГц)
+\item {\bfseries{Сборка:}} Platform\+IO (framework Arduino)
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md98}{}\doxysection{\texorpdfstring{Возможности}{Возможности}}\label{md__r_e_a_d_m_e_autotoc_md98}
+
+\begin{DoxyItemize}
+\item {\bfseries{Лампа}} — освещение по заданному периоду активности (в течение суток);
+\item {\bfseries{Насос}} — автоматический полив по влажности почвы с гистерезисом, ограничениями максимального времени работы, паузы между запусками и максимальной частоты полива;
+\item {\bfseries{Вентилятор}} — проветривание по температуре и влажности воздуха с гистерезисом;
+\item {\bfseries{Увлажнитель воздуха}} — поддержание влажности воздуха с гистерезисом;
+\item {\bfseries{Часы реального времени}} — точное время и расписания (\doxylink{class_r_t_c}{RTC} RX-\/8025T);
+\item {\bfseries{Хранение настроек}} в EEPROM AT24\+C256 со wear leveling (равномерный износ памяти, циклическая запись);
+\item {\bfseries{Управление по \doxylink{class_bluetooth}{Bluetooth}}} (HC-\/05) с мобильного устройства: чтение показаний, изменение всех настроек, ручное управление механизмами, установка времени, калибровочный режим;
+\item {\bfseries{Кнопка}} принудительного включения \doxylink{class_bluetooth}{Bluetooth};
+\item {\bfseries{Автоматическое отключение \doxylink{class_bluetooth}{Bluetooth}}} при отсутствии соединения (энергосбережение);
+\item {\bfseries{Ручной и автоматический режимы}} для каждого исполнительного механизма, калибровочный режим работы устройства.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md99}{}\doxysection{\texorpdfstring{Аппаратная часть}{Аппаратная часть}}\label{md__r_e_a_d_m_e_autotoc_md99}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Модуль  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Назначение  \\
+Arduino Uno R3  &Контроллер  \\
+\doxylink{class_r_t_c}{RTC} RX-\/8025T (Trema)  &Часы реального времени (I²C)  \\
+EEPROM AT24\+C256  &Хранение конфигурации (I²C, адрес 0x50)  \\
+DHT22 (модуль Waveshare)  &Температура и влажность воздуха  \\
+Датчики влажности почвы (1–2 шт.)  &Контроль влажности почвы (АЦП)  \\
+Релейные модули 5 В / 30 А (опторазвязка)  &Лампа, вентилятор, увлажнитель (220 В)  \\
+Силовые ключи N-\/канал (Trema)  &Насос, питание HC-\/05  \\
+Мембранный насос R385 (12 В)  &Полив  \\
+HC-\/05  &Bluetooth-\/связь со смартфоном  \\
+Блок питания 12 В / 2 А + DC-\/\+DC LM2596 (5 В)  &Питание системы  \\
+\end{DoxyTable}
+
+
+Подробные перечень оборудования, схемы питания и подключения — в документе по сборке (см. ниже).\hypertarget{md__r_e_a_d_m_e_autotoc_md100}{}\doxysection{\texorpdfstring{Структура репозитория}{Структура репозитория}}\label{md__r_e_a_d_m_e_autotoc_md100}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{├──\ docs/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Документация}
+\DoxyCodeLine{│\ \ \ ├──\ OVERVIEW\_RU.md\ \ \ \ \ \ \#\ Описание\ работы\ проекта}
+\DoxyCodeLine{│\ \ \ ├──\ ASSEEMBLING\_RU.md\ \ \ \#\ Перечень\ оборудования\ и\ схема\ сборки}
+\DoxyCodeLine{│\ \ \ └──\ BT\_PROTOCOL\_RU.md\ \ \ \#\ Протокол\ обмена\ по\ Bluetooth}
+\DoxyCodeLine{├──\ include/\ \ \ \ \ \ \ \ \ \ \ \ \#\ Заголовки\ конфигурации\ и\ протокола}
+\DoxyCodeLine{├──\ lib/}
+\DoxyCodeLine{│\ \ \ ├──\ controller/\ \ \ \ \ \#\ Основная\ логика\ (Controller)}
+\DoxyCodeLine{│\ \ \ └──\ hal/\ \ \ \ \ \ \ \ \ \ \ \ \#\ Драйверы\ оборудования\ (HAL)}
+\DoxyCodeLine{├──\ src/main.cpp\ \ \ \ \ \ \ \ \#\ Точка\ входа}
+\DoxyCodeLine{└──\ platformio.ini\ \ \ \ \ \ \#\ Конфигурация\ PlatformIO}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md101}{}\doxysection{\texorpdfstring{Документация}{Документация}}\label{md__r_e_a_d_m_e_autotoc_md101}
+
+\begin{DoxyItemize}
+\item \doxysectlink{md_docs_2_o_v_e_r_v_i_e_w___r_u}{docs/\+\+OVERVIEW\+\_\+\+RU.md}{0} — подробное описание работы проекта: архитектура, жизненный цикл, алгоритмы управления, конфигурация, хранение в EEPROM, Bluetooth-\/протокол на уровне обработки команд;
+\item \doxysectlink{md_docs_2_a_s_s_e_m_b_l_i_n_g___r_u}{docs/\+\+ASSEMBLING\+\_\+\+RU.md}{0} — перечень оборудования со ссылками, схема распределения питания, схема подключения всех модулей к Arduino (включая согласование уровней HC-\/05 и защиту от ЭДС насоса);
+\item \doxysectlink{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u}{docs/\+\+BT\+\_\+\+PROTOCOL\+\_\+\+RU.md}{0} — формат пакетов двоичного протокола \doxylink{class_bluetooth}{Bluetooth}, описание команд и структур данных.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md102}{}\doxysection{\texorpdfstring{Сборка и прошивка}{Сборка и прошивка}}\label{md__r_e_a_d_m_e_autotoc_md102}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ сборка}
+\DoxyCodeLine{pio\ run}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ загрузка\ в\ плату\ (Arduino\ Uno\ подключена\ по\ USB)}
+\DoxyCodeLine{pio\ run\ -\/-\/target\ upload}
+
+\end{DoxyCode}
+
+
+Зависимости ({\ttfamily platformio.\+ini}):
+
+
+\begin{DoxyItemize}
+\item {\ttfamily tremaru/\+iarduino\+\_\+\+RTC@\texorpdfstring{$^\wedge$}{\string^}2.0.\+9} — работа с \doxylink{class_r_t_c}{RTC};
+\item {\ttfamily tremaru/\+iarduino\+\_\+\+DHT@\texorpdfstring{$^\wedge$}{\string^}1.1.\+3} — работа с датчиками DHT11/\+\+DHT22.
+\end{DoxyItemize}
+
+Аппаратная конфигурация (пины, типы реле и ключей, тайминги) задаётся макросами в {\ttfamily \doxylink{hal_8h}{lib/\+hal/\+hal.\+h}}; пользовательские настройки по умолчанию — в {\ttfamily \doxylink{config_8h}{include/\+config/\+config.\+h}}.\hypertarget{md__r_e_a_d_m_e_autotoc_md103}{}\doxysection{\texorpdfstring{Лицензия}{Лицензия}}\label{md__r_e_a_d_m_e_autotoc_md103}
+Copyright © 2026 Growbox PIPAS authors.
+
+Программное обеспечение распространяется на условиях {\bfseries{GNU General Public License v3.\+0}} (GNU GPL v3): вы можете свободно использовать, изучать, изменять и распространять программу (в том числе в составе производных работ) при условии сохранения тех же условий распространения и предоставления исходного кода.
+
+Полный текст лицензии: \href{https://www.gnu.org/licenses/gpl-3.0.html}{\texttt{https:\+/\+/\+www.\+gnu.\+org/\+licenses/\+gpl-\/3.\+0.\+html}}. 

@@ -1,0 +1,28 @@
+\doxysection{air.\+h}
+\hypertarget{air_8h_source}{}\label{air_8h_source}\index{lib/hal/air.h@{lib/hal/air.h}}
+\doxymbox{\hyperlink{air_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}iarduino\_DHT.h"{}}}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00016}\doxymbox{\hyperlink{struct_air_data}{00016}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_air_data}{AirData}}\ \{}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00020}\doxymbox{\hyperlink{struct_air_data_af22d1cd121dd8a987dfc01ed250ff363}{00020}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_air_data_af22d1cd121dd8a987dfc01ed250ff363}{Humidity}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00024}\doxymbox{\hyperlink{struct_air_data_a04587a845f96569d648b9feaa1f2bc93}{00024}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_air_data_a04587a845f96569d648b9feaa1f2bc93}{Temperature}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00025}00025\ \};}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00030}\doxymbox{\hyperlink{class_air}{00030}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_air_a06c9331de6ffc64ef23b59c23e65b25c}{Air}}\ \{}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00031}00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInited\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00033}00033\ \ \ \ \ uint8\_t\ pin;}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00034}00034\ \ \ \ \ iarduino\_DHT\ *air\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ last\_op;}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00036}00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00041}00041\ \ \ \ \ \doxymbox{\hyperlink{class_air_a06c9331de6ffc64ef23b59c23e65b25c}{Air}}(uint8\_t\ pin);}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{class_air_a06c9331de6ffc64ef23b59c23e65b25c}{\string~Air}}();}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_air_ac99d7bc232e0fbd9ae6b6fe38e02d2f3}{IsInited}}();}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00064}00064\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_air_ad366d4b1a1bbf8428838de948dd4d8f9}{GetData}}(\doxymbox{\hyperlink{struct_air_data}{AirData}}\ *data);}
+\DoxyCodeLine{\Hypertarget{air_8h_source_l00065}00065\ \};}
+
+\end{DoxyCode}

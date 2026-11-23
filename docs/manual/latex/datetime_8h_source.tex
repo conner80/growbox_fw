@@ -1,0 +1,167 @@
+\doxysection{datetime.\+h}
+\hypertarget{datetime_8h_source}{}\label{datetime_8h_source}\index{include/common/datetime.h@{include/common/datetime.h}}
+\doxymbox{\hyperlink{datetime_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00014}\doxymbox{\hyperlink{struct_date_time}{00014}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_date_time}{DateTime}}\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00018}\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{00018}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00022}\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{00022}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00026}\doxymbox{\hyperlink{struct_date_time_afee5e8a4f751fb59ae7848332a73d3da}{00026}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_date_time_afee5e8a4f751fb59ae7848332a73d3da}{Day}};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00030}\doxymbox{\hyperlink{struct_date_time_a5089ddf51078e5b11300255c7e4bf144}{00030}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_date_time_a5089ddf51078e5b11300255c7e4bf144}{Hour}};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00034}\doxymbox{\hyperlink{struct_date_time_a83a3207cc9073db51798ffef8c544d24}{00034}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_date_time_a83a3207cc9073db51798ffef8c544d24}{Minute}};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00038}\doxymbox{\hyperlink{struct_date_time_a3242d3a5fad845bc1572d92c21917025}{00038}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_date_time_a3242d3a5fad845bc1572d92c21917025}{Second}};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00039}00039\ \};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00046}\doxymbox{\hyperlink{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}{00046}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}{isLeapYear}}(\textcolor{keywordtype}{int}\ year)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{return}\ (year\ \%\ 4\ ==\ 0\ \&\&\ year\ \%\ 100\ !=\ 0)\ ||\ (year\ \%\ 400\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00048}00048\ \};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00055}\doxymbox{\hyperlink{datetime_8h_a3e57833cf896dce34a07e67e256e2571}{00055}}\ uint32\_t\ \doxymbox{\hyperlink{datetime_8h_a3e57833cf896dce34a07e67e256e2571}{DateTimeToUnix}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_date_time}{DateTime}}\&\ dt)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00056}00056\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ daysInMonth[]\ =\ \{31,\ 28,\ 31,\ 30,\ 31,\ 30,\ 31,\ 31,\ 30,\ 31,\ 30,\ 31\};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00057}00057\ \ \ \ \ uint32\_t\ totalSeconds\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 1970;\ y\ <\ dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}};\ ++y)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ totalSeconds\ +=\ \doxymbox{\hyperlink{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}{isLeapYear}}(y)\ ?\ 31622400UL\ :\ 31536000UL;\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ m\ =\ 1;\ m\ <\ dt.\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}};\ ++m)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00064}00064\ \ \ \ \ \ \ \ \ uint8\_t\ d\ =\ daysInMonth[m\ -\/\ 1];}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\ ==\ 2\ \&\&\ \doxymbox{\hyperlink{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}{isLeapYear}}(dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}}))\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ 29;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00068}00068\ \ \ \ \ \ \ \ \ totalSeconds\ +=\ (uint32\_t)d\ *\ 86400UL;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00071}00071\ \ \ \ \ totalSeconds\ +=\ (uint32\_t)(dt.\doxymbox{\hyperlink{struct_date_time_afee5e8a4f751fb59ae7848332a73d3da}{Day}}\ -\/\ 1)\ *\ 86400UL;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00072}00072\ \ \ \ \ totalSeconds\ +=\ (uint32\_t)dt.\doxymbox{\hyperlink{struct_date_time_a5089ddf51078e5b11300255c7e4bf144}{Hour}}\ *\ 3600UL;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00073}00073\ \ \ \ \ totalSeconds\ +=\ (uint32\_t)dt.\doxymbox{\hyperlink{struct_date_time_a83a3207cc9073db51798ffef8c544d24}{Minute}}\ *\ 60UL;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00074}00074\ \ \ \ \ totalSeconds\ +=\ dt.\doxymbox{\hyperlink{struct_date_time_a3242d3a5fad845bc1572d92c21917025}{Second}};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{return}\ totalSeconds;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00077}00077\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00084}\doxymbox{\hyperlink{datetime_8h_a111c4dd91ee3e9fe490a2387b3c0db4f}{00084}}\ \doxymbox{\hyperlink{struct_date_time}{DateTime}}\ \doxymbox{\hyperlink{datetime_8h_a111c4dd91ee3e9fe490a2387b3c0db4f}{UnixToDateTime}}(uint32\_t\ unixtime)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00085}00085\ \ \ \ \ \doxymbox{\hyperlink{struct_date_time}{DateTime}}\ dt;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00086}00086\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ daysInMonth[]\ =\ \{31,\ 28,\ 31,\ 30,\ 31,\ 30,\ 31,\ 31,\ 30,\ 31,\ 30,\ 31\};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00088}00088\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_a3242d3a5fad845bc1572d92c21917025}{Second}}\ =\ unixtime\ \%\ 60;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00089}00089\ \ \ \ \ unixtime\ /=\ 60;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00091}00091\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_a83a3207cc9073db51798ffef8c544d24}{Minute}}\ =\ unixtime\ \%\ 60;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00092}00092\ \ \ \ \ unixtime\ /=\ 60;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00094}00094\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_a5089ddf51078e5b11300255c7e4bf144}{Hour}}\ =\ unixtime\ \%\ 24;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00095}00095\ \ \ \ \ unixtime\ /=\ 24;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ unixTime\ теперь\ —\ количество\ дней\ с\ 1\ января\ 1970}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00098}00098\ \ \ \ \ \textcolor{keywordtype}{int}\ year\ =\ 1970;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ uint16\_t\ daysInThisYear\ =\ \doxymbox{\hyperlink{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}{isLeapYear}}(year)\ ?\ 366\ :\ 365;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (unixtime\ >=\ daysInThisYear)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ unixtime\ -\/=\ daysInThisYear;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ year++;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00104}00104\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00106}00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00107}00107\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00108}00108\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}}\ =\ year;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00110}00110\ \ \ \ \ \textcolor{keywordtype}{int}\ month\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00111}00111\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00112}00112\ \ \ \ \ \ \ \ \ uint8\_t\ daysInThisMonth\ =\ daysInMonth[month\ -\/\ 1];}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (month\ ==\ 2\ \&\&\ \doxymbox{\hyperlink{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}{isLeapYear}}(dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}}))\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ daysInThisMonth\ =\ 29;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00115}00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (unixtime\ >=\ daysInThisMonth)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ unixtime\ -\/=\ daysInThisMonth;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ month++;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00119}00119\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00121}00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00123}00123\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}}\ =\ month;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00124}00124\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_afee5e8a4f751fb59ae7848332a73d3da}{Day}}\ =\ unixtime\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00126}00126\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}}\ =\ year;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{return}\ dt;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00128}00128\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00137}\doxymbox{\hyperlink{datetime_8h_aeb9987896b9703ae941d7f30127aca33}{00137}}\ \textcolor{keyword}{inline}\ uint32\_t\ \doxymbox{\hyperlink{datetime_8h_aeb9987896b9703ae941d7f30127aca33}{hmsToSeconds}}(\textcolor{keywordtype}{int}\ hour,\ \textcolor{keywordtype}{int}\ minute,\ \textcolor{keywordtype}{int}\ second)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{return}\ (uint32\_t)hour\ *\ 3600UL\ +\ (uint32\_t)minute\ *\ 60UL\ +\ (uint32\_t)second;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00139}00139\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00152}\doxymbox{\hyperlink{datetime_8h_ab195dafc45c7d235f40326912a0e6010}{00152}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{datetime_8h_ab195dafc45c7d235f40326912a0e6010}{IsTimeInRange}}(uint32\_t\ unixtime,\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ startH,\ \textcolor{keywordtype}{int}\ startM,\ \textcolor{keywordtype}{int}\ startS,\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ endH,\ \textcolor{keywordtype}{int}\ endM,\ \textcolor{keywordtype}{int}\ endS)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00155}00155\ \ \ \ \ uint32\_t\ currentSec\ =\ unixtime\ \%\ 86400UL;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00156}00156\ \ \ \ \ uint32\_t\ startSec\ =\ \doxymbox{\hyperlink{datetime_8h_aeb9987896b9703ae941d7f30127aca33}{hmsToSeconds}}(startH,\ startM,\ startS);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00157}00157\ \ \ \ \ uint32\_t\ endSec\ =\ \doxymbox{\hyperlink{datetime_8h_aeb9987896b9703ae941d7f30127aca33}{hmsToSeconds}}(endH,\ endM,\ endS);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (startSec\ <=\ endSec)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (currentSec\ >=\ startSec\ \&\&\ currentSec\ <=\ endSec);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00161}00161\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (currentSec\ >=\ startSec\ ||\ currentSec\ <=\ endSec);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00164}00164\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00172}\doxymbox{\hyperlink{datetime_8h_ad6ef4b660a029809a8fd7ddf811c273c}{00172}}\ uint32\_t\ \doxymbox{\hyperlink{datetime_8h_ad6ef4b660a029809a8fd7ddf811c273c}{AddSeconds}}(uint32\_t\ unixtime,\ int32\_t\ seconds)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00173}00173\ \ \ \ \ \textcolor{keywordflow}{return}\ unixtime\ +\ seconds;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00174}00174\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00182}\doxymbox{\hyperlink{datetime_8h_af0b0b298568ef9e3d35e84ba7cf6f299}{00182}}\ uint32\_t\ \doxymbox{\hyperlink{datetime_8h_af0b0b298568ef9e3d35e84ba7cf6f299}{AddMinutes}}(uint32\_t\ unixtime,\ int32\_t\ minutes)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00183}00183\ \ \ \ \ \textcolor{keywordflow}{return}\ unixtime\ +\ (minutes\ *\ 60L);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00184}00184\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00192}\doxymbox{\hyperlink{datetime_8h_af0bc80be9e59b039f732cbf6e1cd84ac}{00192}}\ uint32\_t\ \doxymbox{\hyperlink{datetime_8h_af0bc80be9e59b039f732cbf6e1cd84ac}{AddHours}}(uint32\_t\ unixtime,\ int32\_t\ hours)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00193}00193\ \ \ \ \ \textcolor{keywordflow}{return}\ unixtime\ +\ (hours\ *\ 3600L);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00194}00194\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00202}\doxymbox{\hyperlink{datetime_8h_a43d9467908641b10db470da18bbc7769}{00202}}\ uint32\_t\ \doxymbox{\hyperlink{datetime_8h_a43d9467908641b10db470da18bbc7769}{AddDays}}(uint32\_t\ unixtime,\ int32\_t\ days)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00203}00203\ \ \ \ \ \textcolor{keywordflow}{return}\ unixtime\ +\ (days\ *\ 86400L);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00204}00204\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00212}\doxymbox{\hyperlink{datetime_8h_ae22acbcea920faef82a8e8318dd9ddcc}{00212}}\ \textcolor{keyword}{inline}\ uint8\_t\ \doxymbox{\hyperlink{datetime_8h_ae22acbcea920faef82a8e8318dd9ddcc}{getDaysInMonth}}(\textcolor{keywordtype}{int}\ year,\ \textcolor{keywordtype}{int}\ month)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00213}00213\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ days[]\ =\ \{31,\ 28,\ 31,\ 30,\ 31,\ 30,\ 31,\ 31,\ 30,\ 31,\ 30,\ 31\};}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00214}00214\ \ \ \ \ \textcolor{keywordflow}{if}\ (month\ ==\ 2\ \&\&\ \doxymbox{\hyperlink{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}{isLeapYear}}(year))\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 29;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00216}00216\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00217}00217\ \ \ \ \ \textcolor{keywordflow}{return}\ days[month\ -\/\ 1];}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00218}00218\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00226}\doxymbox{\hyperlink{datetime_8h_ae3f173e05a8ffab1b19b3b7966a96085}{00226}}\ uint32\_t\ \doxymbox{\hyperlink{datetime_8h_ae3f173e05a8ffab1b19b3b7966a96085}{AddMonths}}(uint32\_t\ unixtime,\ int32\_t\ months)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00227}00227\ \ \ \ \ \doxymbox{\hyperlink{struct_date_time}{DateTime}}\ dt\ =\ \doxymbox{\hyperlink{datetime_8h_a111c4dd91ee3e9fe490a2387b3c0db4f}{UnixToDateTime}}(unixtime);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00228}00228\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00229}00229\ \ \ \ \ int32\_t\ totalMonths\ =\ (int32\_t)dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}}\ *\ 12\ +\ (dt.\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}}\ -\/\ 1)\ +\ months;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00230}00230\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00231}00231\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}}\ =\ totalMonths\ /\ 12;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00232}00232\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}}\ =\ (totalMonths\ \%\ 12)\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00233}00233\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00234}00234\ \ \ \ \ \textcolor{keywordflow}{if}\ (dt.\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}}\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00235}00235\ \ \ \ \ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}}\ +=\ 12;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00236}00236\ \ \ \ \ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00237}00237\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00239}00239\ \ \ \ \ uint8\_t\ maxDays\ =\ \doxymbox{\hyperlink{datetime_8h_ae22acbcea920faef82a8e8318dd9ddcc}{getDaysInMonth}}(dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}},\ dt.\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}});}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00240}00240\ \ \ \ \ \textcolor{keywordflow}{if}\ (dt.\doxymbox{\hyperlink{struct_date_time_afee5e8a4f751fb59ae7848332a73d3da}{Day}}\ >\ maxDays)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00241}00241\ \ \ \ \ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_afee5e8a4f751fb59ae7848332a73d3da}{Day}}\ =\ maxDays;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00242}00242\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00244}00244\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{datetime_8h_a3e57833cf896dce34a07e67e256e2571}{DateTimeToUnix}}(dt);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00245}00245\ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00253}\doxymbox{\hyperlink{datetime_8h_a4af8161b0aebc5049adcaf232e812b31}{00253}}\ uint32\_t\ \doxymbox{\hyperlink{datetime_8h_a4af8161b0aebc5049adcaf232e812b31}{AddYears}}(uint32\_t\ unixtime,\ int32\_t\ years)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00254}00254\ \ \ \ \ \doxymbox{\hyperlink{struct_date_time}{DateTime}}\ dt\ =\ \doxymbox{\hyperlink{datetime_8h_a111c4dd91ee3e9fe490a2387b3c0db4f}{UnixToDateTime}}(unixtime);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00255}00255\ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}}\ +=\ years;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00257}00257\ \ \ \ \ uint8\_t\ maxDays\ =\ \doxymbox{\hyperlink{datetime_8h_ae22acbcea920faef82a8e8318dd9ddcc}{getDaysInMonth}}(dt.\doxymbox{\hyperlink{struct_date_time_a840d71e93f3eab91fe2e25eabae230b4}{Year}},\ dt.\doxymbox{\hyperlink{struct_date_time_ab5972dcd0b1dc00b6c0d4ce5f46025ac}{Month}});}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00258}00258\ \ \ \ \ \textcolor{keywordflow}{if}\ (dt.\doxymbox{\hyperlink{struct_date_time_afee5e8a4f751fb59ae7848332a73d3da}{Day}}\ >\ maxDays)\ \{}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00259}00259\ \ \ \ \ \ \ \ \ dt.\doxymbox{\hyperlink{struct_date_time_afee5e8a4f751fb59ae7848332a73d3da}{Day}}\ =\ maxDays;}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00260}00260\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00262}00262\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{datetime_8h_a3e57833cf896dce34a07e67e256e2571}{DateTimeToUnix}}(dt);}
+\DoxyCodeLine{\Hypertarget{datetime_8h_source_l00263}00263\ \}}
+
+\end{DoxyCode}

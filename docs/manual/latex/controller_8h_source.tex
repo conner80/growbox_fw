@@ -1,0 +1,88 @@
+\doxysection{controller.\+h}
+\hypertarget{controller_8h_source}{}\label{controller_8h_source}\index{lib/controller/controller.h@{lib/controller/controller.h}}
+\doxymbox{\hyperlink{controller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{hal_8h}{hal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{rtc_8h}{rtc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{soil_8h}{soil.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{air_8h}{air.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{storage_8h}{storage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{relay_8h}{relay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{parameters_8h}{parameters.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{bluetooth_8h}{bluetooth.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{button_8h}{button.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00023}\doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{00023}}\ \textcolor{preprocessor}{\#define\ SENS\_RTC\ 0x0001}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00027}\doxymbox{\hyperlink{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113}{00027}}\ \textcolor{preprocessor}{\#define\ SENS\_STORAGE\ 0x0002}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00031}\doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{00031}}\ \textcolor{preprocessor}{\#define\ SENS\_AIR\ 0x0004}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00035}\doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{00035}}\ \textcolor{preprocessor}{\#define\ SENS\_SOIL1\ 0x0008}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00039}\doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{00039}}\ \textcolor{preprocessor}{\#define\ SENS\_SOIL2\ 0x0010}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00043}\doxymbox{\hyperlink{controller_8h_afaae2dae7b83701aa66e3d0fae1b8fe4}{00043}}\ \textcolor{preprocessor}{\#define\ SENS\_RES1\ 0x0020}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00047}\doxymbox{\hyperlink{controller_8h_ad1c4755e925009a9ff2621c99d9d8d2d}{00047}}\ \textcolor{preprocessor}{\#define\ SENS\_RES2\ 0x0040}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00051}\doxymbox{\hyperlink{controller_8h_a1aab5adfa62d238186c9c32f2b98d810}{00051}}\ \textcolor{preprocessor}{\#define\ SENS\_RES3\ 0x0080}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00055}\doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{00055}}\ \textcolor{preprocessor}{\#define\ DEV\_LAMP\ 0x0100}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00059}\doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{00059}}\ \textcolor{preprocessor}{\#define\ DEV\_FAN\ 0x0200}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00063}\doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{00063}}\ \textcolor{preprocessor}{\#define\ DEV\_PUMP\ 0x0400}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00067}\doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{00067}}\ \textcolor{preprocessor}{\#define\ DEV\_HUMIDIFIER\ 0x0800}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00071}\doxymbox{\hyperlink{controller_8h_a8cbcd851a9ae7fba7d9e60aeffae0976}{00071}}\ \textcolor{preprocessor}{\#define\ DEV\_BT\_BUTTON\ 0x1000}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00076}\doxymbox{\hyperlink{class_controller}{00076}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00077}00077\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ isStdMode\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00079}00079\ \ \ \ \ uint16\_t\ device\_mask;\ \textcolor{comment}{//\ initialized\ devices}}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00080}00080\ \ \ \ \ \doxymbox{\hyperlink{class_r_t_c}{RTC}}\ *rtc;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00081}00081\ \ \ \ \ \doxymbox{\hyperlink{class_air}{Air}}\ *air;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00082}00082\ \ \ \ \ \doxymbox{\hyperlink{class_storage}{Storage}}\ *storage;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00083}00083\ \ \ \ \ \doxymbox{\hyperlink{class_soil}{Soil}}\ *sensor1;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00084}00084\ \ \ \ \ \doxymbox{\hyperlink{class_soil}{Soil}}\ *sensor2;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00085}00085\ \ \ \ \ \doxymbox{\hyperlink{class_relay}{Relay}}\ *lamp;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00086}00086\ \ \ \ \ \doxymbox{\hyperlink{class_relay}{Relay}}\ *fan;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00087}00087\ \ \ \ \ \doxymbox{\hyperlink{class_relay}{Relay}}\ *pump;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00088}00088\ \ \ \ \ \doxymbox{\hyperlink{class_relay}{Relay}}\ *humidifier;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00089}00089\ \ \ \ \ \doxymbox{\hyperlink{class_bluetooth}{Bluetooth}}\ *bt;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00090}00090\ \ \ \ \ \doxymbox{\hyperlink{class_button}{Button}}\ *btn;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00091}00091\ \ \ \ \ \doxymbox{\hyperlink{struct_grow_config}{GrowConfig}}\ cfg;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00092}00092\ \ \ \ \ \doxymbox{\hyperlink{struct_params}{Params}}\ pars;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00093}00093\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ pump\_act;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00094}00094\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ pump\_sleep;}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00095}00095\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ last\_op;\ }
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00108}00108\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ onReceive(\textcolor{keywordtype}{void}\ *context,\ \textcolor{keyword}{const}\ uint8\_t\ cmd,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00115}00115\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ getInfo(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00122}00122\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ getBTInfo(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00131}00131\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setBTName(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00140}00140\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setBTPass(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00147}00147\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ getTime(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00156}00156\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setTime(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00165}00165\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ getStatus(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00174}00174\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setStatus(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00181}00181\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ getMode(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00190}00190\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setMode(\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00191}00191\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00196}00196\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_controller_aa7fe591e119d87fda3984085664b371c}{readSensors}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00200}00200\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a5bf8337b8ca3e7a48ac0635adaa4ff56}{checkPumpRunning}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00205}00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_aac06bce3db2ce1aa73f74b589e83cfa4}{processLamp}}(\textcolor{keywordtype}{bool}\ is\_active\_rtc);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00211}00211\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a4143d08c376b66ddb488632b40413320}{processFan}}(\textcolor{keywordtype}{bool}\ is\_active\_rtc,\ \textcolor{keywordtype}{bool}\ is\_active\_air);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00218}00218\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a8b2d3422e3f490828c3c61c4985e011d}{processPump}}(\textcolor{keywordtype}{bool}\ is\_active\_rtc,\ \textcolor{keywordtype}{bool}\ is\_active\_soil1,\ \textcolor{keywordtype}{bool}\ is\_active\_soil2);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00224}00224\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_ab157533b6a81f5d7210ac63caa806758}{processHumidifier}}(\textcolor{keywordtype}{bool}\ is\_active\_rtc,\ \textcolor{keywordtype}{bool}\ is\_active\_air);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00228}00228\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a41ebfe621fe2f6cca059147468f6cf50}{checkBTButton}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00229}00229\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00233}00233\ \ \ \ \ \doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00237}00237\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{\string~Controller}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00242}00242\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_controller_a10ea87d612c3959fbc3aa43bcfa18fe9}{IsStdMode}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00246}00246\ \ \ \ \ \textcolor{keyword}{virtual}\ uint16\_t\ \doxymbox{\hyperlink{class_controller_a39b9bc28093fe897d00f1d40c45a371e}{Devices}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00250}00250\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a38ca892c280e07af260320f5b22fa91e}{ResetConfig}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00261}00261\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_controller_ac39de7309267450fb731f83564fee62a}{ReadConfig}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00272}00272\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_controller_a8db20fadd6023923f24f0571c913cacb}{WriteConfig}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00280}00280\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_controller_a8a048cd5db012bdcd49490eda76a06fb}{SetTime}}(uint32\_t\ datetime);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00289}00289\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_controller_a64c8f76bbfbf2c47f1b7ac9cc8c6b439}{GetTime}}(uint32\_t\ *datetime);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00294}00294\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a5765bb44682bf8e5b86f2041144ed50c}{ActivateDevices}}(uint16\_t\ dev\_mask);}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00299}00299\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{class_controller_a0f97908c7489835d84708609c3f965b3}{GetActiveDevices}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00304}00304\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a2fc6e60e3a6ee1545ce4bc65b79235d3}{SetMode}}(\textcolor{keywordtype}{bool}\ isStdandart\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00308}00308\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_ad920ca3bf8fc1d163c0cc482d7c6226d}{Process}}();}
+\DoxyCodeLine{\Hypertarget{controller_8h_source_l00309}00309\ \};}
+
+\end{DoxyCode}

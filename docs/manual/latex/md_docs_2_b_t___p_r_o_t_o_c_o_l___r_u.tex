@@ -1,0 +1,421 @@
+\chapter{Протокол взаимодействия с устройством через BLUETOOTH }
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u}{}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u}\index{Протокол взаимодействия с устройством через BLUETOOTH@{Протокол взаимодействия с устройством через BLUETOOTH}}
+\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md28}%
+\Hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md28}%
+
+
+Описание протокола взаимодействия с устройством через \doxylink{class_bluetooth}{Bluetooth}.\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md29}{}\doxysection{\texorpdfstring{Общее описание протокола}{Общее описание протокола}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md29}
+Для взаимодействия с устройством используется двоичный протокол управления через сеть \doxylink{class_bluetooth}{Bluetooth}. Формат протокола следующий: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<Begin\ packet><Command>[Command\ data\ length][Command\ data]}
+
+\end{DoxyCode}
+
+
+{\bfseries{ВНИМАНИЕ!}} Для некоторых команд может не быть передаваемых и возврщаемых данных, в этом случае поля {\itshape {\bfseries{Command data length}}} и {\itshape {\bfseries{Command data}}} не передаеются. Если параметры подразумеваются, но они не обязательные -\/ передается только параметр {\itshape {\bfseries{Command data length}}} равный {\bfseries{0}}.
+
+Где:
+\begin{DoxyItemize}
+\item {\bfseries{Begin packet}} -\/ Начало пакета (Всегда 0x\+FE -\/ запрос, 0x\+EF -\/ ответ).
+\item {\bfseries{Command}} -\/ Команда к устройству.
+\item {\bfseries{Command data length}} -\/ Длинна данных команды.
+\item {\bfseries{Command data}} -\/ Данные команды.
+\end{DoxyItemize}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Начало пакета (Всегда 0x\+FE -\/ запрос, 0x\+EF -\/ ответ)  \\
+\SetCell{c}0x01  &\SetCell{c}0x01  &Команда к устройству  \\
+\SetCell{c}0x02  &\SetCell{c}0x01  &Длинна данных команды  \\
+\SetCell{c}0x03  &\SetCell{c}0x01 -\/ 0x\+FF  &Данные команды  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md30}{}\doxysection{\texorpdfstring{Доступные команды}{Доступные команды}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md30}
+Команды делятся на два типа:
+\begin{DoxyEnumerate}
+\item {\bfseries{Запрос}} -\/ Запрос к устройству ({\itshape {\bfseries{Begin packet == 0x\+FE}}}).
+\item {\bfseries{Ответ}} -\/ Ответ от устройства с результатом ({\itshape {\bfseries{Begin packet == 0x\+EF}}}).
+\end{DoxyEnumerate}
+
+Таким образом, обмен (выполнение одной команды) состоит из двух пакетов: запрос и ответ.
+
+{\bfseries{ВНИМАНИЕ!}} Описание команд будет содержать описание структур для {\itshape {\bfseries{Command data}}}, которая должна быть инкапсулирована в сам пакет запроса/\+ответа. При успешном принятии пакета, принимающая сторона должна отправить пакет ACK, в противном случае NACK\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md31}{}\doxysection{\texorpdfstring{Положительное подтверждение приема данных (ACK)}{Положительное подтверждение приема данных (ACK)}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md31}
+Данный пакет состоит из одного байта и отправляется при успешном принятии пакета.
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Сигнатура 0x\+AA  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md32}{}\doxysection{\texorpdfstring{Отрицательное подтверждение приема данных (NACK)}{Отрицательное подтверждение приема данных (NACK)}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md32}
+Данный пакет состоит из одного байта и отправляется при неудачном принятии пакета (битые данные).
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Сигнатура 0x\+BB  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md33}{}\doxysubsection{\texorpdfstring{Получение общей информации}{Получение общей информации}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md33}
+Команда возвращает общую информацию об устройстве (версию прошивки, набор устройств, датчиков и т.\+д.).
+
+{\bfseries{Команда: 0x01}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+None
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x15  &Наименование устройства (20 символов)  \\
+\SetCell{c}0x015  &\SetCell{c}0x0B  &Версия прошивки устройства (10 символов)  \\
+\SetCell{c}0x20  &\SetCell{c}0x15  &Версия прошивки \doxylink{class_bluetooth}{Bluetooth} (20 символов)  \\
+\SetCell{c}0x35  &\SetCell{c}0x02  &Маска активных датчиков и исполнительных механизмов устройства  \\
+\SetCell{c}0x37  &\SetCell{c}0x01  &Режим работы устройства: ~\newline
+{\bfseries{0x00}} -\/ Калибровка~\newline
+{\bfseries{0x01}} -\/ Стандартный режим работы  \\
+\end{DoxyTable}
+
+
+{\bfseries{ВНИМАНИЕ!}} Маска устройств используется, как для обращения к устройству (получение его показаний/\+статуса), так и для управления исполнительными механизмами (насос, лампа и т.\+д.).\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md34}{}\doxysubsubsection{\texorpdfstring{Формат маски устройств}{Формат маски устройств}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md34}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Бит  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Значение  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0  &\SetCell{c}0x0001  &Часы реального времени  \\
+\SetCell{c}1  &\SetCell{c}0x0002  &Память для хранения настроек  \\
+\SetCell{c}2  &\SetCell{c}0x0004  &Дачик влажности и температуры воздуха  \\
+\SetCell{c}3  &\SetCell{c}0x0008  &Датчик влажности почвы 1  \\
+\SetCell{c}4  &\SetCell{c}0x0010  &Датчик влажности почвы 2  \\
+\SetCell{c}5  &\SetCell{c}0x0020  &Датчик углекислого газа  \\
+\SetCell{c}8  &\SetCell{c}0x0100  &Реле/\+Ключ управления лампой  \\
+\SetCell{c}9  &\SetCell{c}0x0200  &Реле/\+Ключ управления вентилятором  \\
+\SetCell{c}10  &\SetCell{c}0x0400  &Реле/\+Ключ управления насосом  \\
+\SetCell{c}11  &\SetCell{c}0x0800  &Реле/\+Ключ управления увлажнителем воздуха  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md35}{}\doxysubsection{\texorpdfstring{Получить имя устройства и адрес устройства}{Получить имя устройства и адрес устройства}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md35}
+Возвращает имя и адрес \doxylink{class_bluetooth}{Bluetooth} устройства, по которому его можно найти.
+
+{\bfseries{Команда: 0x02}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+None
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x21  &Наименование устройства (32 символа)  \\
+\SetCell{c}0x21  &\SetCell{c}0x0F  &Адрес устройства (NAP:\+\+UAP:LAP)  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md36}{}\doxysubsection{\texorpdfstring{Установить новое имя}{Установить новое имя}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md36}
+Устанавливает новое наименование \doxylink{class_bluetooth}{Bluetooth} устройства.
+
+{\bfseries{Команда: 0x03}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x21  &Наименование устройства (32 символа)  \\
+\end{DoxyTable}
+
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Код ответа: ~\newline
+{\bfseries{0x00}} -\/ Успех~\newline
+{\bfseries{0x01}} -\/ Имя не корректно~\newline
+{\bfseries{0x02}} -\/ Не удалось перевести устройство в режим управления~\newline
+{\bfseries{0x03}} -\/ Аппаратная ошибка выполнения команды  \\
+\end{DoxyTable}
+
+
+{\bfseries{ВНИМАНИЕ!}} При изменении имени устройства, \doxylink{class_bluetooth}{Bluetooth} модуль будет перезапущен. Команду подтверждения отправлять не нужно.\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md37}{}\doxysubsection{\texorpdfstring{Установить новый пароль}{Установить новый пароль}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md37}
+Устанавливает новый пароль подключения \doxylink{class_bluetooth}{Bluetooth} устройства.
+
+{\bfseries{Команда: 0x04}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x4  &Новый пароль для подключения (4 цифры)  \\
+\end{DoxyTable}
+
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Код ответа: ~\newline
+{\bfseries{0x00}} -\/ Успех~\newline
+{\bfseries{0x01}} -\/ Пароль не корректен~\newline
+{\bfseries{0x02}} -\/ Не удалось перевести устройство в режим управления~\newline
+{\bfseries{0x03}} -\/ Аппаратная ошибка выполнения команды  \\
+\end{DoxyTable}
+
+
+{\bfseries{ВНИМАНИЕ!}} При изменении пароля устройства, \doxylink{class_bluetooth}{Bluetooth} модуль будет перезапущен. Команду подтверждения отправлять не нужно.\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md38}{}\doxysubsection{\texorpdfstring{Получить текущее время}{Получить текущее время}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md38}
+Возвращает текущее время (\href{https://ru.wikipedia.org/wiki/Unix-\%D0\%B2\%D1\%80\%D0\%B5\%D0\%BC\%D1\%8F}{\texttt{в формате UNIX}}) устройства.
+
+{\bfseries{Команда: 0x05}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+None
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Код ответа: ~\newline
+{\bfseries{0x00}} -\/ Успех~\newline
+{\bfseries{0x01}} -\/ Аппаратная ошибка выполнения команды  \\
+\SetCell{c}0x01  &\SetCell{c}0x04  &Дата и время в формате UNIX ({\ttfamily  uint32 })  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md39}{}\doxysubsection{\texorpdfstring{Установить время}{Установить время}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md39}
+Устанавливает новое время устройства (\href{https://ru.wikipedia.org/wiki/Unix-\%D0\%B2\%D1\%80\%D0\%B5\%D0\%BC\%D1\%8F}{\texttt{в формате UNIX}}).
+
+{\bfseries{Команда: 0x06}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x04  &Дата и время в формате UNIX ({\ttfamily  uint32 })  \\
+\end{DoxyTable}
+
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Код ответа: ~\newline
+{\bfseries{0x00}} -\/ Успех~\newline
+{\bfseries{0x01}} -\/ Время не корректно~\newline
+{\bfseries{0x02}} -\/ Аппаратная ошибка выполнения команды  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md40}{}\doxysubsection{\texorpdfstring{Получить состояние устройства}{Получить состояние устройства}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md40}
+Возвращает текущее состояние датчиков и/\+или исполнительных механизмов.
+
+{\bfseries{Команда: 0x07}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x02  &Маска оборудования  \\
+\end{DoxyTable}
+
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Код ответа: ~\newline
+{\bfseries{0x00}} -\/ Успех~\newline
+{\bfseries{0x01}} -\/ Ошибка формата~\newline
+{\bfseries{0x02}} -\/ Устройство не активно/\+не доступно  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Устройство 1 (значение бит для одного устройства)  \\
+\SetCell{c}0x02  &\SetCell{c}dyn  &Данные устройства  \\
+\end{DoxyTable}
+
+
+{\bfseries{ВНИМАНИЕ!}} Если код ответа не {\itshape {\bfseries{0x00}}} -\/ данные об устройств(е, ах) отсутствуют. Все параметры устройств передаются последовательно, согласно маске оборудования из запроса.\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md41}{}\doxysubsubsection{\texorpdfstring{Данные об устройстве, в зависимости от типа устройства}{Данные об устройстве, в зависимости от типа устройства}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md41}
+В зависимости от типа устройства (датчика или исполнительного механизма) возвращаются разные наборы данных. Все представленные ниже данные являются продолжением таблицы с ответом на получение состояние узла.
+
+{\bfseries{ВНИМАНИЕ!}} Для установки значений передаются все параметры. Значения датчиков можно оставить любыми.
+
+{\bfseries{Данные датчика температуры и влажности}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Идентификатор датчика влжажности и температуры воздуха {\bfseries{0x0004}}  \\
+\SetCell{c}0x03  &\SetCell{c}0x04  &Температура воздуха начала проветривания в градусах Цельсия ({\ttfamily float})  \\
+\SetCell{c}0x07  &\SetCell{c}0x04  &Температура воздуха окончания проветривания в градусах Цельсия ({\ttfamily float})  \\
+\SetCell{c}0x0B  &\SetCell{c}0x01  &Влажность воздуха начала проветривания в процентах ({\ttfamily uint8})  \\
+\SetCell{c}0x0C  &\SetCell{c}0x01  &Влажность воздуха окончания проветривания в процентах ({\ttfamily uint8})  \\
+\SetCell{c}0x0D  &\SetCell{c}0x01  &Влажность воздуха начала увлажнения в процентах ({\ttfamily uint8})  \\
+\SetCell{c}0x0E  &\SetCell{c}0x01  &Влажность воздуха окончания увлажения в процентах ({\ttfamily uint8})  \\
+\SetCell{c}0x0F  &\SetCell{c}0x04  &Текущая температура воздуха в градусах Цельсия ({\ttfamily float})  \\
+\SetCell{c}0x13  &\SetCell{c}0x01  &Текущая влажность воздуха в градусах Цельсия ({\ttfamily uint8})  \\
+\end{DoxyTable}
+
+
+{\bfseries{Датчик влажности почвы}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Идентификатор датчика влжажности почвы {\bfseries{0x0008}} или {\bfseries{0x0010}}  \\
+\SetCell{c}0x03  &\SetCell{c}0x02  &Значение датчика для 0\% влажности почвы ({\ttfamily uint16})  \\
+\SetCell{c}0x05  &\SetCell{c}0x02  &Значение датчика для 100\% влажности почвы ({\ttfamily uint16})  \\
+\SetCell{c}0x07  &\SetCell{c}0x01  &Влажность почвы начала полива в процентах ({\ttfamily uint8})  \\
+\SetCell{c}0x08  &\SetCell{c}0x01  &Влажность почвы окончания полива в процентах ({\ttfamily uint8})  \\
+\SetCell{c}0x09  &\SetCell{c}0x01  &Текущее значение влажности почвы в процентах ({\ttfamily uint8})  \\
+\end{DoxyTable}
+
+
+{\bfseries{Реле лампы}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Идентификатор реле лампы {\bfseries{0x0100}}  \\
+\SetCell{c}0x03  &\SetCell{c}0x01  &Время начала периода (часы) допустимой активности лампы ({\ttfamily uint8})  \\
+\SetCell{c}0x04  &\SetCell{c}0x01  &Время начала периода (минуты) допустимой активности лампы ({\ttfamily uint8})  \\
+\SetCell{c}0x05  &\SetCell{c}0x01  &Время окончания периода (часы) допустимой активности лампы ({\ttfamily uint8})  \\
+\SetCell{c}0x06  &\SetCell{c}0x01  &Время окончания периода (минуты) допустимой активности лампы ({\ttfamily uint8})  \\
+\SetCell{c}0x07  &\SetCell{c}0x01  &Текущее состояние лампы (включен или выключен) ({\ttfamily uint8})  \\
+\SetCell{c}0x08  &\SetCell{c}0x01  &Режим работы (ручной или автоматический) ({\ttfamily uint8})  \\
+\end{DoxyTable}
+
+
+{\bfseries{Реле насоса}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Идентификатор реле насоса {\bfseries{0x0400}}  \\
+\SetCell{c}0x03  &\SetCell{c}0x01  &Время начала периода (часы) допустимой активности насоса ({\ttfamily uint8})  \\
+\SetCell{c}0x04  &\SetCell{c}0x01  &Время начала периода (минуты) допустимой активности насоса ({\ttfamily uint8})  \\
+\SetCell{c}0x05  &\SetCell{c}0x01  &Время окончания периода (часы) допустимой активности насоса ({\ttfamily uint8})  \\
+\SetCell{c}0x06  &\SetCell{c}0x01  &Время окончания периода (минуты) допустимой активности насоса ({\ttfamily uint8})  \\
+\SetCell{c}0x07  &\SetCell{c}0x01  &Текущее состояние насоса (включен или выключен) ({\ttfamily uint8})  \\
+\SetCell{c}0x08  &\SetCell{c}0x01  &Режим работы (ручной или автоматический) ({\ttfamily uint8})  \\
+\SetCell{c}0x09  &\SetCell{c}0x02  &Максимальное время работы насоса в секундах ({\ttfamily uint16})  \\
+\SetCell{c}0x0B  &\SetCell{c}0x02  &Минимальная пауза между запуском насоса в секундах ({\ttfamily uint16})  \\
+\SetCell{c}0x0D  &\SetCell{c}0x01  &Максимальная частота полива в часах ({\ttfamily uint8})  \\
+\end{DoxyTable}
+
+
+{\bfseries{Реле вентилятора}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Идентификатор реле вентилятора {\bfseries{0x0200}}  \\
+\SetCell{c}0x03  &\SetCell{c}0x01  &Время начала периода (часы) допустимой активности вентилятора ({\ttfamily uint8})  \\
+\SetCell{c}0x04  &\SetCell{c}0x01  &Время начала периода (минуты) допустимой активности вентилятора ({\ttfamily uint8})  \\
+\SetCell{c}0x05  &\SetCell{c}0x01  &Время окончания периода (часы) допустимой активности вентилятора ({\ttfamily uint8})  \\
+\SetCell{c}0x06  &\SetCell{c}0x01  &Время окончания периода (минуты) допустимой активности вентилятора ({\ttfamily uint8})  \\
+\SetCell{c}0x07  &\SetCell{c}0x01  &Текущее состояние вентилятора (включен или выключен) ({\ttfamily uint8})  \\
+\SetCell{c}0x08  &\SetCell{c}0x01  &Режим работы (ручной или автоматический) ({\ttfamily uint8})  \\
+\end{DoxyTable}
+
+
+{\bfseries{Реле увлажнителя}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Идентификатор реле вентилятора {\bfseries{0x0800}}  \\
+\SetCell{c}0x03  &\SetCell{c}0x01  &Время начала периода (часы) допустимой активности увлажнителя ({\ttfamily uint8})  \\
+\SetCell{c}0x04  &\SetCell{c}0x01  &Время начала периода (минуты) допустимой активности увлажнителя ({\ttfamily uint8})  \\
+\SetCell{c}0x05  &\SetCell{c}0x01  &Время окончания периода (часы) допустимой активности увлажнителя ({\ttfamily uint8})  \\
+\SetCell{c}0x06  &\SetCell{c}0x01  &Время окончания периода (минуты) допустимой активности увлажнителя ({\ttfamily uint8})  \\
+\SetCell{c}0x07  &\SetCell{c}0x01  &Текущее состояние увлажнителя (включен или выключен) ({\ttfamily uint8})  \\
+\SetCell{c}0x08  &\SetCell{c}0x01  &Режим работы (ручной или автоматический) ({\ttfamily uint8})  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md42}{}\doxysubsection{\texorpdfstring{Изменить состояние устройства}{Изменить состояние устройства}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md42}
+Изменяет текущее состояние и настройки для указанных устройств
+
+{\bfseries{Команда: 0x08}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Сохранять изменения в EEPROM или нет ({\ttfamily uint8})  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Идентификатор устройства  \\
+\SetCell{c}0x03  &\SetCell{c}dyn  &Конфигурация устройства (см. Данные об устройстве)  \\
+\end{DoxyTable}
+
+
+{\bfseries{ВНИМАНИЕ!}} В запросе последовательно передаются все устройства, которые необходимо перенастроить.
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Код ответа: ~\newline
+{\bfseries{0x00}} -\/ Успех~\newline
+{\bfseries{0x01}} -\/ Ошибка сохранения изменений~\newline
+{\bfseries{0x02}} -\/ Ошибка в данных настроек  \\
+\SetCell{c}0x01  &\SetCell{c}0x02  &Маска устройств, в которых произошла ошибка в данных настроек~\newline
+{\bfseries{ВНИМАНИЕ:}} Данное поле присутствует только при коде ответа {\bfseries{0x02}}  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md43}{}\doxysubsection{\texorpdfstring{Получить режим работы устройства}{Получить режим работы устройства}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md43}
+Возвращает текущий режим работы устройства (калибровка или нормальное функционирование).
+
+{\bfseries{Команда: 0x09}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+None
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Режим работы устройства ({\ttfamily uint8})~\newline
+~\newline
+{\bfseries{Допустимые значения}}~\newline
+ {\bfseries{0x00}} -\/ Калибровка~\newline
+ {\bfseries{0x01}} -\/ Обычный режим работы  \\
+\end{DoxyTable}
+
+
+{\bfseries{ВНИМАНИЕ!}} В режиме калибровки происходит отключение всех исполнительных механизмов/\+реле.\hypertarget{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md44}{}\doxysubsection{\texorpdfstring{Установить режим работы устройства}{Установить режим работы устройства}}\label{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u_autotoc_md44}
+Устанавливает режим работы устройства (калибровка или нормальное функционирование).
+
+{\bfseries{Команда: 0x0A}}
+
+{\bfseries{{\bfseries{Запрос:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Режим работы устройства ({\ttfamily uint8})~\newline
+~\newline
+{\bfseries{Допустимые значения}}~\newline
+ {\bfseries{0x00}} -\/ Калибровка~\newline
+ {\bfseries{0x01}} -\/ Обычный режим работы  \\
+\end{DoxyTable}
+
+
+{\bfseries{ВНИМАНИЕ!}} В режиме калибровки происходит отключение всех исполнительных механизмов/\+реле.
+
+{\bfseries{{\bfseries{Ответ:}}}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Смещение  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Размер байт  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Описание  \\
+\SetCell{c}0x00  &\SetCell{c}0x01  &Режим работы устройства ({\ttfamily uint8})~\newline
+~\newline
+{\bfseries{Допустимые значения}}~\newline
+ {\bfseries{0x00}} -\/ Калибровка~\newline
+ {\bfseries{0x01}} -\/ Обычный режим работы  \\
+\end{DoxyTable}
+
+
+{\bfseries{ВНИМАНИЕ!}} В режиме калибровки происходит отключение всех исполнительных механизмов/\+реле. 

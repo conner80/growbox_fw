@@ -1,0 +1,20 @@
+\doxysection{button.\+h}
+\hypertarget{button_8h_source}{}\label{button_8h_source}\index{lib/hal/button.h@{lib/hal/button.h}}
+\doxymbox{\hyperlink{button_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00014}\doxymbox{\hyperlink{class_button}{00014}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_button_a15ee922107df499b5aacb5dba783581b}{Button}}\ \{}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00015}00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00016}00016\ \ \ \ \ uint8\_t\ pin;}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00017}00017\ \ \ \ \ \textcolor{keywordtype}{int}\ state\ =\ HIGH;}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{int}\ last\_st\ =\ HIGH;}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ last\_op\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00020}00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00026}00026\ \ \ \ \ \doxymbox{\hyperlink{class_button_a15ee922107df499b5aacb5dba783581b}{Button}}(uint8\_t\ pin,\ \textcolor{keywordtype}{bool}\ need\_pullup\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00031}00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_button_a737ac3562df7ec372e75d8083f66e81e}{IsPressed}}();}
+\DoxyCodeLine{\Hypertarget{button_8h_source_l00032}00032\ \};}
+
+\end{DoxyCode}

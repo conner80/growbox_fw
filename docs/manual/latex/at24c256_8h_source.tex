@@ -1,0 +1,102 @@
+\doxysection{at24c256.\+h}
+\hypertarget{at24c256_8h_source}{}\label{at24c256_8h_source}\index{include/at24c256.h@{include/at24c256.h}}
+\doxymbox{\hyperlink{at24c256_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <Wire.h>}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{hal_8h}{../lib/hal/hal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00017}\doxymbox{\hyperlink{at24c256_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{00017}}\ \textcolor{preprocessor}{\#define\ PAGE\_SIZE\ 64}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00022}\doxymbox{\hyperlink{at24c256_8h_ad0db2fa7d0c61fadd68de06d7ea2489d}{00022}}\ \textcolor{preprocessor}{\#define\ START\_ADDRESS\ 0x0000}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00027}\doxymbox{\hyperlink{at24c256_8h_a06598c43a83d1d9e35301383d3fa0c98}{00027}}\ \textcolor{preprocessor}{\#define\ END\_ADDRESS\ 0x8000}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00032}\doxymbox{\hyperlink{at24c256_8h_adfec1aac7a2ceeac9ef0a19ec720535e}{00032}}\ \textcolor{preprocessor}{\#define\ SLOT\_ACTIVE\ 0xA9}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00038}\doxymbox{\hyperlink{at24c256_8h_ae5d3042e80b1b73b78799f018dd3cfc9}{00038}}\ \textcolor{preprocessor}{\#define\ SLOT\_EMPTY\ 0xFF}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00051}\doxymbox{\hyperlink{at24c256_8h_a1e0e6df8d138a7d15ca989636ef87757}{00051}}\ uint8\_t\ \doxymbox{\hyperlink{at24c256_8h_a1e0e6df8d138a7d15ca989636ef87757}{EepromRead}}(uint16\_t\ addr,\ uint8\_t\ *dest,\ uint16\_t\ len)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (dest\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00055}00055\ \ \ \ \ uint16\_t\ max\_len\ =\ \doxymbox{\hyperlink{at24c256_8h_a06598c43a83d1d9e35301383d3fa0c98}{END\_ADDRESS}}\ -\/\ addr;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ <\ 1\ ||\ len\ >\ max\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{if}\ ((addr\ +\ len)\ >\ \doxymbox{\hyperlink{at24c256_8h_a06598c43a83d1d9e35301383d3fa0c98}{END\_ADDRESS}})\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{while}\ (len\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ uint16\_t\ chunk\ =\ (len\ >\ 32)\ ?\ 32\ :\ len;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00064}00064\ \ \ \ \ \ \ \ \ Wire.beginTransmission(\doxymbox{\hyperlink{hal_8h_a61bd9388db4785846825bf40aaf09b4c}{STORAGE\_ADDR}});}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00065}00065\ \ \ \ \ \ \ \ \ Wire.write((uint8\_t)(addr\ >>\ 8));}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ Wire.write((uint8\_t)(addr\ \&\ 0xFF));}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00067}00067\ \ \ \ \ \ \ \ \ Wire.endTransmission();}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00069}00069\ \ \ \ \ \ \ \ \ Wire.requestFrom((uint8\_t)\doxymbox{\hyperlink{hal_8h_a61bd9388db4785846825bf40aaf09b4c}{STORAGE\_ADDR}},\ (uint8\_t)chunk);}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ i\ <\ chunk\ \&\&\ Wire.available();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ dest[i]\ =\ Wire.read();}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00074}00074\ \ \ \ \ \ \ \ \ addr\ +=\ chunk;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00075}00075\ \ \ \ \ \ \ \ \ dest\ +=\ chunk;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ len\ -\/=\ chunk;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00079}00079\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00080}00080\ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00093}\doxymbox{\hyperlink{at24c256_8h_a3cfbeb2ae012e8db3620683497432dbd}{00093}}\ uint8\_t\ \doxymbox{\hyperlink{at24c256_8h_a3cfbeb2ae012e8db3620683497432dbd}{EepromWrite}}(uint16\_t\ addr,\ \textcolor{keyword}{const}\ uint8\_t\ *src,\ uint16\_t\ len)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{if}\ (src\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00097}00097\ \ \ \ \ uint16\_t\ max\_len\ =\ \doxymbox{\hyperlink{at24c256_8h_a06598c43a83d1d9e35301383d3fa0c98}{END\_ADDRESS}}\ -\/\ addr;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ <\ 1\ ||\ len\ >\ max\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00100}00100\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{if}\ ((addr\ +\ len)\ >\ \doxymbox{\hyperlink{at24c256_8h_a06598c43a83d1d9e35301383d3fa0c98}{END\_ADDRESS}})\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00103}00103\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{while}\ (len\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00105}00105\ \ \ \ \ \ \ \ \ uint16\_t\ availBytesInPage\ =\ \doxymbox{\hyperlink{at24c256_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{PAGE\_SIZE}}\ -\/\ (addr\ \%\ \doxymbox{\hyperlink{at24c256_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{PAGE\_SIZE}});}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00106}00106\ \ \ \ \ \ \ \ \ uint16\_t\ maxWrite\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00107}00107\ \ \ \ \ \ \ \ \ uint16\_t\ chunk\ =\ len;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (chunk\ >\ availBytesInPage)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ chunk\ =\ availBytesInPage;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (chunk\ >\ maxWrite)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ chunk\ =\ maxWrite;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00115}00115\ \ \ \ \ \ \ \ \ Wire.beginTransmission(\doxymbox{\hyperlink{hal_8h_a61bd9388db4785846825bf40aaf09b4c}{STORAGE\_ADDR}});}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00116}00116\ \ \ \ \ \ \ \ \ Wire.write((uint8\_t)(addr\ >>\ 8));}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00117}00117\ \ \ \ \ \ \ \ \ Wire.write((uint8\_t)(addr\ \&\ 0xFF));}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ i\ <\ chunk;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ Wire.write(src[i]);}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00120}00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00121}00121\ \ \ \ \ \ \ \ \ Wire.endTransmission();}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00122}00122\ \ \ \ \ \ \ \ \ delay(\doxymbox{\hyperlink{hal_8h_a1c1527a332e4e7522f7a533d1e25e7ca}{STORAGE\_OPERATION\_DELAY}});}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00124}00124\ \ \ \ \ \ \ \ \ addr\ +=\ chunk;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00125}00125\ \ \ \ \ \ \ \ \ src\ +=\ chunk;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00126}00126\ \ \ \ \ \ \ \ \ len\ -\/=\ chunk;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00127}00127\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00129}00129\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00130}00130\ \}\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00142}00142\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00143}\doxymbox{\hyperlink{at24c256_8h_a976019103317cddb58c53fa16fcb04d7}{00143}}\ uint8\_t\ \doxymbox{\hyperlink{at24c256_8h_a976019103317cddb58c53fa16fcb04d7}{EepromGet}}(uint16\_t\ addr,\ T\ \&data)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{at24c256_8h_a1e0e6df8d138a7d15ca989636ef87757}{EepromRead}}(addr,\ (uint8\_t*)\&data,\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00145}00145\ \}}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00157}00157\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00158}\doxymbox{\hyperlink{at24c256_8h_ac0f3b4936671f4ad5c80875fa037bd22}{00158}}\ uint8\_t\ \doxymbox{\hyperlink{at24c256_8h_ac0f3b4936671f4ad5c80875fa037bd22}{EepromPut}}(uint16\_t\ addr,\ \textcolor{keyword}{const}\ T\ \&data)\ \{}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{at24c256_8h_a3cfbeb2ae012e8db3620683497432dbd}{EepromWrite}}(addr,\ (\textcolor{keyword}{const}\ uint8\_t*)\&data,\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{\Hypertarget{at24c256_8h_source_l00160}00160\ \}}
+
+\end{DoxyCode}

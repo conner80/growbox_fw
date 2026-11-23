@@ -1,0 +1,492 @@
+\doxysection{lib/\+hal/\+hal.h File Reference}
+\hypertarget{hal_8h}{}\label{hal_8h}\index{lib/hal/hal.h@{lib/hal/hal.h}}
+
+
+Header for HAL configuraion and constants.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a804fd4df86d20e652240bec3fa61e064}{RTC\+\_\+\+DEVICE}}~RTC\+\_\+\+RX8025
+\begin{DoxyCompactList}\small\item\em \doxylink{class_r_t_c}{RTC} device type. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a1c1527a332e4e7522f7a533d1e25e7ca}{STORAGE\+\_\+\+OPERATION\+\_\+\+DELAY}}~5
+\begin{DoxyCompactList}\small\item\em \doxylink{class_storage}{Storage} write operation delay in milliseconds. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a61bd9388db4785846825bf40aaf09b4c}{STORAGE\+\_\+\+ADDR}}~0x50
+\begin{DoxyCompactList}\small\item\em EEPROM I2C device address. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_ae873d956a807911ddb548a2b6765560e}{SOIL\+\_\+\+MOISTURE\+\_\+\+MIN}}~630
+\begin{DoxyCompactList}\small\item\em Minimum humidity value of the soil moisture sensor. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a557cb25137679619d3929fda72ab82ee}{SOIL\+\_\+\+MOISTURE\+\_\+\+MAX}}~330
+\begin{DoxyCompactList}\small\item\em Maximum humidity value of the soil moisture sensor. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a98f144fd906cf157c0addde3f42bde0c}{SOIL\+\_\+\+MOISTURE\+\_\+\+PIN1}}~A0
+\begin{DoxyCompactList}\small\item\em \doxylink{class_soil}{Soil} moisture sensor 1 data PIN. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a245dbc9054b5fe7e5e0c55e47498b6cd}{SOIL\+\_\+\+MOISTURE\+\_\+\+PIN2}}~A1
+\begin{DoxyCompactList}\small\item\em \doxylink{class_soil}{Soil} moisture sensor 2 data PIN. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_adb749f3b8bac47cc5598c5c7616537d0}{AIR\+\_\+\+SENSOR\+\_\+\+START\+\_\+\+DELAY}}~1000
+\begin{DoxyCompactList}\small\item\em \doxylink{class_air}{Air} humidity and temperature sensor startup delay in milliseconds. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_ae3b7ba5223047a968f613599b5ed9e35}{AIR\+\_\+\+SENSOR\+\_\+\+OPERATION\+\_\+\+DELAY}}~2000
+\begin{DoxyCompactList}\small\item\em \doxylink{class_air}{Air} humidity and temeprature sensor operation delay in milliseconds. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a2f504be032367b69f0a326e994a64ca0}{AIR\+\_\+\+SENSOR\+\_\+\+PIN}}~11
+\begin{DoxyCompactList}\small\item\em \doxylink{class_air}{Air} humidity and temperature sensor MCU PIN number. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_ad787f815b01fc0e0806ce942df3bf8cf}{RELAY\+\_\+\+DELAY}}~50
+\begin{DoxyCompactList}\small\item\em Operation delay for electromagnetic relay in milliseconds. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a4e86c3a056afe8536887eaff10df96b9}{KEY\+\_\+\+DELAY}}~0
+\begin{DoxyCompactList}\small\item\em Operation delay for transistor key in milliseconds. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a3835a8dad6262132475fc2b69d77656a}{BT\+\_\+\+RELAY\+\_\+\+PIN}}~6
+\begin{DoxyCompactList}\small\item\em MCU PIN number for \doxylink{class_bluetooth}{Bluetooth} power control relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a5557cdc6a527eedf5ed2e071fc7f84bc}{BT\+\_\+\+RELAY\+\_\+\+TYPE}}~2
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} power control relay type. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a046a49bd08acf968b93841a7ab578fb3}{LAMP\+\_\+\+RELAY\+\_\+\+PIN}}~5
+\begin{DoxyCompactList}\small\item\em MCU PIN number for lamp relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_ae6c62255d81c2b1d522184b8090e947e}{LAMP\+\_\+\+RELAY\+\_\+\+TYPE}}~1
+\begin{DoxyCompactList}\small\item\em Lamp relay type. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_af993f7047a3904a5525ef56aafdc6f6d}{PUMP\+\_\+\+RELAY\+\_\+\+PIN}}~4
+\begin{DoxyCompactList}\small\item\em MCU PIN number for pump relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a00b27f289776ebbc2d568e29db47aacf}{PUMP\+\_\+\+RELAY\+\_\+\+TYPE}}~2
+\begin{DoxyCompactList}\small\item\em Pump relay type. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_acfb8938df8d06e8573bea2c084ca8a81}{FAN\+\_\+\+RELAY\+\_\+\+PIN}}~3
+\begin{DoxyCompactList}\small\item\em MCU PIN number for fan relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a7ca747fa8e94238c6976c1cc710ddecb}{FAN\+\_\+\+RELAY\+\_\+\+TYPE}}~1
+\begin{DoxyCompactList}\small\item\em Fan relay type. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a48efbbc3e90a979e8977246eae79df1e}{HUMIDIFIER\+\_\+\+RELAY\+\_\+\+PIN}}~2
+\begin{DoxyCompactList}\small\item\em MCU PIN number for air humidifier relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a125bb5dd3065e3b0a1c025f6893740ad}{HUMIDIFIER\+\_\+\+RELAY\+\_\+\+TYPE}}~1
+\begin{DoxyCompactList}\small\item\em \doxylink{class_air}{Air} humidifier relay type. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a380241e001bf0988467b3e70a33032c9}{BT\+\_\+\+RX\+\_\+\+PIN}}~10
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} RX line. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a0b4c8d9988d46bfd7ffb4fbc7301255b}{BT\+\_\+\+TX\+\_\+\+PIN}}~9
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} TX line. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_abde08bc612c867d071464fdcec73db34}{BT\+\_\+\+MODE\+\_\+\+PIN}}~13
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} MODE line (AT-\/commands or transport). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_afaab80cdc35e46350e22a6b24970ab38}{BT\+\_\+\+STATE\+\_\+\+PIN}}~12
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} connection state line. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{hal_8h_a4879a25d5237d80d7a49c8d6dc3702ce}{BT\+\_\+\+BUTTON\+\_\+\+PIN}}~7
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} activation button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for HAL configuraion and constants. 
+
+\begin{DoxyAuthor}{Authors}
+John Doe 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026-\/11-\/09 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+Definition in file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+
+
+\label{hal_8h_doc-define-members}
+\Hypertarget{hal_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{hal_8h_ae3b7ba5223047a968f613599b5ed9e35}\index{hal.h@{hal.h}!AIR\_SENSOR\_OPERATION\_DELAY@{AIR\_SENSOR\_OPERATION\_DELAY}}
+\index{AIR\_SENSOR\_OPERATION\_DELAY@{AIR\_SENSOR\_OPERATION\_DELAY}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{AIR\_SENSOR\_OPERATION\_DELAY}{AIR\_SENSOR\_OPERATION\_DELAY}}
+{\footnotesize\ttfamily \label{hal_8h_ae3b7ba5223047a968f613599b5ed9e35} 
+\+\#define AIR\+\_\+\+SENSOR\+\_\+\+OPERATION\+\_\+\+DELAY~2000}
+
+
+
+\doxylink{class_air}{Air} humidity and temeprature sensor operation delay in milliseconds. 
+
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00061}{61}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a2f504be032367b69f0a326e994a64ca0}\index{hal.h@{hal.h}!AIR\_SENSOR\_PIN@{AIR\_SENSOR\_PIN}}
+\index{AIR\_SENSOR\_PIN@{AIR\_SENSOR\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{AIR\_SENSOR\_PIN}{AIR\_SENSOR\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_a2f504be032367b69f0a326e994a64ca0} 
+\+\#define AIR\+\_\+\+SENSOR\+\_\+\+PIN~11}
+
+
+
+\doxylink{class_air}{Air} humidity and temperature sensor MCU PIN number. 
+
+Only digital MCU pin
+
+For disable this sensor remove this define 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00068}{68}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_adb749f3b8bac47cc5598c5c7616537d0}\index{hal.h@{hal.h}!AIR\_SENSOR\_START\_DELAY@{AIR\_SENSOR\_START\_DELAY}}
+\index{AIR\_SENSOR\_START\_DELAY@{AIR\_SENSOR\_START\_DELAY}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{AIR\_SENSOR\_START\_DELAY}{AIR\_SENSOR\_START\_DELAY}}
+{\footnotesize\ttfamily \label{hal_8h_adb749f3b8bac47cc5598c5c7616537d0} 
+\+\#define AIR\+\_\+\+SENSOR\+\_\+\+START\+\_\+\+DELAY~1000}
+
+
+
+\doxylink{class_air}{Air} humidity and temperature sensor startup delay in milliseconds. 
+
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00056}{56}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a4879a25d5237d80d7a49c8d6dc3702ce}\index{hal.h@{hal.h}!BT\_BUTTON\_PIN@{BT\_BUTTON\_PIN}}
+\index{BT\_BUTTON\_PIN@{BT\_BUTTON\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{BT\_BUTTON\_PIN}{BT\_BUTTON\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_a4879a25d5237d80d7a49c8d6dc3702ce} 
+\+\#define BT\+\_\+\+BUTTON\+\_\+\+PIN~7}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} activation button. 
+
+Only digital MCU pin
+
+For disable this button remove this define 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00177}{177}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_abde08bc612c867d071464fdcec73db34}\index{hal.h@{hal.h}!BT\_MODE\_PIN@{BT\_MODE\_PIN}}
+\index{BT\_MODE\_PIN@{BT\_MODE\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{BT\_MODE\_PIN}{BT\_MODE\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_abde08bc612c867d071464fdcec73db34} 
+\+\#define BT\+\_\+\+MODE\+\_\+\+PIN~13}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} MODE line (AT-\/commands or transport). 
+
+Only digital MCU pin \begin{DoxyAttention}{Attention}
+The voltage on this pin should be no more than 3.\+3 V, otherwise the \doxylink{class_bluetooth}{Bluetooth} module will fail. 
+\end{DoxyAttention}
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00164}{164}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a3835a8dad6262132475fc2b69d77656a}\index{hal.h@{hal.h}!BT\_RELAY\_PIN@{BT\_RELAY\_PIN}}
+\index{BT\_RELAY\_PIN@{BT\_RELAY\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{BT\_RELAY\_PIN}{BT\_RELAY\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_a3835a8dad6262132475fc2b69d77656a} 
+\+\#define BT\+\_\+\+RELAY\+\_\+\+PIN~6}
+
+
+
+MCU PIN number for \doxylink{class_bluetooth}{Bluetooth} power control relay. 
+
+Only digital MCU pin 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00085}{85}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a5557cdc6a527eedf5ed2e071fc7f84bc}\index{hal.h@{hal.h}!BT\_RELAY\_TYPE@{BT\_RELAY\_TYPE}}
+\index{BT\_RELAY\_TYPE@{BT\_RELAY\_TYPE}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{BT\_RELAY\_TYPE}{BT\_RELAY\_TYPE}}
+{\footnotesize\ttfamily \label{hal_8h_a5557cdc6a527eedf5ed2e071fc7f84bc} 
+\+\#define BT\+\_\+\+RELAY\+\_\+\+TYPE~2}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} power control relay type. 
+
+Possible relay types: 1 -\/ relay, 2 -\/ n-\/channel key, 3 -\/ p-\/channel key 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00091}{91}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a380241e001bf0988467b3e70a33032c9}\index{hal.h@{hal.h}!BT\_RX\_PIN@{BT\_RX\_PIN}}
+\index{BT\_RX\_PIN@{BT\_RX\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{BT\_RX\_PIN}{BT\_RX\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_a380241e001bf0988467b3e70a33032c9} 
+\+\#define BT\+\_\+\+RX\+\_\+\+PIN~10}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} RX line. 
+
+Only digital MCU pin
+
+This pin is RX for module and TX for Arduino board \begin{DoxyAttention}{Attention}
+The voltage on this pin should be no more than 3.\+3 V, otherwise the \doxylink{class_bluetooth}{Bluetooth} module will fail. 
+\end{DoxyAttention}
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00152}{152}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_afaab80cdc35e46350e22a6b24970ab38}\index{hal.h@{hal.h}!BT\_STATE\_PIN@{BT\_STATE\_PIN}}
+\index{BT\_STATE\_PIN@{BT\_STATE\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{BT\_STATE\_PIN}{BT\_STATE\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_afaab80cdc35e46350e22a6b24970ab38} 
+\+\#define BT\+\_\+\+STATE\+\_\+\+PIN~12}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} connection state line. 
+
+Only digital MCU pin 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00169}{169}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a0b4c8d9988d46bfd7ffb4fbc7301255b}\index{hal.h@{hal.h}!BT\_TX\_PIN@{BT\_TX\_PIN}}
+\index{BT\_TX\_PIN@{BT\_TX\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{BT\_TX\_PIN}{BT\_TX\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_a0b4c8d9988d46bfd7ffb4fbc7301255b} 
+\+\#define BT\+\_\+\+TX\+\_\+\+PIN~9}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} TX line. 
+
+Only digital MCU pin
+
+This pin is TX for module and RX for Arduino board 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00158}{158}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_acfb8938df8d06e8573bea2c084ca8a81}\index{hal.h@{hal.h}!FAN\_RELAY\_PIN@{FAN\_RELAY\_PIN}}
+\index{FAN\_RELAY\_PIN@{FAN\_RELAY\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{FAN\_RELAY\_PIN}{FAN\_RELAY\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_acfb8938df8d06e8573bea2c084ca8a81} 
+\+\#define FAN\+\_\+\+RELAY\+\_\+\+PIN~3}
+
+
+
+MCU PIN number for fan relay. 
+
+Only digital MCU pin
+
+For disable this relay remove this define 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00124}{124}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a7ca747fa8e94238c6976c1cc710ddecb}\index{hal.h@{hal.h}!FAN\_RELAY\_TYPE@{FAN\_RELAY\_TYPE}}
+\index{FAN\_RELAY\_TYPE@{FAN\_RELAY\_TYPE}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{FAN\_RELAY\_TYPE}{FAN\_RELAY\_TYPE}}
+{\footnotesize\ttfamily \label{hal_8h_a7ca747fa8e94238c6976c1cc710ddecb} 
+\+\#define FAN\+\_\+\+RELAY\+\_\+\+TYPE~1}
+
+
+
+Fan relay type. 
+
+Possible relay types: 1 -\/ relay, 2 -\/ n-\/channel key, 3 -\/ p-\/channel key 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00130}{130}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a48efbbc3e90a979e8977246eae79df1e}\index{hal.h@{hal.h}!HUMIDIFIER\_RELAY\_PIN@{HUMIDIFIER\_RELAY\_PIN}}
+\index{HUMIDIFIER\_RELAY\_PIN@{HUMIDIFIER\_RELAY\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{HUMIDIFIER\_RELAY\_PIN}{HUMIDIFIER\_RELAY\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_a48efbbc3e90a979e8977246eae79df1e} 
+\+\#define HUMIDIFIER\+\_\+\+RELAY\+\_\+\+PIN~2}
+
+
+
+MCU PIN number for air humidifier relay. 
+
+Only digital MCU pin
+
+For disable this relay remove this define 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00137}{137}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a125bb5dd3065e3b0a1c025f6893740ad}\index{hal.h@{hal.h}!HUMIDIFIER\_RELAY\_TYPE@{HUMIDIFIER\_RELAY\_TYPE}}
+\index{HUMIDIFIER\_RELAY\_TYPE@{HUMIDIFIER\_RELAY\_TYPE}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{HUMIDIFIER\_RELAY\_TYPE}{HUMIDIFIER\_RELAY\_TYPE}}
+{\footnotesize\ttfamily \label{hal_8h_a125bb5dd3065e3b0a1c025f6893740ad} 
+\+\#define HUMIDIFIER\+\_\+\+RELAY\+\_\+\+TYPE~1}
+
+
+
+\doxylink{class_air}{Air} humidifier relay type. 
+
+Possible relay types: 1 -\/ relay, 2 -\/ n-\/channel key, 3 -\/ p-\/channel key 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00143}{143}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a4e86c3a056afe8536887eaff10df96b9}\index{hal.h@{hal.h}!KEY\_DELAY@{KEY\_DELAY}}
+\index{KEY\_DELAY@{KEY\_DELAY}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{KEY\_DELAY}{KEY\_DELAY}}
+{\footnotesize\ttfamily \label{hal_8h_a4e86c3a056afe8536887eaff10df96b9} 
+\+\#define KEY\+\_\+\+DELAY~0}
+
+
+
+Operation delay for transistor key in milliseconds. 
+
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00079}{79}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a046a49bd08acf968b93841a7ab578fb3}\index{hal.h@{hal.h}!LAMP\_RELAY\_PIN@{LAMP\_RELAY\_PIN}}
+\index{LAMP\_RELAY\_PIN@{LAMP\_RELAY\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{LAMP\_RELAY\_PIN}{LAMP\_RELAY\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_a046a49bd08acf968b93841a7ab578fb3} 
+\+\#define LAMP\+\_\+\+RELAY\+\_\+\+PIN~5}
+
+
+
+MCU PIN number for lamp relay. 
+
+Only digital MCU pin
+
+For disable this relay remove this define 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00098}{98}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_ae6c62255d81c2b1d522184b8090e947e}\index{hal.h@{hal.h}!LAMP\_RELAY\_TYPE@{LAMP\_RELAY\_TYPE}}
+\index{LAMP\_RELAY\_TYPE@{LAMP\_RELAY\_TYPE}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{LAMP\_RELAY\_TYPE}{LAMP\_RELAY\_TYPE}}
+{\footnotesize\ttfamily \label{hal_8h_ae6c62255d81c2b1d522184b8090e947e} 
+\+\#define LAMP\+\_\+\+RELAY\+\_\+\+TYPE~1}
+
+
+
+Lamp relay type. 
+
+Possible relay types: 1 -\/ relay, 2 -\/ n-\/channel key, 3 -\/ p-\/channel key 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00104}{104}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_af993f7047a3904a5525ef56aafdc6f6d}\index{hal.h@{hal.h}!PUMP\_RELAY\_PIN@{PUMP\_RELAY\_PIN}}
+\index{PUMP\_RELAY\_PIN@{PUMP\_RELAY\_PIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{PUMP\_RELAY\_PIN}{PUMP\_RELAY\_PIN}}
+{\footnotesize\ttfamily \label{hal_8h_af993f7047a3904a5525ef56aafdc6f6d} 
+\+\#define PUMP\+\_\+\+RELAY\+\_\+\+PIN~4}
+
+
+
+MCU PIN number for pump relay. 
+
+Only digital MCU pin
+
+For disable this relay remove this define 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00111}{111}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a00b27f289776ebbc2d568e29db47aacf}\index{hal.h@{hal.h}!PUMP\_RELAY\_TYPE@{PUMP\_RELAY\_TYPE}}
+\index{PUMP\_RELAY\_TYPE@{PUMP\_RELAY\_TYPE}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{PUMP\_RELAY\_TYPE}{PUMP\_RELAY\_TYPE}}
+{\footnotesize\ttfamily \label{hal_8h_a00b27f289776ebbc2d568e29db47aacf} 
+\+\#define PUMP\+\_\+\+RELAY\+\_\+\+TYPE~2}
+
+
+
+Pump relay type. 
+
+Possible relay types: 1 -\/ relay, 2 -\/ n-\/channel key, 3 -\/ p-\/channel key 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00117}{117}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_ad787f815b01fc0e0806ce942df3bf8cf}\index{hal.h@{hal.h}!RELAY\_DELAY@{RELAY\_DELAY}}
+\index{RELAY\_DELAY@{RELAY\_DELAY}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{RELAY\_DELAY}{RELAY\_DELAY}}
+{\footnotesize\ttfamily \label{hal_8h_ad787f815b01fc0e0806ce942df3bf8cf} 
+\+\#define RELAY\+\_\+\+DELAY~50}
+
+
+
+Operation delay for electromagnetic relay in milliseconds. 
+
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00074}{74}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a804fd4df86d20e652240bec3fa61e064}\index{hal.h@{hal.h}!RTC\_DEVICE@{RTC\_DEVICE}}
+\index{RTC\_DEVICE@{RTC\_DEVICE}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{RTC\_DEVICE}{RTC\_DEVICE}}
+{\footnotesize\ttfamily \label{hal_8h_a804fd4df86d20e652240bec3fa61e064} 
+\+\#define RTC\+\_\+\+DEVICE~RTC\+\_\+\+RX8025}
+
+
+
+\doxylink{class_r_t_c}{RTC} device type. 
+
+The following values are supported: {\bfseries{RTC\+\_\+\+DS1302}}, {\bfseries{RTC\+\_\+\+DS1307}}, {\bfseries{RTC\+\_\+\+DS3231}}, {\bfseries{RTC\+\_\+\+RX8025}}. 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00016}{16}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a557cb25137679619d3929fda72ab82ee}\index{hal.h@{hal.h}!SOIL\_MOISTURE\_MAX@{SOIL\_MOISTURE\_MAX}}
+\index{SOIL\_MOISTURE\_MAX@{SOIL\_MOISTURE\_MAX}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{SOIL\_MOISTURE\_MAX}{SOIL\_MOISTURE\_MAX}}
+{\footnotesize\ttfamily \label{hal_8h_a557cb25137679619d3929fda72ab82ee} 
+\+\#define SOIL\+\_\+\+MOISTURE\+\_\+\+MAX~330}
+
+
+
+Maximum humidity value of the soil moisture sensor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00037}{37}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_ae873d956a807911ddb548a2b6765560e}\index{hal.h@{hal.h}!SOIL\_MOISTURE\_MIN@{SOIL\_MOISTURE\_MIN}}
+\index{SOIL\_MOISTURE\_MIN@{SOIL\_MOISTURE\_MIN}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{SOIL\_MOISTURE\_MIN}{SOIL\_MOISTURE\_MIN}}
+{\footnotesize\ttfamily \label{hal_8h_ae873d956a807911ddb548a2b6765560e} 
+\+\#define SOIL\+\_\+\+MOISTURE\+\_\+\+MIN~630}
+
+
+
+Minimum humidity value of the soil moisture sensor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00032}{32}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a98f144fd906cf157c0addde3f42bde0c}\index{hal.h@{hal.h}!SOIL\_MOISTURE\_PIN1@{SOIL\_MOISTURE\_PIN1}}
+\index{SOIL\_MOISTURE\_PIN1@{SOIL\_MOISTURE\_PIN1}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{SOIL\_MOISTURE\_PIN1}{SOIL\_MOISTURE\_PIN1}}
+{\footnotesize\ttfamily \label{hal_8h_a98f144fd906cf157c0addde3f42bde0c} 
+\+\#define SOIL\+\_\+\+MOISTURE\+\_\+\+PIN1~A0}
+
+
+
+\doxylink{class_soil}{Soil} moisture sensor 1 data PIN. 
+
+Only analog MCU pin
+
+For disable this sensor remove this define 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00044}{44}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a245dbc9054b5fe7e5e0c55e47498b6cd}\index{hal.h@{hal.h}!SOIL\_MOISTURE\_PIN2@{SOIL\_MOISTURE\_PIN2}}
+\index{SOIL\_MOISTURE\_PIN2@{SOIL\_MOISTURE\_PIN2}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{SOIL\_MOISTURE\_PIN2}{SOIL\_MOISTURE\_PIN2}}
+{\footnotesize\ttfamily \label{hal_8h_a245dbc9054b5fe7e5e0c55e47498b6cd} 
+\+\#define SOIL\+\_\+\+MOISTURE\+\_\+\+PIN2~A1}
+
+
+
+\doxylink{class_soil}{Soil} moisture sensor 2 data PIN. 
+
+Only analog MCU pin
+
+For disable this sensor remove this define 
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00051}{51}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a61bd9388db4785846825bf40aaf09b4c}\index{hal.h@{hal.h}!STORAGE\_ADDR@{STORAGE\_ADDR}}
+\index{STORAGE\_ADDR@{STORAGE\_ADDR}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_ADDR}{STORAGE\_ADDR}}
+{\footnotesize\ttfamily \label{hal_8h_a61bd9388db4785846825bf40aaf09b4c} 
+\+\#define STORAGE\+\_\+\+ADDR~0x50}
+
+
+
+EEPROM I2C device address. 
+
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00026}{26}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+
+\Hypertarget{hal_8h_a1c1527a332e4e7522f7a533d1e25e7ca}\index{hal.h@{hal.h}!STORAGE\_OPERATION\_DELAY@{STORAGE\_OPERATION\_DELAY}}
+\index{STORAGE\_OPERATION\_DELAY@{STORAGE\_OPERATION\_DELAY}!hal.h@{hal.h}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_OPERATION\_DELAY}{STORAGE\_OPERATION\_DELAY}}
+{\footnotesize\ttfamily \label{hal_8h_a1c1527a332e4e7522f7a533d1e25e7ca} 
+\+\#define STORAGE\+\_\+\+OPERATION\+\_\+\+DELAY~5}
+
+
+
+\doxylink{class_storage}{Storage} write operation delay in milliseconds. 
+
+
+
+Definition at line \doxymbox{\hyperlink{hal_8h_source_l00021}{21}} of file \doxymbox{\hyperlink{hal_8h_source}{hal.\+h}}.
+

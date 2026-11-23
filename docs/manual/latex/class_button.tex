@@ -1,0 +1,79 @@
+\doxysection{Button Class Reference}
+\hypertarget{class_button}{}\label{class_button}\index{Button@{Button}}
+
+
+User\textquotesingle{}s button pre-\/processor class.  
+
+
+
+
+{\ttfamily \+\#include $<$button.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_button_a15ee922107df499b5aacb5dba783581b}{Button}} (uint8\+\_\+t pin, bool need\+\_\+pullup=true)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_button_a737ac3562df7ec372e75d8083f66e81e}{Is\+Pressed}} ()
+\begin{DoxyCompactList}\small\item\em Check button state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+User\textquotesingle{}s button pre-\/processor class. 
+
+Definition at line \doxymbox{\hyperlink{button_8h_source_l00014}{14}} of file \doxymbox{\hyperlink{button_8h_source}{button.\+h}}.
+
+
+
+\label{class_button_doc-constructors}
+\Hypertarget{class_button_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_button_a15ee922107df499b5aacb5dba783581b}\index{Button@{Button}!Button@{Button}}
+\index{Button@{Button}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{Button()}{Button()}}
+{\footnotesize\ttfamily \label{class_button_a15ee922107df499b5aacb5dba783581b} 
+Button::\+\+Button (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin}{, }\item[{bool}]{need\+\_\+pullup}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em pin} & MCU digital pin for reading button state \\
+\hline
+\doxymbox{\texttt{in}}  & {\em need\+\_\+pullup} & Need pinup MCU pin by internal resistor or not \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{button_8cpp_source_l00015}{15}} of file \doxymbox{\hyperlink{button_8cpp_source}{button.\+cpp}}.
+
+
+
+\label{class_button_doc-func-members}
+\Hypertarget{class_button_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_button_a737ac3562df7ec372e75d8083f66e81e}\index{Button@{Button}!IsPressed@{IsPressed}}
+\index{IsPressed@{IsPressed}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{IsPressed()}{IsPressed()}}
+{\footnotesize\ttfamily \label{class_button_a737ac3562df7ec372e75d8083f66e81e} 
+bool Button::\+\+Is\+Pressed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Check button state. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_button}{Button} state 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{button_8cpp_source_l00024}{24}} of file \doxymbox{\hyperlink{button_8cpp_source}{button.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+lib/\+hal/\doxymbox{\hyperlink{button_8h}{button.\+h}}\item 
+lib/\+hal/\doxymbox{\hyperlink{button_8cpp}{button.\+cpp}}\end{DoxyCompactItemize}

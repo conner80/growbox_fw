@@ -1,0 +1,100 @@
+\doxysection{lib/\+hal/\+bluetooth.cpp File Reference}
+\hypertarget{bluetooth_8cpp}{}\label{bluetooth_8cpp}\index{lib/hal/bluetooth.cpp@{lib/hal/bluetooth.cpp}}
+
+
+Implementation for bluetooth transport class for chip HC-\/05.  
+
+
+{\ttfamily \+\#include $<$string.\+h$>$}\newline
+{\ttfamily \+\#include "{}bluetooth.\+h"{}}\newline
+{\ttfamily \+\#include "{}common/\+commands.\+h"{}}\newline
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \doxymbox{\hyperlink{bluetooth_8cpp_a08ae3bed519629c6ebad658ff5bdf180}{OK\+\_\+\+RESP}} \+[$\,$] = "{}OK\textbackslash{}r\textbackslash{}n"{}
+\begin{DoxyCompactList}\small\item\em OK response from device by AT-\/command. \end{DoxyCompactList}\item 
+const unsigned long \doxymbox{\hyperlink{bluetooth_8cpp_ae2f81804c4849dc270c2ad77f17e5299}{BT\+\_\+\+CHANGE\+\_\+\+STATUS\+\_\+\+DELAY}} = 1000
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} module change device status (see \doxylink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{Enum\+Status}) delay (in milliseconds). \end{DoxyCompactList}\item 
+const unsigned long \doxymbox{\hyperlink{bluetooth_8cpp_aea19be3bd8c353ce8096a1bd3563b7ce}{BT\+\_\+\+AT\+\_\+\+PROCESSING\+\_\+\+DELAY}} = 400
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} AT-\/commands processing delay (in milliseconds). \end{DoxyCompactList}\item 
+const unsigned long \doxymbox{\hyperlink{bluetooth_8cpp_a0f56c0de27dee5fce3d80fc1741a8517}{BT\+\_\+\+INIT\+\_\+\+DELAY}} = 500
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} initialization delay (in milliseconds). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation for bluetooth transport class for chip HC-\/05. 
+
+\begin{DoxyAuthor}{Authors}
+John Doe 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026-\/11-\/16 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+Definition in file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+
+
+\label{bluetooth_8cpp_doc-var-members}
+\Hypertarget{bluetooth_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{bluetooth_8cpp_aea19be3bd8c353ce8096a1bd3563b7ce}\index{bluetooth.cpp@{bluetooth.cpp}!BT\_AT\_PROCESSING\_DELAY@{BT\_AT\_PROCESSING\_DELAY}}
+\index{BT\_AT\_PROCESSING\_DELAY@{BT\_AT\_PROCESSING\_DELAY}!bluetooth.cpp@{bluetooth.cpp}}
+\doxysubsubsection{\texorpdfstring{BT\_AT\_PROCESSING\_DELAY}{BT\_AT\_PROCESSING\_DELAY}}
+{\footnotesize\ttfamily \label{bluetooth_8cpp_aea19be3bd8c353ce8096a1bd3563b7ce} 
+const unsigned long BT\+\_\+\+AT\+\_\+\+PROCESSING\+\_\+\+DELAY = 400}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} AT-\/commands processing delay (in milliseconds). 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00024}{24}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{bluetooth_8cpp_ae2f81804c4849dc270c2ad77f17e5299}\index{bluetooth.cpp@{bluetooth.cpp}!BT\_CHANGE\_STATUS\_DELAY@{BT\_CHANGE\_STATUS\_DELAY}}
+\index{BT\_CHANGE\_STATUS\_DELAY@{BT\_CHANGE\_STATUS\_DELAY}!bluetooth.cpp@{bluetooth.cpp}}
+\doxysubsubsection{\texorpdfstring{BT\_CHANGE\_STATUS\_DELAY}{BT\_CHANGE\_STATUS\_DELAY}}
+{\footnotesize\ttfamily \label{bluetooth_8cpp_ae2f81804c4849dc270c2ad77f17e5299} 
+const unsigned long BT\+\_\+\+CHANGE\+\_\+\+STATUS\+\_\+\+DELAY = 1000}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} module change device status (see \doxylink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{Enum\+Status}) delay (in milliseconds). 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00020}{20}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{bluetooth_8cpp_a0f56c0de27dee5fce3d80fc1741a8517}\index{bluetooth.cpp@{bluetooth.cpp}!BT\_INIT\_DELAY@{BT\_INIT\_DELAY}}
+\index{BT\_INIT\_DELAY@{BT\_INIT\_DELAY}!bluetooth.cpp@{bluetooth.cpp}}
+\doxysubsubsection{\texorpdfstring{BT\_INIT\_DELAY}{BT\_INIT\_DELAY}}
+{\footnotesize\ttfamily \label{bluetooth_8cpp_a0f56c0de27dee5fce3d80fc1741a8517} 
+const unsigned long BT\+\_\+\+INIT\+\_\+\+DELAY = 500}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} initialization delay (in milliseconds). 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00028}{28}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{bluetooth_8cpp_a08ae3bed519629c6ebad658ff5bdf180}\index{bluetooth.cpp@{bluetooth.cpp}!OK\_RESP@{OK\_RESP}}
+\index{OK\_RESP@{OK\_RESP}!bluetooth.cpp@{bluetooth.cpp}}
+\doxysubsubsection{\texorpdfstring{OK\_RESP}{OK\_RESP}}
+{\footnotesize\ttfamily \label{bluetooth_8cpp_a08ae3bed519629c6ebad658ff5bdf180} 
+const char OK\+\_\+\+RESP\+[$\,$] = "{}OK\textbackslash{}r\textbackslash{}n"{}}
+
+
+
+OK response from device by AT-\/command. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00015}{15}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+

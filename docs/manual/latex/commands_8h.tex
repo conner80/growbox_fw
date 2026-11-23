@@ -1,0 +1,433 @@
+\doxysection{include/\+common/\+commands.h File Reference}
+\hypertarget{commands_8h}{}\label{commands_8h}\index{include/common/commands.h@{include/common/commands.h}}
+
+
+Header for network commands.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_ab141f838bbf8cf66802981ea5a283fc3}{REQUEST\+\_\+\+PACKET}}~0x\+FE
+\begin{DoxyCompactList}\small\item\em Signature for request packets. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_a343971e5ff64f1c1f306ba21caf67e53}{RESPONSE\+\_\+\+PACKET}}~0x\+EF
+\begin{DoxyCompactList}\small\item\em Signature for response packets. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_ab3b8f03007d307a2df29d32864b8911d}{ACK\+\_\+\+PACKET}}~0x\+AA
+\begin{DoxyCompactList}\small\item\em Positive acknowlage packet. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_a32a8b8fba6c9a1a68120ae077c5bc28b}{NACK\+\_\+\+PACKET}}~0x\+BB
+\begin{DoxyCompactList}\small\item\em Negative acknowlage packet. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_a42bf1fd637b1c921700bf479cc2f8533}{CMD\+\_\+\+INFO}}~0x01
+\begin{DoxyCompactList}\small\item\em Request common device information. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_afacf9de9d9f12b90cf850eac70e5b48b}{CMD\+\_\+\+GET\+\_\+\+BT\+\_\+\+INFO}}~0x02
+\begin{DoxyCompactList}\small\item\em Get common bluetooth device information. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_a1b78ee87bf0c178fd14cb6c88a36d6f0}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+NAME}}~0x03
+\begin{DoxyCompactList}\small\item\em Set bluetooth device name. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_a900bdf8a70cc1fee39ba4e5e29e20f5f}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+PASS}}~0x04
+\begin{DoxyCompactList}\small\item\em Set new bluetooth device password. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_a77d8c029e23ff9e179769b546d85a275}{CMD\+\_\+\+GET\+\_\+\+TIME}}~0x05
+\begin{DoxyCompactList}\small\item\em Get device current date and time (Unix-\/time format). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_ab972af079e26bcb287c46f0b44d36766}{CMD\+\_\+\+SET\+\_\+\+TIME}}~0x06
+\begin{DoxyCompactList}\small\item\em Set device new date and time (Unix-\/time format). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a}{CMD\+\_\+\+GET\+\_\+\+STATUS}}~0x07
+\begin{DoxyCompactList}\small\item\em Get device configuration and status for all sensors and relays. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\+\_\+\+SET\+\_\+\+STATUS}}~0x08
+\begin{DoxyCompactList}\small\item\em Set device configuration and status for all sensors and relays. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_ad37107a45db89a0aa7f06dfbf096d917}{CMD\+\_\+\+GET\+\_\+\+MODE}}~0x09
+\begin{DoxyCompactList}\small\item\em Get current mode of the device. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{commands_8h_ab08c18e4b6ea58665d8743bd47182946}{CMD\+\_\+\+SET\+\_\+\+MODE}}~0x0A
+\begin{DoxyCompactList}\small\item\em Set mode for the device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{commands_8h_aa2bd17059a6a51a89e0ff489fd034b6f}{\+\_\+\+\_\+attribute\+\_\+\_}} ((packed)) Packet\+Header
+\begin{DoxyCompactList}\small\item\em Network command\textquotesingle{}s header. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for network commands. 
+
+\begin{DoxyAuthor}{Authors}
+John Doe 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026-\/11-\/18 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+Definition in file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+
+
+\label{commands_8h_doc-define-members}
+\Hypertarget{commands_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{commands_8h_ab3b8f03007d307a2df29d32864b8911d}\index{commands.h@{commands.h}!ACK\_PACKET@{ACK\_PACKET}}
+\index{ACK\_PACKET@{ACK\_PACKET}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{ACK\_PACKET}{ACK\_PACKET}}
+{\footnotesize\ttfamily \label{commands_8h_ab3b8f03007d307a2df29d32864b8911d} 
+\+\#define ACK\+\_\+\+PACKET~0x\+AA}
+
+
+
+Positive acknowlage packet. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00023}{23}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_afacf9de9d9f12b90cf850eac70e5b48b}\index{commands.h@{commands.h}!CMD\_GET\_BT\_INFO@{CMD\_GET\_BT\_INFO}}
+\index{CMD\_GET\_BT\_INFO@{CMD\_GET\_BT\_INFO}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_GET\_BT\_INFO}{CMD\_GET\_BT\_INFO}}
+{\footnotesize\ttfamily \label{commands_8h_afacf9de9d9f12b90cf850eac70e5b48b} 
+\+\#define CMD\+\_\+\+GET\+\_\+\+BT\+\_\+\+INFO~0x02}
+
+
+
+Get common bluetooth device information. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00036}{36}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_ad37107a45db89a0aa7f06dfbf096d917}\index{commands.h@{commands.h}!CMD\_GET\_MODE@{CMD\_GET\_MODE}}
+\index{CMD\_GET\_MODE@{CMD\_GET\_MODE}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_GET\_MODE}{CMD\_GET\_MODE}}
+{\footnotesize\ttfamily \label{commands_8h_ad37107a45db89a0aa7f06dfbf096d917} 
+\+\#define CMD\+\_\+\+GET\+\_\+\+MODE~0x09}
+
+
+
+Get current mode of the device. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00064}{64}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a}\index{commands.h@{commands.h}!CMD\_GET\_STATUS@{CMD\_GET\_STATUS}}
+\index{CMD\_GET\_STATUS@{CMD\_GET\_STATUS}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_GET\_STATUS}{CMD\_GET\_STATUS}}
+{\footnotesize\ttfamily \label{commands_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a} 
+\+\#define CMD\+\_\+\+GET\+\_\+\+STATUS~0x07}
+
+
+
+Get device configuration and status for all sensors and relays. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00056}{56}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_a77d8c029e23ff9e179769b546d85a275}\index{commands.h@{commands.h}!CMD\_GET\_TIME@{CMD\_GET\_TIME}}
+\index{CMD\_GET\_TIME@{CMD\_GET\_TIME}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_GET\_TIME}{CMD\_GET\_TIME}}
+{\footnotesize\ttfamily \label{commands_8h_a77d8c029e23ff9e179769b546d85a275} 
+\+\#define CMD\+\_\+\+GET\+\_\+\+TIME~0x05}
+
+
+
+Get device current date and time (Unix-\/time format). 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00048}{48}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_a42bf1fd637b1c921700bf479cc2f8533}\index{commands.h@{commands.h}!CMD\_INFO@{CMD\_INFO}}
+\index{CMD\_INFO@{CMD\_INFO}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_INFO}{CMD\_INFO}}
+{\footnotesize\ttfamily \label{commands_8h_a42bf1fd637b1c921700bf479cc2f8533} 
+\+\#define CMD\+\_\+\+INFO~0x01}
+
+
+
+Request common device information. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00032}{32}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_a1b78ee87bf0c178fd14cb6c88a36d6f0}\index{commands.h@{commands.h}!CMD\_SET\_BT\_NAME@{CMD\_SET\_BT\_NAME}}
+\index{CMD\_SET\_BT\_NAME@{CMD\_SET\_BT\_NAME}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_SET\_BT\_NAME}{CMD\_SET\_BT\_NAME}}
+{\footnotesize\ttfamily \label{commands_8h_a1b78ee87bf0c178fd14cb6c88a36d6f0} 
+\+\#define CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+NAME~0x03}
+
+
+
+Set bluetooth device name. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00040}{40}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_a900bdf8a70cc1fee39ba4e5e29e20f5f}\index{commands.h@{commands.h}!CMD\_SET\_BT\_PASS@{CMD\_SET\_BT\_PASS}}
+\index{CMD\_SET\_BT\_PASS@{CMD\_SET\_BT\_PASS}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_SET\_BT\_PASS}{CMD\_SET\_BT\_PASS}}
+{\footnotesize\ttfamily \label{commands_8h_a900bdf8a70cc1fee39ba4e5e29e20f5f} 
+\+\#define CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+PASS~0x04}
+
+
+
+Set new bluetooth device password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00044}{44}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_ab08c18e4b6ea58665d8743bd47182946}\index{commands.h@{commands.h}!CMD\_SET\_MODE@{CMD\_SET\_MODE}}
+\index{CMD\_SET\_MODE@{CMD\_SET\_MODE}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_SET\_MODE}{CMD\_SET\_MODE}}
+{\footnotesize\ttfamily \label{commands_8h_ab08c18e4b6ea58665d8743bd47182946} 
+\+\#define CMD\+\_\+\+SET\+\_\+\+MODE~0x0A}
+
+
+
+Set mode for the device. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00068}{68}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_a8ddab075ebf1c378815abb74577783ed}\index{commands.h@{commands.h}!CMD\_SET\_STATUS@{CMD\_SET\_STATUS}}
+\index{CMD\_SET\_STATUS@{CMD\_SET\_STATUS}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_SET\_STATUS}{CMD\_SET\_STATUS}}
+{\footnotesize\ttfamily \label{commands_8h_a8ddab075ebf1c378815abb74577783ed} 
+\+\#define CMD\+\_\+\+SET\+\_\+\+STATUS~0x08}
+
+
+
+Set device configuration and status for all sensors and relays. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00060}{60}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_ab972af079e26bcb287c46f0b44d36766}\index{commands.h@{commands.h}!CMD\_SET\_TIME@{CMD\_SET\_TIME}}
+\index{CMD\_SET\_TIME@{CMD\_SET\_TIME}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_SET\_TIME}{CMD\_SET\_TIME}}
+{\footnotesize\ttfamily \label{commands_8h_ab972af079e26bcb287c46f0b44d36766} 
+\+\#define CMD\+\_\+\+SET\+\_\+\+TIME~0x06}
+
+
+
+Set device new date and time (Unix-\/time format). 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00052}{52}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_a32a8b8fba6c9a1a68120ae077c5bc28b}\index{commands.h@{commands.h}!NACK\_PACKET@{NACK\_PACKET}}
+\index{NACK\_PACKET@{NACK\_PACKET}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{NACK\_PACKET}{NACK\_PACKET}}
+{\footnotesize\ttfamily \label{commands_8h_a32a8b8fba6c9a1a68120ae077c5bc28b} 
+\+\#define NACK\+\_\+\+PACKET~0x\+BB}
+
+
+
+Negative acknowlage packet. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00027}{27}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_ab141f838bbf8cf66802981ea5a283fc3}\index{commands.h@{commands.h}!REQUEST\_PACKET@{REQUEST\_PACKET}}
+\index{REQUEST\_PACKET@{REQUEST\_PACKET}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{REQUEST\_PACKET}{REQUEST\_PACKET}}
+{\footnotesize\ttfamily \label{commands_8h_ab141f838bbf8cf66802981ea5a283fc3} 
+\+\#define REQUEST\+\_\+\+PACKET~0x\+FE}
+
+
+
+Signature for request packets. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00015}{15}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+\Hypertarget{commands_8h_a343971e5ff64f1c1f306ba21caf67e53}\index{commands.h@{commands.h}!RESPONSE\_PACKET@{RESPONSE\_PACKET}}
+\index{RESPONSE\_PACKET@{RESPONSE\_PACKET}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{RESPONSE\_PACKET}{RESPONSE\_PACKET}}
+{\footnotesize\ttfamily \label{commands_8h_a343971e5ff64f1c1f306ba21caf67e53} 
+\+\#define RESPONSE\+\_\+\+PACKET~0x\+EF}
+
+
+
+Signature for response packets. 
+
+
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00019}{19}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+
+
+
+\label{commands_8h_doc-func-members}
+\Hypertarget{commands_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{commands_8h_aa2bd17059a6a51a89e0ff489fd034b6f}\index{commands.h@{commands.h}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!commands.h@{commands.h}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{commands_8h_aa2bd17059a6a51a89e0ff489fd034b6f} 
+struct \+\_\+\+\_\+attribute\+\_\+\_ (\begin{DoxyParamCaption}\item[{(packed)}]{}{}\end{DoxyParamCaption})}
+
+
+
+Network command\textquotesingle{}s header. 
+
+Pump relay information and configuration.
+
+Common relay information and configuration.
+
+Activity period configuration.
+
+\doxylink{class_soil}{Soil} moisture sensor information and configuration.
+
+\doxylink{class_air}{Air} humidity and temperature sensor information and configuration.
+
+Get current or set new device mode command\textquotesingle{}s response/\+request (see \doxylink{commands_8h_ad37107a45db89a0aa7f06dfbf096d917}{CMD\+\_\+\+GET\+\_\+\+MODE} and \doxylink{commands_8h_ab08c18e4b6ea58665d8743bd47182946}{CMD\+\_\+\+SET\+\_\+\+MODE}).
+
+Set device status command\textquotesingle{}s response (see \doxylink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\+\_\+\+SET\+\_\+\+STATUS}).
+
+Set device status command\textquotesingle{}s request (see \doxylink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\+\_\+\+SET\+\_\+\+STATUS}).
+
+Get device current status command\textquotesingle{}s request (see \doxylink{commands_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a}{CMD\+\_\+\+GET\+\_\+\+STATUS}).
+
+Set device date and time command\textquotesingle{}s request (see \doxylink{commands_8h_ab972af079e26bcb287c46f0b44d36766}{CMD\+\_\+\+SET\+\_\+\+TIME}).
+
+Get device current date and time command\textquotesingle{}s response (see \doxylink{commands_8h_a77d8c029e23ff9e179769b546d85a275}{CMD\+\_\+\+GET\+\_\+\+TIME}).
+
+Set \doxylink{class_bluetooth}{Bluetooth} device password command\textquotesingle{}s request (see \doxylink{commands_8h_a900bdf8a70cc1fee39ba4e5e29e20f5f}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+PASS}).
+
+Common command\textquotesingle{}s response.
+
+Set \doxylink{class_bluetooth}{Bluetooth} device name command\textquotesingle{}s request (see \doxylink{commands_8h_a1b78ee87bf0c178fd14cb6c88a36d6f0}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+NAME}).
+
+Get \doxylink{class_bluetooth}{Bluetooth} device common information command\textquotesingle{}s response (see \doxylink{commands_8h_afacf9de9d9f12b90cf850eac70e5b48b}{CMD\+\_\+\+GET\+\_\+\+BT\+\_\+\+INFO}).
+
+Get common info command\textquotesingle{}s response (see \doxylink{commands_8h_a42bf1fd637b1c921700bf479cc2f8533}{CMD\+\_\+\+INFO}).
+
+If begin part of the prtiod equal end of the period or period has incorrect values -\/ ignore period and always device active Packet\textquotesingle{}s signature
+
+Command type
+
+Command\textquotesingle{}s data length
+
+Device and firmware name
+
+Device firmware version
+
+\doxylink{class_bluetooth}{Bluetooth} device firmware version
+
+Enabled devices mask
+
+Current device mode
+
+\doxylink{class_bluetooth}{Bluetooth} device current name
+
+\doxylink{class_bluetooth}{Bluetooth} device address
+
+\doxylink{class_bluetooth}{Bluetooth} device name
+
+Response code
+
+Success is 0x00
+
+\doxylink{class_bluetooth}{Bluetooth} device password
+
+Response code
+
+Success is 0x00
+
+Current device date and time (Unix-\/time format)
+
+Device date and time (Unix-\/time format)
+
+Device modules mask
+
+Save changes to EEPROM or nor
+
+Response code
+
+Success is 0x00
+
+Fault modules/\+devices mask
+
+Current device mode
+
+{\bfseries{0x00}} -\/ Callibrate mode~\newline
+{\bfseries{0x01}} -\/ Standart mode
+
+Device identificator value
+
+The temperature of the beginning of ventilation (in Celsius)
+
+The temperature of the finishing of ventilation (in Celsius)
+
+The air humidity of the beginning of ventilation (in percent)
+
+The air humidity of the finishing of ventilation (in percent)
+
+The air humidity of the beginning of humidification (in percent)
+
+The air humidity of the finishing of humidification (in percent)
+
+Current air temperature (in Celsius)
+
+Current air humidity (in percent)
+
+Device identificator value
+
+Minimal soil moisture (0\%)
+
+Calibrate or manual input value
+
+Maximal soil moisture (100\%)
+
+Calibrate or manual input value
+
+The percentage of soil moisture at which watering begins
+
+The percentage of soil moisture at which watering ends
+
+Current soil moisture
+
+Hour of the beginning activity
+
+Minute of the beginning activity
+
+Hour of the ending activity
+
+Minute of the ending activity
+
+Device identificator value
+
+Lamp activity period
+
+Activity relay status
+
+{\bfseries{0x00}} -\/ Inactive~\newline
+{\bfseries{0x01}} -\/ Active
+
+Working mode
+
+{\bfseries{0x00}} -\/ Manual mode~\newline
+{\bfseries{0x01}} -\/ Automatic mode
+
+Common relay information and configuration
+
+Maximum pump working time in seconds
+
+{\bfseries{0}} -\/ Infinity time (stops by command only)
+
+Pause between pump runs in seconds
+
+{\bfseries{0}} -\/ No pause between pump starts
+
+Watering frequency in hours
+
+{\bfseries{0}} -\/ Ignore this parameter otherwise maximum watering frequency in hours
+
+Definition at line \doxymbox{\hyperlink{commands_8h_source_l00001}{1}} of file \doxymbox{\hyperlink{commands_8h_source}{commands.\+h}}.
+

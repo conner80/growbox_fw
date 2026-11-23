@@ -661,8 +661,7 @@ void Controller::setMode(Controller *instance, const uint8_t *req_data, const si
     memcpy(asw_data, &resp, sizeof(CmdMode));
 }
 
-uint8_t Controller::readSensors()
-{
+uint8_t Controller::readSensors() {
     uint8_t res = 0x00;
     unsigned long now = millis();
     unsigned long lim = max(CHECK_SENSORS_FREQ, AIR_SENSOR_OPERATION_DELAY);
@@ -870,8 +869,7 @@ void Controller::processHumidifier(bool is_active_rtc, bool is_active_air) {
     }
 }
 
-void Controller::checkBTButton()
-{
+void Controller::checkBTButton() {
     if (this->bt->IsActivated()) {
         return;
     }
@@ -1188,8 +1186,7 @@ void Controller::SetMode(bool isStdandart) {
     this->isStdMode = isStdandart;
 }
 
-void Controller::Process()
-{
+void Controller::Process() {
     this->checkPumpRunning();
     uint8_t sens = this->readSensors();
     if (sens == 0) {

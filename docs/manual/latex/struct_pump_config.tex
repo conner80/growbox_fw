@@ -1,0 +1,111 @@
+\doxysection{Pump\+Config Struct Reference}
+\hypertarget{struct_pump_config}{}\label{struct_pump_config}\index{PumpConfig@{PumpConfig}}
+
+
+Pump configuration.  
+
+
+
+
+{\ttfamily \+\#include $<$config.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{struct_pump_config_aba86865f1244058249327c973f769fd5}{Is\+Auto}} = true
+\begin{DoxyCompactList}\small\item\em Automatic control or manual. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{struct_pump_config_a5cd539ac2f0acdcd0e6e9eee8af375da}{Max\+Work\+Time}} = 300
+\begin{DoxyCompactList}\small\item\em Maximum pump working time in seconds. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{struct_pump_config_a73b968c4ff0774b8b1322b8afa486435}{Pause\+Between\+Start}} = 600
+\begin{DoxyCompactList}\small\item\em Pause between pump runs in seconds. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_pump_config_a9190c3cd8cef25709a959c95c2134952}{Freq\+Watering}} = 72
+\begin{DoxyCompactList}\small\item\em Watering frequency in hours. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_period_config}{Period\+Config}} \doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{Activity\+Period}}
+\begin{DoxyCompactList}\small\item\em Pump activity period. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Pump configuration. 
+
+Definition at line \doxymbox{\hyperlink{config_8h_source_l00073}{73}} of file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+
+
+
+\label{struct_pump_config_doc-variable-members}
+\Hypertarget{struct_pump_config_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_pump_config_aef6db79dbde8bccca41730450e41da43}\index{PumpConfig@{PumpConfig}!ActivityPeriod@{ActivityPeriod}}
+\index{ActivityPeriod@{ActivityPeriod}!PumpConfig@{PumpConfig}}
+\doxysubsubsection{\texorpdfstring{ActivityPeriod}{ActivityPeriod}}
+{\footnotesize\ttfamily \label{struct_pump_config_aef6db79dbde8bccca41730450e41da43} 
+\doxymbox{\hyperlink{struct_period_config}{Period\+Config}} Pump\+Config::\+\+Activity\+Period}
+
+
+
+Pump activity period. 
+
+
+
+Definition at line \doxymbox{\hyperlink{config_8h_source_l00096}{96}} of file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+
+\Hypertarget{struct_pump_config_a9190c3cd8cef25709a959c95c2134952}\index{PumpConfig@{PumpConfig}!FreqWatering@{FreqWatering}}
+\index{FreqWatering@{FreqWatering}!PumpConfig@{PumpConfig}}
+\doxysubsubsection{\texorpdfstring{FreqWatering}{FreqWatering}}
+{\footnotesize\ttfamily \label{struct_pump_config_a9190c3cd8cef25709a959c95c2134952} 
+uint8\+\_\+t Pump\+Config::\+\+Freq\+Watering = 72}
+
+
+
+Watering frequency in hours. 
+
+{\bfseries{0}} -\/ Ignore this parameter otherwise maximum watering frequency in hours 
+
+Definition at line \doxymbox{\hyperlink{config_8h_source_l00092}{92}} of file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+
+\Hypertarget{struct_pump_config_aba86865f1244058249327c973f769fd5}\index{PumpConfig@{PumpConfig}!IsAuto@{IsAuto}}
+\index{IsAuto@{IsAuto}!PumpConfig@{PumpConfig}}
+\doxysubsubsection{\texorpdfstring{IsAuto}{IsAuto}}
+{\footnotesize\ttfamily \label{struct_pump_config_aba86865f1244058249327c973f769fd5} 
+bool Pump\+Config::\+\+Is\+Auto = true}
+
+
+
+Automatic control or manual. 
+
+
+
+Definition at line \doxymbox{\hyperlink{config_8h_source_l00077}{77}} of file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+
+\Hypertarget{struct_pump_config_a5cd539ac2f0acdcd0e6e9eee8af375da}\index{PumpConfig@{PumpConfig}!MaxWorkTime@{MaxWorkTime}}
+\index{MaxWorkTime@{MaxWorkTime}!PumpConfig@{PumpConfig}}
+\doxysubsubsection{\texorpdfstring{MaxWorkTime}{MaxWorkTime}}
+{\footnotesize\ttfamily \label{struct_pump_config_a5cd539ac2f0acdcd0e6e9eee8af375da} 
+uint16\+\_\+t Pump\+Config::\+\+Max\+Work\+Time = 300}
+
+
+
+Maximum pump working time in seconds. 
+
+{\bfseries{0}} -\/ Infinity time (stops by command only) 
+
+Definition at line \doxymbox{\hyperlink{config_8h_source_l00082}{82}} of file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+
+\Hypertarget{struct_pump_config_a73b968c4ff0774b8b1322b8afa486435}\index{PumpConfig@{PumpConfig}!PauseBetweenStart@{PauseBetweenStart}}
+\index{PauseBetweenStart@{PauseBetweenStart}!PumpConfig@{PumpConfig}}
+\doxysubsubsection{\texorpdfstring{PauseBetweenStart}{PauseBetweenStart}}
+{\footnotesize\ttfamily \label{struct_pump_config_a73b968c4ff0774b8b1322b8afa486435} 
+uint16\+\_\+t Pump\+Config::\+\+Pause\+Between\+Start = 600}
+
+
+
+Pause between pump runs in seconds. 
+
+{\bfseries{0}} -\/ No pause between pump starts 
+
+Definition at line \doxymbox{\hyperlink{config_8h_source_l00087}{87}} of file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+include/\+config/\doxymbox{\hyperlink{config_8h}{config.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,26 @@
+\doxysection{storage.\+h}
+\hypertarget{storage_8h_source}{}\label{storage_8h_source}\index{lib/hal/storage.h@{lib/hal/storage.h}}
+\doxymbox{\hyperlink{storage_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <\doxymbox{\hyperlink{config_8h}{config/config.h}}>}}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00016}\doxymbox{\hyperlink{class_storage}{00016}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_storage_a80ef6af5e4c9fd4424ae16e808d05291}{Storage}}\ \{}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00017}00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInited\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00019}00019\ \ \ \ \ uint16\_t\ slotSize;}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00020}00020\ \ \ \ \ uint16\_t\ totalSlots;}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{int}\ curSlot;}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00022}00022\ \ \ \ \ uint32\_t\ lastWriteCount;}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00023}00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ \doxymbox{\hyperlink{class_storage_a6a52e28104952293d18d7e95fe7022c4}{alignSize}}(uint16\_t\ sz);}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00030}00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00034}00034\ \ \ \ \ \doxymbox{\hyperlink{class_storage_a80ef6af5e4c9fd4424ae16e808d05291}{Storage}}();}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_storage_a017937051333431c3eb4adecf446440c}{IsInited}}();}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00050}00050\ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_storage_a950b2bdc8787cbd915f5a9cc0f55fb66}{Read}}(\doxymbox{\hyperlink{struct_grow_config}{GrowConfig}}\ \&dest);}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00062}00062\ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_storage_a075679c259856ed51735d7ebc4916c65}{Write}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_grow_config}{GrowConfig}}\ \&src);}
+\DoxyCodeLine{\Hypertarget{storage_8h_source_l00063}00063\ \};}
+
+\end{DoxyCode}

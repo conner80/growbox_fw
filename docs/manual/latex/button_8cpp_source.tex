@@ -1,0 +1,39 @@
+\doxysection{button.\+cpp}
+\hypertarget{button_8cpp_source}{}\label{button_8cpp_source}\index{lib/hal/button.cpp@{lib/hal/button.cpp}}
+\doxymbox{\hyperlink{button_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{button_8h}{button.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00013}\doxymbox{\hyperlink{button_8cpp_adb75862f582a7d68347ceae4f4c003c9}{00013}}\ \textcolor{preprocessor}{\#define\ DEBOUNCE\_DELAY\ 50}}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00015}\doxymbox{\hyperlink{class_button_a15ee922107df499b5aacb5dba783581b}{00015}}\ \doxymbox{\hyperlink{class_button_a15ee922107df499b5aacb5dba783581b}{Button::Button}}(uint8\_t\ pin,\ \textcolor{keywordtype}{bool}\ need\_pullup)\ \{}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00016}00016\ \ \ \ \ this-\/>pin\ =\ pin;}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (need\_pullup)\ \{}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ pinMode(pin,\ INPUT\_PULLUP);}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00019}00019\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ pinMode(pin,\ INPUT);}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00024}\doxymbox{\hyperlink{class_button_a737ac3562df7ec372e75d8083f66e81e}{00024}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_button_a737ac3562df7ec372e75d8083f66e81e}{Button::IsPressed}}()\ \{}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{int}\ st\ =\ digitalRead(this-\/>pin);}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ res\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (st\ !=\ this-\/>last\_st)\ \{}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ this-\/>last\_op\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{if}\ ((millis()\ -\/\ this-\/>last\_op)\ >\ \doxymbox{\hyperlink{button_8cpp_adb75862f582a7d68347ceae4f4c003c9}{DEBOUNCE\_DELAY}})\ \{}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st\ !=\ this-\/>state)\ \{}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>state\ =\ st;}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st\ ==\ LOW)\ \{}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00039}00039\ \ \ \ \ this-\/>last\_st\ =\ st;}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{button_8cpp_source_l00042}00042\ \}}
+
+\end{DoxyCode}

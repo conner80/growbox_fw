@@ -1,0 +1,278 @@
+\doxysection{include/\+at24c256.h File Reference}
+\hypertarget{at24c256_8h}{}\label{at24c256_8h}\index{include/at24c256.h@{include/at24c256.h}}
+
+
+Implementation for EEPROM AT24\+C256 (32KB).  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \+\#include $<$Wire.\+h$>$}\newline
+{\ttfamily \+\#include "{}../\+lib/\+hal/\+hal.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{at24c256_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{PAGE\+\_\+\+SIZE}}~64
+\begin{DoxyCompactList}\small\item\em EEPROM memory page size in bytes. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{at24c256_8h_ad0db2fa7d0c61fadd68de06d7ea2489d}{START\+\_\+\+ADDRESS}}~0x0000
+\begin{DoxyCompactList}\small\item\em EEPROM start address. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{at24c256_8h_a06598c43a83d1d9e35301383d3fa0c98}{END\+\_\+\+ADDRESS}}~0x8000
+\begin{DoxyCompactList}\small\item\em EEPROM end address (size). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{at24c256_8h_adfec1aac7a2ceeac9ef0a19ec720535e}{SLOT\+\_\+\+ACTIVE}}~0x\+A9
+\begin{DoxyCompactList}\small\item\em Memory initialization flag. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{at24c256_8h_ae5d3042e80b1b73b78799f018dd3cfc9}{SLOT\+\_\+\+EMPTY}}~0x\+FF
+\begin{DoxyCompactList}\small\item\em Memory uninitialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{at24c256_8h_a1e0e6df8d138a7d15ca989636ef87757}{Eeprom\+Read}} (uint16\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}dest, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read data block from EEPROM. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{at24c256_8h_a3cfbeb2ae012e8db3620683497432dbd}{Eeprom\+Write}} (uint16\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}src, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write specified data block to EEPROM. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T$>$ }\\uint8\+\_\+t \doxymbox{\hyperlink{at24c256_8h_a976019103317cddb58c53fa16fcb04d7}{Eeprom\+Get}} (uint16\+\_\+t addr, T \&data)
+\begin{DoxyCompactList}\small\item\em Read specified data from EEPROM. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T$>$ }\\uint8\+\_\+t \doxymbox{\hyperlink{at24c256_8h_ac0f3b4936671f4ad5c80875fa037bd22}{Eeprom\+Put}} (uint16\+\_\+t addr, const T \&data)
+\begin{DoxyCompactList}\small\item\em Read\+Write specified data to EEPROM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation for EEPROM AT24\+C256 (32KB). 
+
+\begin{DoxyAuthor}{Authors}
+John Doe 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026-\/11-\/10 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+Definition in file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+
+
+\label{at24c256_8h_doc-define-members}
+\Hypertarget{at24c256_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{at24c256_8h_a06598c43a83d1d9e35301383d3fa0c98}\index{at24c256.h@{at24c256.h}!END\_ADDRESS@{END\_ADDRESS}}
+\index{END\_ADDRESS@{END\_ADDRESS}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{END\_ADDRESS}{END\_ADDRESS}}
+{\footnotesize\ttfamily \label{at24c256_8h_a06598c43a83d1d9e35301383d3fa0c98} 
+\+\#define END\+\_\+\+ADDRESS~0x8000}
+
+
+
+EEPROM end address (size). 
+
+
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00027}{27}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+\Hypertarget{at24c256_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}\index{at24c256.h@{at24c256.h}!PAGE\_SIZE@{PAGE\_SIZE}}
+\index{PAGE\_SIZE@{PAGE\_SIZE}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{PAGE\_SIZE}{PAGE\_SIZE}}
+{\footnotesize\ttfamily \label{at24c256_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e} 
+\+\#define PAGE\+\_\+\+SIZE~64}
+
+
+
+EEPROM memory page size in bytes. 
+
+
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00017}{17}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+\Hypertarget{at24c256_8h_adfec1aac7a2ceeac9ef0a19ec720535e}\index{at24c256.h@{at24c256.h}!SLOT\_ACTIVE@{SLOT\_ACTIVE}}
+\index{SLOT\_ACTIVE@{SLOT\_ACTIVE}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{SLOT\_ACTIVE}{SLOT\_ACTIVE}}
+{\footnotesize\ttfamily \label{at24c256_8h_adfec1aac7a2ceeac9ef0a19ec720535e} 
+\+\#define SLOT\+\_\+\+ACTIVE~0x\+A9}
+
+
+
+Memory initialization flag. 
+
+
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00032}{32}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+\Hypertarget{at24c256_8h_ae5d3042e80b1b73b78799f018dd3cfc9}\index{at24c256.h@{at24c256.h}!SLOT\_EMPTY@{SLOT\_EMPTY}}
+\index{SLOT\_EMPTY@{SLOT\_EMPTY}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{SLOT\_EMPTY}{SLOT\_EMPTY}}
+{\footnotesize\ttfamily \label{at24c256_8h_ae5d3042e80b1b73b78799f018dd3cfc9} 
+\+\#define SLOT\+\_\+\+EMPTY~0x\+FF}
+
+
+
+Memory uninitialization. 
+
+EEPROM default value 0x\+FF (empty byte) 
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00038}{38}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+\Hypertarget{at24c256_8h_ad0db2fa7d0c61fadd68de06d7ea2489d}\index{at24c256.h@{at24c256.h}!START\_ADDRESS@{START\_ADDRESS}}
+\index{START\_ADDRESS@{START\_ADDRESS}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{START\_ADDRESS}{START\_ADDRESS}}
+{\footnotesize\ttfamily \label{at24c256_8h_ad0db2fa7d0c61fadd68de06d7ea2489d} 
+\+\#define START\+\_\+\+ADDRESS~0x0000}
+
+
+
+EEPROM start address. 
+
+
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00022}{22}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+
+
+\label{at24c256_8h_doc-func-members}
+\Hypertarget{at24c256_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{at24c256_8h_a976019103317cddb58c53fa16fcb04d7}\index{at24c256.h@{at24c256.h}!EepromGet@{EepromGet}}
+\index{EepromGet@{EepromGet}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{EepromGet()}{EepromGet()}}
+{\footnotesize\ttfamily \label{at24c256_8h_a976019103317cddb58c53fa16fcb04d7} 
+template$<$typename T$>$ \\
+uint8\+\_\+t Eeprom\+Get (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{, }\item[{T \&}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Read specified data from EEPROM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em addr} & The address of the memory location from which the data reading will start \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em data} & Buffer for read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect data block \\
+\hline
+{\em 2} & Incorrect data block length \\
+\hline
+{\em 3} & Incorrect EEPROM memory address \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00143}{143}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+\Hypertarget{at24c256_8h_ac0f3b4936671f4ad5c80875fa037bd22}\index{at24c256.h@{at24c256.h}!EepromPut@{EepromPut}}
+\index{EepromPut@{EepromPut}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{EepromPut()}{EepromPut()}}
+{\footnotesize\ttfamily \label{at24c256_8h_ac0f3b4936671f4ad5c80875fa037bd22} 
+template$<$typename T$>$ \\
+uint8\+\_\+t Eeprom\+Put (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{, }\item[{const T \&}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Read\+Write specified data to EEPROM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em addr} & The address of the memory location from which the data writting will start \\
+\hline
+\doxymbox{\texttt{in}}  & {\em data} & Buffer for write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect data block \\
+\hline
+{\em 2} & Incorrect data block length \\
+\hline
+{\em 3} & Incorrect EEPROM memory address \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00158}{158}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+\Hypertarget{at24c256_8h_a1e0e6df8d138a7d15ca989636ef87757}\index{at24c256.h@{at24c256.h}!EepromRead@{EepromRead}}
+\index{EepromRead@{EepromRead}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{EepromRead()}{EepromRead()}}
+{\footnotesize\ttfamily \label{at24c256_8h_a1e0e6df8d138a7d15ca989636ef87757} 
+uint8\+\_\+t Eeprom\+Read (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{dest}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read data block from EEPROM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em addr} & The address of the memory location from which the data reading will start \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em dest} & Memory buffer for data read \\
+\hline
+\doxymbox{\texttt{in}}  & {\em len} & Reading block size in bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect data block \\
+\hline
+{\em 2} & Incorrect data block length \\
+\hline
+{\em 3} & Incorrect EEPROM memory address \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00051}{51}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+
+\Hypertarget{at24c256_8h_a3cfbeb2ae012e8db3620683497432dbd}\index{at24c256.h@{at24c256.h}!EepromWrite@{EepromWrite}}
+\index{EepromWrite@{EepromWrite}!at24c256.h@{at24c256.h}}
+\doxysubsubsection{\texorpdfstring{EepromWrite()}{EepromWrite()}}
+{\footnotesize\ttfamily \label{at24c256_8h_a3cfbeb2ae012e8db3620683497432dbd} 
+uint8\+\_\+t Eeprom\+Write (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{src}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write specified data block to EEPROM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em addr} & The address of the memory location from which the data recording will start \\
+\hline
+\doxymbox{\texttt{in}}  & {\em src} & Data block for write \\
+\hline
+\doxymbox{\texttt{in}}  & {\em len} & Data block length in bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect data block \\
+\hline
+{\em 2} & Incorrect data block length \\
+\hline
+{\em 3} & Incorrect EEPROM memory address \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{at24c256_8h_source_l00093}{93}} of file \doxymbox{\hyperlink{at24c256_8h_source}{at24c256.\+h}}.
+

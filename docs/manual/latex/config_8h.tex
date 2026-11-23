@@ -1,0 +1,101 @@
+\doxysection{include/\+config/\+config.h File Reference}
+\hypertarget{config_8h}{}\label{config_8h}\index{include/config/config.h@{include/config/config.h}}
+
+
+Firmware user configuration.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \+\#include "{}hal.\+h"{}}\newline
+{\ttfamily \+\#include "{}version.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_bluetooth_config}{Bluetooth\+Config}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} configuration. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_period_config}{Period\+Config}}
+\begin{DoxyCompactList}\small\item\em Activity period configuration. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_relay_config}{Relay\+Config}}
+\begin{DoxyCompactList}\small\item\em Default relay configuration. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_pump_config}{Pump\+Config}}
+\begin{DoxyCompactList}\small\item\em Pump configuration. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_soil_moisture_config}{Soil\+Moisture\+Config}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_soil}{Soil} moisture sensor configuration. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_air_config}{Air\+Config}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_air}{Air} parameters configuration for fan activate. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_grow_config}{Grow\+Config}}
+\begin{DoxyCompactList}\small\item\em User configuration structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}{Is\+Always\+Activity}} (\doxymbox{\hyperlink{struct_period_config}{Period\+Config}} \&period)
+\begin{DoxyCompactList}\small\item\em Check the specified period for full activity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \doxymbox{\hyperlink{struct_grow_config}{Grow\+Config}} \doxymbox{\hyperlink{config_8h_aa2982de7dc2a5de80bbbba0862806f36}{DEFAULT\+\_\+\+CONFIGURATION}}
+\begin{DoxyCompactList}\small\item\em The default device configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Firmware user configuration. 
+
+\begin{DoxyAuthor}{Authors}
+John Doe 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026-\/11-\/10 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+Definition in file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+
+
+
+\label{config_8h_doc-func-members}
+\Hypertarget{config_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}\index{config.h@{config.h}!IsAlwaysActivity@{IsAlwaysActivity}}
+\index{IsAlwaysActivity@{IsAlwaysActivity}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{IsAlwaysActivity()}{IsAlwaysActivity()}}
+{\footnotesize\ttfamily \label{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009} 
+bool Is\+Always\+Activity (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_period_config}{Period\+Config}} \&}]{period}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check the specified period for full activity. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em period} & Specified period (time interval) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} Ignore current time and use other sensors for device activation, otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{config_8h_source_l00205}{205}} of file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+
+
+
+\label{config_8h_doc-var-members}
+\Hypertarget{config_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{config_8h_aa2982de7dc2a5de80bbbba0862806f36}\index{config.h@{config.h}!DEFAULT\_CONFIGURATION@{DEFAULT\_CONFIGURATION}}
+\index{DEFAULT\_CONFIGURATION@{DEFAULT\_CONFIGURATION}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_CONFIGURATION}{DEFAULT\_CONFIGURATION}}
+{\footnotesize\ttfamily \label{config_8h_aa2982de7dc2a5de80bbbba0862806f36} 
+\doxymbox{\hyperlink{struct_grow_config}{Grow\+Config}} DEFAULT\+\_\+\+CONFIGURATION\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+The default device configuration. 
+
+
+
+Definition at line \doxymbox{\hyperlink{config_8h_source_l00198}{198}} of file \doxymbox{\hyperlink{config_8h_source}{config.\+h}}.
+

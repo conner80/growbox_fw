@@ -1,0 +1,604 @@
+\chapter{Growbox PIPAS — описание работы проекта }
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u}{}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u}\index{Growbox PIPAS — описание работы проекта@{Growbox PIPAS — описание работы проекта}}
+\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md45}%
+\Hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md45}%
+
+
+Документ содержит подробное описание устройства, архитектуры и логики работы прошивки автоматизированной системы управления гроубоксом {\bfseries{«\+Growbox PIPAS»}} (версия прошивки 1.\+0.\+0).
+
+Подробное описание бинарного протокола обмена по \doxylink{class_bluetooth}{Bluetooth} приведено в отдельном документе: \doxysectlink{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u}{BT\+\_\+\+PROTOCOL\+\_\+\+RU.md}{0}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md47}{}\doxysection{\texorpdfstring{1. Назначение}{1. Назначение}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md47}
+Прошивка предназначена для автоматизации выращивания растений в гроубоксе (закрытом растениеводческом боксе). Система поддерживает заданные условия окружающей среды, управляя четырьмя исполнительными механизмами:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Лампа}} — освещение по расписанию (период активности в течение суток);
+\item {\bfseries{Насос}} — полив по показаниям датчиков влажности почвы;
+\item {\bfseries{Вентилятор}} — проветривание по температуре и влажности воздуха;
+\item {\bfseries{Увлажнитель воздуха}} — поддержание влажности воздуха.
+\end{DoxyItemize}
+
+Управление и мониторинг выполняются со смартфона (или иного мастер-\/устройства) по \doxylink{class_bluetooth}{Bluetooth} через двоичный протокол команд. Настройки хранятся в энергонезависимой памяти EEPROM и сохраняются между перезапусками.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md49}{}\doxysection{\texorpdfstring{2. Общая информация}{2. Общая информация}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md49}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Параметр  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Значение  \\
+Плата  &Arduino Uno (ATmega328P, 16 МГц)  \\
+RAM  &2 КБ (используется ≈ 39 \%)  \\
+Flash  &31,5 КБ (используется ≈ 90,5 \%)  \\
+Среда сборки  &Platform\+IO ({\ttfamily platformio.\+ini}), фреймворк Arduino  \\
+Платформа  &{\ttfamily atmelavr} 5.\+3.\+0, {\ttfamily framework-\/arduino-\/avr} 5.\+4.\+0  \\
+Внешние библиотеки  &{\ttfamily tremaru/\+iarduino\+\_\+\+RTC@\texorpdfstring{$^\wedge$}{\string^}2.0.\+9}, {\ttfamily tremaru/\+iarduino\+\_\+\+DHT@\texorpdfstring{$^\wedge$}{\string^}1.1.\+3}  \\
+Статус сборки  &собирается успешно ({\ttfamily pio run} → SUCCESS)  \\
+\end{DoxyTable}
+
+
+Точка входа — {\ttfamily \doxylink{main_8cpp}{src/\+main.\+cpp}}: в {\ttfamily \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}} создаётся единственный объект-\/контроллер, в {\ttfamily \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}} в бесконечном цикле вызывается его метод {\ttfamily Process()}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md51}{}\doxysection{\texorpdfstring{3. Аппаратная часть}{3. Аппаратная часть}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md51}
+Конфигурация подключения задаётся макросами в {\ttfamily \doxylink{hal_8h}{lib/\+hal/\+hal.\+h}}.\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md52}{}\doxysubsection{\texorpdfstring{3.\+1. Датчики}{3.\+1. Датчики}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md52}
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Устройство  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Тип  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Подключение  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Примечания  \\
+Часы реального времени  &\doxylink{class_r_t_c}{RTC} RX8025 (выбор макросом {\ttfamily \doxylink{hal_8h_a804fd4df86d20e652240bec3fa61e064}{RTC\+\_\+\+DEVICE}}: DS1302, DS1307, DS3231, RX8025)  &I2C  &Используются для расписаний; время хранится в Unix-\/формате  \\
+Датчик воздуха  &DHT-\/11 / DHT-\/22  &цифровой пин D11 ({\ttfamily \doxylink{hal_8h_a2f504be032367b69f0a326e994a64ca0}{AIR\+\_\+\+SENSOR\+\_\+\+PIN}})  &Температура и влажность воздуха  \\
+Датчик влажности почвы 1  &Аналоговый емкостной/\+резистивный  &A0 ({\ttfamily \doxylink{hal_8h_a98f144fd906cf157c0addde3f42bde0c}{SOIL\+\_\+\+MOISTURE\+\_\+\+PIN1}})  &Отключение — удалением макроса  \\
+Датчик влажности почвы 2  &Аналоговый  &A1 ({\ttfamily \doxylink{hal_8h_a245dbc9054b5fe7e5e0c55e47498b6cd}{SOIL\+\_\+\+MOISTURE\+\_\+\+PIN2}})  &Отключение — удалением макроса  \\
+EEPROM  &AT24\+C256 (32 КБ)  &I2C, адрес 0x50 ({\ttfamily \doxylink{hal_8h_a61bd9388db4785846825bf40aaf09b4c}{STORAGE\+\_\+\+ADDR}})  &Хранение пользовательской конфигурации  \\
+\end{DoxyTable}
+
+
+Калибровочные границы датчиков почвы (сырые значения АЦП): {\ttfamily \doxylink{hal_8h_ae873d956a807911ddb548a2b6765560e}{SOIL\+\_\+\+MOISTURE\+\_\+\+MIN}} = 630 (0 \%), {\ttfamily \doxylink{hal_8h_a557cb25137679619d3929fda72ab82ee}{SOIL\+\_\+\+MOISTURE\+\_\+\+MAX}} = 330 (100 \%).\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md53}{}\doxysubsection{\texorpdfstring{3.\+2. Исполнительные механизмы}{3.\+2. Исполнительные механизмы}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md53}
+Каждый механизм подключается через реле или транзисторный ключ. Тип выхода задаётся макросом {\ttfamily \texorpdfstring{$\ast$}{*}\+\_\+\+RELAY\+\_\+\+TYPE}: {\bfseries{1}} — электромеханическое реле (пауза между переключениями 50 мс), {\bfseries{2}} — n-\/канальный ключ, {\bfseries{3}} — p-\/канальный ключ (для ключей пауза 0 мс). У ключей типа 3 логика уровней инвертирована.
+
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Механизм  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Пин  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Тип  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}За что отвечает  \\
+Лампа  &D5  &реле  &Освещение  \\
+Насос  &D4  &n-\/канальный ключ  &Полив  \\
+Вентилятор  &D3  &реле  &Проветривание  \\
+Увлажнитель  &D2  &реле  &Увлажнение воздуха  \\
+\end{DoxyTable}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md54}{}\doxysubsection{\texorpdfstring{3.\+3. Bluetooth-\/модуль (HC-\/05)}{3.\+3. Bluetooth-\/модуль (HC-\/05)}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md54}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Сигнал  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Пин  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Назначение  \\
+BT\+\_\+\+RX (TX Arduino → RX модуля)  &D10  &Данные (⚠ уровень не выше 3,3 В)  \\
+BT\+\_\+\+TX (RX Arduino ← TX модуля)  &D9  &Данные  \\
+BT\+\_\+\+MODE  &D13  &Выбор режима: LOW — транспортный, HIGH — AT-\/команды  \\
+BT\+\_\+\+STATE  &D12  &Состояние соединения (HIGH — мастер подключён)  \\
+Питание модуля  &D6  &Управление питанием через ключ ({\ttfamily \doxylink{hal_8h_a5557cdc6a527eedf5ed2e071fc7f84bc}{BT\+\_\+\+RELAY\+\_\+\+TYPE}} 2)  \\
+\end{DoxyTable}
+
+
+Модуль может полностью обесточиваться для экономии энергии и включаться кнопкой.\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md55}{}\doxysubsection{\texorpdfstring{3.\+4. Прочее}{3.\+4. Прочее}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md55}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Устройство  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Пин  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Назначение  \\
+Кнопка активации \doxylink{class_bluetooth}{Bluetooth}  &D7 (внутренняя подтяжка)  &Включает Bluetooth-\/модуль при нажатии  \\
+\end{DoxyTable}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md57}{}\doxysection{\texorpdfstring{4. Структура репозитория}{4. Структура репозитория}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md57}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{├──\ platformio.ini\ \ \ \ \ \ \ \ \ \ \#\ Конфигурация\ PlatformIO\ (окружение\ uno,\ зависимости)}
+\DoxyCodeLine{├──\ src/}
+\DoxyCodeLine{│\ \ \ └──\ main.cpp\ \ \ \ \ \ \ \ \ \ \ \ \#\ Точка\ входа:\ создание\ Controller,\ вызов\ Process()\ в\ loop}
+\DoxyCodeLine{├──\ include/}
+\DoxyCodeLine{│\ \ \ ├──\ version.h\ \ \ \ \ \ \ \ \ \ \ \#\ Имя\ и\ версия\ прошивки,\ версия\ формата\ конфигурации}
+\DoxyCodeLine{│\ \ \ ├──\ at24c256.h\ \ \ \ \ \ \ \ \ \ \#\ Низкоуровневый\ доступ\ к\ EEPROM\ (чтение/запись\ блоков)}
+\DoxyCodeLine{│\ \ \ ├──\ common/}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ commands.h\ \ \ \ \ \ \#\ Форматы\ пакетов\ и\ структуры\ протокола\ Bluetooth}
+\DoxyCodeLine{│\ \ \ │\ \ \ └──\ datetime.h\ \ \ \ \ \ \#\ Преобразования\ Unix-\/time,\ проверка\ попадания\ в\ интервал}
+\DoxyCodeLine{│\ \ \ └──\ config/}
+\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ config.h\ \ \ \ \ \ \ \ \#\ Структура\ пользовательской\ конфигурации\ и\ значения\ по\ умолчанию}
+\DoxyCodeLine{├──\ lib/}
+\DoxyCodeLine{│\ \ \ ├──\ controller/}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ controller.h/.cpp\ \ \#\ Основная\ логика:\ автоматика,\ обработка\ команд,\ жизненный\ цикл}
+\DoxyCodeLine{│\ \ \ │\ \ \ └──\ parameters.h\ \ \ \ \ \ \ \#\ Структура\ текущих\ параметров\ (показания\ датчиков,\ состояния)}
+\DoxyCodeLine{│\ \ \ └──\ hal/}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ hal.h\ \ \ \ \ \ \ \ \ \ \ \#\ Аппаратная\ конфигурация:\ пины,\ типы\ реле,\ тайминги}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ rtc.h/.cpp\ \ \ \ \ \ \#\ Часы\ реального\ времени\ (обёртка\ над\ iarduino\_RTC)}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ air.h/.cpp\ \ \ \ \ \ \#\ Датчик\ температуры/влажности\ воздуха\ DHT}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ soil.h/.cpp\ \ \ \ \ \#\ Датчики\ влажности\ почвы}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ relay.h/.cpp\ \ \ \ \#\ Универсальный\ класс\ реле/ключа}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ storage.h/.cpp\ \ \#\ Хранение\ конфигурации\ в\ EEPROM\ со\ wear\ leveling}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ bluetooth.h/.cpp\ \#\ Транспорт\ Bluetooth\ (HC-\/05):\ AT-\/режим,\ протокол\ обмена}
+\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ button.h/.cpp\ \ \ \#\ Кнопка\ с\ антидребезгом}
+\DoxyCodeLine{└──\ docs/}
+\DoxyCodeLine{\ \ \ \ ├──\ OVERVIEW\_RU.md\ \ \ \ \ \ \#\ Этот\ документ}
+\DoxyCodeLine{\ \ \ \ └──\ BT\_PROTOCOL\_RU.md\ \ \ \#\ Описание\ протокола\ Bluetooth}
+
+\end{DoxyCode}
+
+
+Архитектурно проект разделён на три слоя:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Точка входа}} ({\ttfamily \doxylink{main_8cpp}{src/\+main.\+cpp}}) — минимальная, вся логика делегирована контроллеру.
+\item {\bfseries{Контроллер}} ({\ttfamily lib/\+controller}) — прикладная логика: опрос датчиков, алгоритмы автоматики, исполнение команд протокола, управление конфигурацией.
+\item {\bfseries{HAL}} ({\ttfamily lib/\+hal}) — аппаратные драйверы: датчики, реле, память, \doxylink{class_bluetooth}{Bluetooth}, кнопка.
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md59}{}\doxysection{\texorpdfstring{5. Стартовая инициализация}{5. Стартовая инициализация}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md59}
+Конструктор {\ttfamily \doxylink{class_controller}{Controller}} ({\ttfamily \doxylink{controller_8cpp}{lib/\+controller/\+controller.\+cpp}}) выполняет инициализацию последовательно, собирая {\bfseries{битовую маску доступных устройств}} {\ttfamily device\+\_\+mask} (см. раздел 8):
+
+
+\begin{DoxyEnumerate}
+\item Создаётся \doxylink{class_r_t_c}{RTC}; если модуль ответил ({\ttfamily begin()}), устанавливается бит {\ttfamily \doxylink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\+\_\+\+RTC}}.
+\item Создаётся объект хранилища {\ttfamily \doxylink{class_storage}{Storage}}; бит {\ttfamily \doxylink{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113}{SENS\+\_\+\+STORAGE}} устанавливается всегда (при успешной проверке размеров памяти).
+\item По условной компиляции ({\ttfamily \#ifdef \doxylink{hal_8h_a2f504be032367b69f0a326e994a64ca0}{AIR\+\_\+\+SENSOR\+\_\+\+PIN}}, {\ttfamily SOIL\+\_\+\+MOISTURE\+\_\+\+PIN1/\+2}, {\ttfamily ...\+\_\+\+RELAY\+\_\+\+PIN}) создаются датчики и реле. Датчики почвы считаются исправными, если текущее значение АЦП не ниже нижней калибровочной границы. Реле добавляются в маску безусловно.
+\item Создаётся кнопка (при определённом {\ttfamily \doxylink{hal_8h_a4879a25d5237d80d7a49c8d6dc3702ce}{BT\+\_\+\+BUTTON\+\_\+\+PIN}}).
+\item Создаётся объект {\ttfamily \doxylink{class_bluetooth}{Bluetooth}}, которому передаётся контекст (указатель на контроллер) и callback-\/обработчик принятых команд {\ttfamily Controller::\+on\+Receive}.
+\item Вызывается {\ttfamily Read\+Config()} — загрузка конфигурации из EEPROM; при любой ошибке устанавливается конфигурация по умолчанию.
+\item Bluetooth-\/модуль включается в конфигурационном (AT) режиме, в него записываются сохранённые имя и пароль из конфигурации, после чего модуль переводится в транспортный режим и остаётся включённым (он сам отключится по таймауту неактивности).
+\end{DoxyEnumerate}
+
+Bluetooth-\/конструктор при первом создании дополнительно запрашивает у HC-\/05 через AT-\/команды адрес, имя, версию прошивки и пароль; модуль считается инициализированным, если пароль прочитан (не равен 0).
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md61}{}\doxysection{\texorpdfstring{6. Главный рабочий цикл}{6. Главный рабочий цикл}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md61}
+Каждая итерация {\ttfamily \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}} вызывает {\ttfamily \doxylink{class_controller_ad920ca3bf8fc1d163c0cc482d7c6226d}{Controller::\+\+Process()}}, который выполняет шаги в следующем порядке:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{{\ttfamily check\+Pump\+Running()}}} — аварийный контроль времени работы насоса: если насос работает дольше {\ttfamily Max\+Work\+Time} секунд, он принудительно отключается и фиксируется время паузы.
+\item {\bfseries{{\ttfamily read\+Sensors()}}} — опрос датчиков, но не чаще одного раза в {\ttfamily \doxylink{controller_8cpp_a25dbd6fd7142c23a240fd9b0fdc07749}{CHECK\+\_\+\+SENSORS\+\_\+\+FREQ}} (1000 мс), с учётом паузы {\ttfamily \doxylink{hal_8h_ae3b7ba5223047a968f613599b5ed9e35}{AIR\+\_\+\+SENSOR\+\_\+\+OPERATION\+\_\+\+DELAY}} (2000 мс) датчика DHT. Опрашиваются \doxylink{class_r_t_c}{RTC}, датчики почвы и датчик воздуха; успешно прочитанные значения сохраняются в структуре текущих параметров {\ttfamily \doxylink{struct_params}{Params}}:
+\begin{DoxyItemize}
+\item {\ttfamily pars.\+Now} — текущее Unix-\/время;
+\item {\ttfamily pars.\+Soil\+Sensor1/\+2} — влажность почвы в процентах (0–100);
+\item {\ttfamily pars.\+Air\+Sensor} — температура (float) и влажность воздуха. Если ни один датчик не обновился, итерация завершается.
+\end{DoxyItemize}
+\item {\bfseries{Автоматика исполнительных механизмов}} — только в стандартном режиме и только для устройств, чьи датчики успешно прочитаны (см. раздел 9): {\ttfamily process\+Lamp()}, {\ttfamily process\+Fan()}, {\ttfamily process\+Pump()}, {\ttfamily process\+Humidifier()}.
+\item {\bfseries{{\ttfamily check\+BTButton()}}} — если \doxylink{class_bluetooth}{Bluetooth} выключен и нажата кнопка (или кнопка не сконфигурирована), модуль включается в транспортном режиме.
+\item {\bfseries{{\ttfamily bt-\/\texorpdfstring{$>$}{>}Process\+Commands()}}} — приём и обработка пакетов протокола \doxylink{class_bluetooth}{Bluetooth}: разбор пакета, вызов callback контроллера, отправка ответа (см. разделы 10–11).
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md63}{}\doxysection{\texorpdfstring{7. Алгоритм работы}{7. Алгоритм работы}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md63}
+Раздел описывает алгоритмы в виде псевдокода. Соглашения: {\ttfamily иначе} относится к предыдущему {\ttfamily если}; актуальное состояние реле читается непосредственно с пинов ({\ttfamily \doxylink{class_relay_a4d2207e50b0f2279b6608ab48d17d142}{Relay::\+\+Is\+Activated()}}), поэтому алгоритмы корректно работают независимо от того, как устройство было включено — автоматикой или вручную.\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md64}{}\doxysubsection{\texorpdfstring{7.\+1. Общая схема}{7.\+1. Общая схема}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md64}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ЗАПУСК}
+\DoxyCodeLine{\ \ └──\ Инициализация\ устройств\ (7.2)}
+\DoxyCodeLine{\ \ └──\ Загрузка\ конфигурации\ из\ EEPROM\ (7.9)}
+\DoxyCodeLine{\ \ └──\ Настройка\ Bluetooth-\/модуля\ (7.2)}
+\DoxyCodeLine{}
+\DoxyCodeLine{ЦИКЛ\ (каждая\ итерация\ loop())}
+\DoxyCodeLine{\ \ └──\ Контроль\ таймаута\ работы\ насоса\ (7.7)}
+\DoxyCodeLine{\ \ └──\ Опрос\ датчиков,\ не\ чаще\ 1\ раза\ в\ 1\ с\ (7.4)}
+\DoxyCodeLine{\ \ └──\ если\ датчики\ обновились\ И\ режим\ стандартный:}
+\DoxyCodeLine{\ \ │\ \ \ \ \ управление\ лампой\ (7.5)}
+\DoxyCodeLine{\ \ │\ \ \ \ \ управление\ вентилятором\ (7.6)}
+\DoxyCodeLine{\ \ │\ \ \ \ \ управление\ насосом\ (7.7)}
+\DoxyCodeLine{\ \ │\ \ \ \ \ управление\ увлажнителем\ (7.8)}
+\DoxyCodeLine{\ \ └──\ Кнопка\ включения\ Bluetooth}
+\DoxyCodeLine{\ \ └──\ Приём\ и\ обработка\ пакетов\ Bluetooth\ (7.10)}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md65}{}\doxysubsection{\texorpdfstring{7.\+2. Алгоритм инициализации (конструктор Controller)}{7.\+2. Алгоритм инициализации (конструктор Controller)}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md65}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1.\ \ Создать\ RTC;\ если\ begin()\ успешен\ →\ установить\ бит\ SENS\_RTC}
+\DoxyCodeLine{2.\ \ Создать\ Storage;\ если\ размеры\ памяти\ допустимы\ →\ бит\ SENS\_STORAGE}
+\DoxyCodeLine{3.\ \ Для\ каждого\ сконфигурированного\ пина\ датчика\ (по\ \#ifdef):}
+\DoxyCodeLine{\ \ \ \ \ \ создать\ датчик;\ если\ самопроверка\ успешна\ →\ установить\ бит\ SENS\_*}
+\DoxyCodeLine{\ \ \ \ \ \ (датчик\ почвы\ исправен,\ если\ АЦП\ не\ ниже\ нижней\ калибровочной\ границы)}
+\DoxyCodeLine{4.\ \ Для\ каждого\ сконфигурированного\ пина\ реле:}
+\DoxyCodeLine{\ \ \ \ \ \ создать\ реле\ (выход\ сразу\ приводится\ к\ выключенному\ уровню)\ →\ бит\ DEV\_*}
+\DoxyCodeLine{5.\ \ Создать\ кнопку\ →\ бит\ DEV\_BT\_BUTTON}
+\DoxyCodeLine{6.\ \ Создать\ Bluetooth:}
+\DoxyCodeLine{\ \ \ \ 6.1.\ настроить\ пины\ MODE/STATE,\ снять\ питание\ с\ модуля}
+\DoxyCodeLine{\ \ \ \ 6.2.\ включить\ модуль\ в\ конфигурационном\ режиме\ (AT)}
+\DoxyCodeLine{\ \ \ \ 6.3.\ запросить\ адрес,\ имя,\ версию\ прошивки\ и\ пароль}
+\DoxyCodeLine{\ \ \ \ 6.4.\ снять\ питание;\ модуль\ считается\ готовым,\ если\ пароль\ прочитан\ (≠\ 0)}
+\DoxyCodeLine{7.\ \ Прочитать\ конфигурацию\ из\ EEPROM\ (алгоритм\ 7.9);}
+\DoxyCodeLine{\ \ \ \ при\ любой\ ошибке\ —\ DEFAULT\_CONFIGURATION}
+\DoxyCodeLine{8.\ \ Включить\ Bluetooth,\ записать\ в\ модуль\ имя\ и\ пароль\ из\ конфигурации,}
+\DoxyCodeLine{\ \ \ \ перевести\ в\ транспортный\ режим}
+\DoxyCodeLine{9.\ \ last\_op\ =\ 0\ →\ разрешить\ немедленный\ первый\ опрос\ датчиков}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md66}{}\doxysubsection{\texorpdfstring{7.\+3. Алгоритм главного цикла (Controller::\+\+Process)}{7.\+3. Алгоритм главного цикла (Controller::\+\+Process)}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md66}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{checkPumpRunning()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ аварийная\ остановка\ насоса\ по\ таймауту}
+\DoxyCodeLine{sens\ =\ readSensors()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ 7.4;\ вернёт\ 0,\ если\ пауза\ ещё\ не\ истекла}
+\DoxyCodeLine{если\ sens\ ==\ 0:\ завершить\ итерацию}
+\DoxyCodeLine{devs\ =\ sens\ ∩\ device\_mask\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ только\ инициализированные\ устройства}
+\DoxyCodeLine{если\ режим\ стандартный:}
+\DoxyCodeLine{\ \ \ \ processLamp(в\ devs\ есть\ SENS\_RTC)}
+\DoxyCodeLine{\ \ \ \ processFan(в\ devs\ есть\ SENS\_RTC,\ в\ devs\ есть\ SENS\_AIR)}
+\DoxyCodeLine{\ \ \ \ processPump(в\ devs\ есть\ SENS\_RTC,\ в\ devs\ есть\ SENS\_SOIL1,\ в\ devs\ есть\ SENS\_SOIL2)}
+\DoxyCodeLine{\ \ \ \ processHumidifier(в\ devs\ есть\ SENS\_RTC,\ в\ devs\ есть\ SENS\_AIR)}
+\DoxyCodeLine{checkBTButton()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ включить\ модуль\ по\ нажатию\ кнопки}
+\DoxyCodeLine{bt-\/>ProcessCommands()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ конечный\ автомат\ приёма\ пакетов\ (7.10)}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md67}{}\doxysubsection{\texorpdfstring{7.\+4. Алгоритм опроса датчиков (read\+Sensors)}{7.\+4. Алгоритм опроса датчиков (read\+Sensors)}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md67}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{если\ millis()\ -\/\ last\_op\ <\ max(1000\ мс,\ 2000\ мс):\ вернуть\ 0}
+\DoxyCodeLine{res\ =\ 0}
+\DoxyCodeLine{если\ RTC\ в\ маске:}
+\DoxyCodeLine{\ \ \ \ если\ чтение\ времени\ успешно\ →\ pars.Now\ =\ время;\ res\ |=\ SENS\_RTC}
+\DoxyCodeLine{если\ датчик\ почвы\ 1\ в\ маске:}
+\DoxyCodeLine{\ \ \ \ h\ =\ GetHumidity()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ 0–100\ \%;\ 254/255\ —\ ошибки}
+\DoxyCodeLine{\ \ \ \ если\ h\ <=\ 100\ →\ pars.SoilSensor1\ =\ h;\ res\ |=\ SENS\_SOIL1}
+\DoxyCodeLine{(аналогично\ датчик\ почвы\ 2)}
+\DoxyCodeLine{если\ датчик\ воздуха\ в\ маске:}
+\DoxyCodeLine{\ \ \ \ если\ GetData()\ успешно\ →\ pars.AirSensor\ =\ данные;\ res\ |=\ SENS\_AIR}
+\DoxyCodeLine{last\_op\ =\ millis()}
+\DoxyCodeLine{вернуть\ res}
+
+\end{DoxyCode}
+
+
+Ошибочные значения (влажность \texorpdfstring{$>$}{>} 100, коды ошибок DHT) не сохраняются, и бит устройства в {\ttfamily res} не выставляется: автоматика продолжает работать по последним достоверным данным, а устройства, зависящие от пропущенного датчика, в текущей итерации считаются «без свежих данных».\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md68}{}\doxysubsection{\texorpdfstring{7.\+5. Алгоритм управления лампой}{7.\+5. Алгоритм управления лампой}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md68}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{если\ лампы\ нет\ в\ маске\ ИЛИ\ нет\ свежего\ времени\ RTC\ ИЛИ\ режим\ ручной:\ выход}
+\DoxyCodeLine{act\ =\ лампа\ включена?}
+\DoxyCodeLine{если\ период\ активности\ «всегда»\ (некорректный\ или\ начало\ ==\ конец):}
+\DoxyCodeLine{\ \ \ \ если\ не\ act\ →\ включить}
+\DoxyCodeLine{\ \ \ \ выход}
+\DoxyCodeLine{если\ текущее\ время\ внутри\ [начало;\ конец]\ (переход\ через\ полночь\ учитывается):}
+\DoxyCodeLine{\ \ \ \ если\ не\ act\ →\ включить}
+\DoxyCodeLine{иначе:}
+\DoxyCodeLine{\ \ \ \ если\ act\ →\ выключить}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md69}{}\doxysubsection{\texorpdfstring{7.\+6. Алгоритм управления вентилятором}{7.\+6. Алгоритм управления вентилятором}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md69}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{если\ вентилятора\ нет\ в\ маске\ ИЛИ\ режим\ ручной:\ выход}
+\DoxyCodeLine{act\ =\ вентилятор\ включён?}
+\DoxyCodeLine{\#\ условие\ по\ времени}
+\DoxyCodeLine{time\_flg\ =\ период\ «всегда»\ ИЛИ\ нет\ свежего\ времени\ ИЛИ\ время\ внутри\ периода}
+\DoxyCodeLine{\#\ условие\ по\ воздуху\ (гистерезис)}
+\DoxyCodeLine{если\ нет\ свежих\ данных\ воздуха:\ air\_flg\ =\ true}
+\DoxyCodeLine{иначе:}
+\DoxyCodeLine{\ \ \ \ если\ влажность\ >=\ HumStartVent\ ИЛИ\ температура\ >=\ TempStartVent:\ air\_flg\ =\ true}
+\DoxyCodeLine{\ \ \ \ иначе\ если\ влажность\ <=\ HumEndVent\ И\ температура\ <=\ TempEndVent:\ air\_flg\ =\ false}
+\DoxyCodeLine{\ \ \ \ иначе:\ air\_flg\ остаётся\ true\ \ \ \#\ мёртвая\ зона\ между\ порогами\ —\ вентилятор\ работает}
+\DoxyCodeLine{\#\ решение}
+\DoxyCodeLine{если\ air\_flg\ И\ time\_flg\ И\ не\ act\ →\ включить}
+\DoxyCodeLine{иначе\ если\ (не\ air\_flg\ ИЛИ\ не\ time\_flg)\ И\ act\ →\ выключить}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md70}{}\doxysubsection{\texorpdfstring{7.\+7. Алгоритм управления насосом}{7.\+7. Алгоритм управления насосом}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md70}
+Первая часть выполняется каждую итерацию цикла, до опроса датчиков:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{checkPumpRunning():}
+\DoxyCodeLine{\ \ \ \ если\ насос\ есть\ в\ маске\ И\ PumpActive\ И\ MaxWorkTime\ >\ 0:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ если\ millis()\ -\/\ pump\_act\ >=\ MaxWorkTime\ *\ 1000\ мс:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ выключить\ насос;\ PumpActive\ =\ false;\ pump\_sleep\ =\ now}
+
+\end{DoxyCode}
+
+
+Вторая часть — после успешного опроса датчиков (автоматический режим):
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{если\ насоса\ нет\ в\ маске\ ИЛИ\ нет\ ни\ одного\ свежего\ датчика\ почвы\ ИЛИ\ режим\ ручной:\ выход}
+\DoxyCodeLine{act\ =\ насос\ включён?}
+\DoxyCodeLine{time\_flg\ =\ период\ «всегда»\ ИЛИ\ нет\ свежего\ времени\ ИЛИ\ время\ внутри\ периода}
+\DoxyCodeLine{для\ каждого\ датчика\ i\ со\ свежими\ данными:\ \ \ \ \ \ \ \ \#\ гистерезис}
+\DoxyCodeLine{\ \ \ \ если\ влажность[i]\ <=\ StartWatering[i]:\ need[i]\ =\ true}
+\DoxyCodeLine{\ \ \ \ иначе\ если\ влажность[i]\ >=\ EndWatering[i]:\ need[i]\ =\ false}
+\DoxyCodeLine{\ \ \ \ иначе:\ need[i]\ =\ act\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ между\ порогами\ держим\ состояние}
+\DoxyCodeLine{для\ датчика\ без\ свежих\ данных:\ need[i]\ =\ true\ \ \ \ \ \#\ не\ препятствует\ поливу}
+\DoxyCodeLine{если\ time\_flg\ И\ need[1]\ И\ need[2]\ И\ не\ act:}
+\DoxyCodeLine{\ \ \ \ min\_interval\ =\ max(PauseBetweenStart\ [с],\ FreqWatering\ [ч])}
+\DoxyCodeLine{\ \ \ \ если\ насос\ ни\ разу\ не\ запускался\ (pump\_act\ ==\ 0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ ИЛИ\ millis()\ -\/\ pump\_act\ >=\ min\_interval:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ включить\ насос;\ PumpActive\ =\ true;\ pump\_act\ =\ now}
+\DoxyCodeLine{иначе\ если\ (не\ need[1]\ ИЛИ\ не\ need[2]\ ИЛИ\ не\ time\_flg)\ И\ act:}
+\DoxyCodeLine{\ \ \ \ выключить\ насос;\ PumpActive\ =\ false;\ pump\_sleep\ =\ now}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md71}{}\doxysubsection{\texorpdfstring{7.\+8. Алгоритм управления увлажнителем}{7.\+8. Алгоритм управления увлажнителем}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md71}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{если\ увлажнителя\ нет\ в\ маске\ ИЛИ\ режим\ ручной:\ выход}
+\DoxyCodeLine{act\ =\ увлажнитель\ включён?}
+\DoxyCodeLine{time\_flg\ =\ период\ «всегда»\ ИЛИ\ нет\ свежего\ времени\ ИЛИ\ время\ внутри\ периода}
+\DoxyCodeLine{если\ нет\ свежих\ данных\ воздуха:\ air\_flg\ =\ true}
+\DoxyCodeLine{иначе:}
+\DoxyCodeLine{\ \ \ \ если\ влажность\ <=\ HumStartHum:\ air\_flg\ =\ true}
+\DoxyCodeLine{\ \ \ \ иначе\ если\ влажность\ >=\ HumEndHum:\ air\_flg\ =\ false}
+\DoxyCodeLine{\ \ \ \ иначе:\ air\_flg\ остаётся\ true\ \ \ \#\ мёртвая\ зона\ между\ порогами\ —\ увлажнитель\ работает}
+\DoxyCodeLine{если\ air\_flg\ И\ time\_flg\ И\ не\ act\ →\ включить}
+\DoxyCodeLine{иначе\ если\ (не\ air\_flg\ ИЛИ\ не\ time\_flg)\ И\ act\ →\ выключить}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md72}{}\doxysubsection{\texorpdfstring{7.\+9. Алгоритм чтения и записи конфигурации (Storage)}{7.\+9. Алгоритм чтения и записи конфигурации (Storage)}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md72}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Read(dest):}
+\DoxyCodeLine{\ \ \ \ для\ каждого\ слота\ i\ от\ 0\ до\ totalSlots-\/1:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ прочитать\ байт\ статуса\ слота\ i}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ если\ статус\ ==\ SLOT\_ACTIVE:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ прочитать\ WriteCounter\ слота\ i}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ запомнить\ слот\ с\ максимальным\ счётчиком}
+\DoxyCodeLine{\ \ \ \ если\ активный\ слот\ найден:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ прочитать\ весь\ DataSlice\ найденного\ слота\ →\ dest}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ curSlot\ =\ найденный\ слот;\ lastWriteCount\ =\ его\ счётчик}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ вернуть\ 0}
+\DoxyCodeLine{\ \ \ \ иначе\ вернуть\ 4\ (данных\ нет)}
+\DoxyCodeLine{}
+\DoxyCodeLine{Write(src):}
+\DoxyCodeLine{\ \ \ \ nextSlot\ =\ (curSlot\ +\ 1)\ mod\ totalSlots}
+\DoxyCodeLine{\ \ \ \ lastWriteCount\ +=\ 1}
+\DoxyCodeLine{\ \ \ \ slice\ =\ \{Status:\ SLOT\_ACTIVE,\ WriteCounter:\ lastWriteCount,\ Conf:\ src\}}
+\DoxyCodeLine{\ \ \ \ записать\ slice\ по\ адресу\ nextSlot}
+\DoxyCodeLine{\ \ \ \ прочитать\ запись\ обратно\ и\ сравнить\ побайтно}
+\DoxyCodeLine{\ \ \ \ при\ расхождении:\ уменьшить\ lastWriteCount\ обратно,\ вернуть\ ошибку\ записи}
+\DoxyCodeLine{\ \ \ \ если\ прежний\ слот\ существует\ и\ не\ совпадает\ с\ nextSlot:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ пометить\ байт\ статуса\ прежнего\ слота\ как\ SLOT\_EMPTY}
+\DoxyCodeLine{\ \ \ \ curSlot\ =\ nextSlot}
+\DoxyCodeLine{\ \ \ \ вернуть\ 0}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md73}{}\doxysubsection{\texorpdfstring{7.\+10. Алгоритм приёма пакетов Bluetooth (конечный автомат)}{7.\+10. Алгоритм приёма пакетов Bluetooth (конечный автомат)}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md73}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Состояния:\ WAIT\_BEGIN\ →\ WAIT\_COMMAND\ →\ WAIT\_LENGTH\ →\ READ\_DATA\ →\ ACK\_DATA}
+\DoxyCodeLine{}
+\DoxyCodeLine{WAIT\_BEGIN:}
+\DoxyCodeLine{\ \ \ \ байт\ ==\ 0xFE\ →\ очистить\ буфер\ запроса;\ перейти\ в\ WAIT\_COMMAND}
+\DoxyCodeLine{WAIT\_COMMAND:}
+\DoxyCodeLine{\ \ \ \ 0x01\ <=\ байт\ <=\ 0x0A\ →\ cmd\ =\ байт;\ перейти\ в\ WAIT\_LENGTH}
+\DoxyCodeLine{\ \ \ \ иначе\ →\ отправить\ NACK;\ вернуться\ в\ WAIT\_BEGIN}
+\DoxyCodeLine{WAIT\_LENGTH:}
+\DoxyCodeLine{\ \ \ \ проверить\ длину\ строго\ по\ формату\ команды:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ INFO\ /\ GET\_BT\_INFO\ /\ GET\_TIME\ /\ GET\_MODE\ —\ 0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ SET\_BT\_NAME\ —\ 32\ или\ 33;\ \ SET\_BT\_PASS\ —\ 4\ или\ 5}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ SET\_TIME\ —\ 4;\ \ GET\_STATUS\ —\ 2;\ \ SET\_STATUS\ —\ ≥\ 3;\ \ SET\_MODE\ —\ 1}
+\DoxyCodeLine{\ \ \ \ несоответствие\ →\ отправить\ NACK;\ вернуться\ в\ WAIT\_BEGIN}
+\DoxyCodeLine{\ \ \ \ для\ команд\ без\ данных\ →\ отправить\ ACK,\ вызвать\ обработчик,\ перейти\ в\ ACK\_DATA}
+\DoxyCodeLine{\ \ \ \ иначе\ →\ READ\_DATA}
+\DoxyCodeLine{READ\_DATA:}
+\DoxyCodeLine{\ \ \ \ складывать\ байты\ в\ буфер\ запроса;}
+\DoxyCodeLine{\ \ \ \ когда\ собрано\ ровно\ req\_len\ байт\ →\ отправить\ ACK,\ вызвать\ обработчик\ →\ ACK\_DATA}
+\DoxyCodeLine{ACK\_DATA\ (ожидание\ реакции\ мастера\ на\ отправленный\ ответ):}
+\DoxyCodeLine{\ \ \ \ ACK\ (0xAA)\ →\ вернуться\ в\ WAIT\_BEGIN}
+\DoxyCodeLine{\ \ \ \ NACK\ (0xBB)\ →\ повторить\ отправку\ ответа;\ при\ ошибке\ повтора\ →\ WAIT\_BEGIN}
+\DoxyCodeLine{\ \ \ \ 0xFE\ →\ начало\ нового\ запроса:\ очистить\ буфер,\ перейти\ в\ WAIT\_COMMAND}
+\DoxyCodeLine{}
+\DoxyCodeLine{Обработка\ принятой\ команды\ (Controller::onReceive):}
+\DoxyCodeLine{\ \ \ \ диспетчеризация\ по\ коду\ команды\ на\ обработчик\ (см.\ таблицу\ в\ разделе\ 11.4)}
+\DoxyCodeLine{\ \ \ \ обработчик\ формирует\ asw\_data\ /\ asw\_len}
+\DoxyCodeLine{\ \ \ \ если\ ответ\ не\ пуст\ →\ скопировать\ его\ во\ внутренний\ буфер}
+\DoxyCodeLine{\ \ \ \ отправить\ ответ:\ заголовок\ 0xEF\ |\ cmd\ |\ len\ (+\ данные);\ перейти\ в\ ACK\_DATA}
+\DoxyCodeLine{}
+\DoxyCodeLine{Условия\ отправки\ ответа\ (SendAnswer):}
+\DoxyCodeLine{\ \ \ \ длина\ ответа\ соответствует\ формату\ команды;}
+\DoxyCodeLine{\ \ \ \ режим\ —\ транспортный,\ модуль\ включён\ и\ соединение\ активно}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md75}{}\doxysection{\texorpdfstring{8. Маска устройств}{8. Маска устройств}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md75}
+Каждое устройство идентифицируется битом маски ({\ttfamily \doxylink{controller_8h}{lib/\+controller/\+controller.\+h}}):
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Бит  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Макрос  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Устройство  \\
+\SetCell{c}0 (0x0001)  &{\ttfamily \doxylink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\+\_\+\+RTC}}  &Часы реального времени  \\
+\SetCell{c}1 (0x0002)  &{\ttfamily \doxylink{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113}{SENS\+\_\+\+STORAGE}}  &EEPROM-\/хранилище  \\
+\SetCell{c}2 (0x0004)  &{\ttfamily \doxylink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\+\_\+\+AIR}}  &Датчик температуры/\+влажности воздуха  \\
+\SetCell{c}3 (0x0008)  &{\ttfamily \doxylink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\+\_\+\+SOIL1}}  &Датчик влажности почвы 1  \\
+\SetCell{c}4 (0x0010)  &{\ttfamily \doxylink{controller_8h_a520472ec81977db010771191577720cb}{SENS\+\_\+\+SOIL2}}  &Датчик влажности почвы 2  \\
+\SetCell{c}5–7 (0x0020–0x0080)  &{\ttfamily \doxylink{controller_8h_afaae2dae7b83701aa66e3d0fae1b8fe4}{SENS\+\_\+\+RES1}..3}  &Зарезервировано (в т.\+ч. под датчик CO₂ в протоколе)  \\
+\SetCell{c}8 (0x0100)  &{\ttfamily \doxylink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\+\_\+\+LAMP}}  &Реле лампы  \\
+\SetCell{c}9 (0x0200)  &{\ttfamily \doxylink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\+\_\+\+FAN}}  &Реле вентилятора  \\
+\SetCell{c}10 (0x0400)  &{\ttfamily \doxylink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\+\_\+\+PUMP}}  &Реле/\+ключ насоса  \\
+\SetCell{c}11 (0x0800)  &{\ttfamily \doxylink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\+\_\+\+HUMIDIFIER}}  &Реле увлажнителя  \\
+\SetCell{c}12 (0x1000)  &{\ttfamily \doxylink{controller_8h_a8cbcd851a9ae7fba7d9e60aeffae0976}{DEV\+\_\+\+BT\+\_\+\+BUTTON}}  &Кнопка включения \doxylink{class_bluetooth}{Bluetooth}  \\
+\end{DoxyTable}
+
+
+Маска формируется при старте и далее используется повсюду: автоматика не трогает устройства, отсутствующие в маске; команды протокола возвращают данные только для инициализированных устройств; маска возвращается мастеру в ответе на {\ttfamily \doxylink{commands_8h_a42bf1fd637b1c921700bf479cc2f8533}{CMD\+\_\+\+INFO}}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md77}{}\doxysection{\texorpdfstring{9. Логика автоматического управления}{9. Логика автоматического управления}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md77}
+Общие принципы для всех механизмов:
+
+
+\begin{DoxyItemize}
+\item Каждый механизм работает в {\bfseries{автоматическом}} ({\ttfamily Is\+Auto = true}) или {\bfseries{ручном}} режиме. В ручном режиме автоматика не управляет устройством; его состояние задаётся командой {\ttfamily \doxylink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\+\_\+\+SET\+\_\+\+STATUS}}.
+\item Для каждого устройства задаётся {\bfseries{период активности}} (часы:минуты начала и конца). Проверка выполняется функцией {\ttfamily \doxylink{datetime_8h_ab195dafc45c7d235f40326912a0e6010}{Is\+Time\+In\+Range()}} ({\ttfamily \doxylink{datetime_8h}{include/\+common/\+datetime.\+h}}), которая корректно обрабатывает интервалы, переходящие через полночь. Если период некорректен (значения вне диапазонов либо начало равно концу), функция {\ttfamily \doxylink{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}{Is\+Always\+Activity()}} трактует его как «устройство активно круглосуточно», и управление опирается только на датчики.
+\item Если датчик, участвующий в логике устройства, не инициализирован или не прочитан, соответствующее условие считается выполненным (устройство управляется остальными доступными критериями).
+\end{DoxyItemize}\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md78}{}\doxysubsection{\texorpdfstring{9.\+1. Лампа}{9.\+1. Лампа}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md78}
+Работает только по времени суток (период активности), датчики не используются. Текущее время внутри периода → лампа включена, вне периода → выключена.\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md79}{}\doxysubsection{\texorpdfstring{9.\+2. Вентилятор}{9.\+2. Вентилятор}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md79}
+Условие по времени (период активности) {\bfseries{И}} условие по воздуху с гистерезисом:
+
+
+\begin{DoxyItemize}
+\item включение: влажность воздуха ≥ {\ttfamily Hum\+Start\+Vent} {\bfseries{или}} температура ≥ {\ttfamily Temp\+Start\+Vent};
+\item выключение: влажность ≤ {\ttfamily Hum\+End\+Vent} {\bfseries{и}} температура ≤ {\ttfamily Temp\+End\+Vent};
+\item между порогами (ни одно условие не выполнено) флаг остаётся «включить» — вентилятор работает.
+\end{DoxyItemize}
+
+Значения по умолчанию: включение при 24,0 °C или 70 \%, выключение при 20,0 °C и 50 \%.\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md80}{}\doxysubsection{\texorpdfstring{9.\+3. Насос (полив)}{9.\+3. Насос (полив)}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md80}
+Условие по времени (период активности) {\bfseries{И}} условие по почве с гистерезисом:
+
+
+\begin{DoxyItemize}
+\item каждый активный датчик почвы запрашивает полив при влажности ≤ {\ttfamily Start\+Watering} (по умолчанию 30 \%) и считается удовлетворённым при влажности ≥ {\ttfamily End\+Watering} (по умолчанию 60 \%); между порогами сохраняется текущее состояние (гистерезис);
+\item насос включается, когда все активные датчики запрашивают полив, и выключается, как только хотя бы один датчик удовлетворён;
+\item неактивный датчик условию не препятствует.
+\end{DoxyItemize}
+
+Дополнительные ограничения на запуск и работу:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily Pause\+Between\+Start}}} (по умолчанию 600 с) — минимальная пауза между запусками насоса; {\bfseries{0}} — без ограничения;
+\item {\bfseries{{\ttfamily Freq\+Watering}}} (по умолчанию 72 ч) — максимальная частота полива: насос не запускается чаще одного раза в указанное число часов; {\bfseries{0}} — без ограничения. Перед запуском проверяются оба интервала — действует больший;
+\item {\bfseries{{\ttfamily Max\+Work\+Time}}} (по умолчанию 300 с) — максимальное непрерывное время работы, контролируется {\ttfamily check\+Pump\+Running()} независимо от способа включения; {\bfseries{0}} — без ограничения (остановка только по условиям или команде).
+\end{DoxyItemize}
+
+Момент последнего запуска фиксируется и используется для контроля всех трёх ограничений, поэтому принудительный запуск через {\ttfamily Activate\+Devices()} учитывается автоматикой так же, как собственный.\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md81}{}\doxysubsection{\texorpdfstring{9.\+4. Увлажнитель воздуха}{9.\+4. Увлажнитель воздуха}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md81}
+Условие по времени (период активности) {\bfseries{И}} влажность воздуха с гистерезисом:
+
+
+\begin{DoxyItemize}
+\item включение: влажность ≤ {\ttfamily Hum\+Start\+Hum} (по умолчанию 30 \%);
+\item выключение: влажность ≥ {\ttfamily Hum\+End\+Hum} (по умолчанию 40 \%);
+\item между порогами (ни одно условие не выполнено) флаг остаётся «включить» — увлажнитель работает.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md83}{}\doxysection{\texorpdfstring{10. Конфигурация}{10. Конфигурация}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md83}
+Пользовательская конфигурация — структура {\ttfamily \doxylink{struct_grow_config}{Grow\+Config}} ({\ttfamily \doxylink{config_8h}{include/\+config/\+config.\+h}}), содержащая (значения по умолчанию):
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Раздел  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Поля  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Значения по умолчанию  \\
+{\ttfamily Version}  &Версия формата конфигурации  &1 ({\ttfamily \doxylink{version_8h_ad92c289c08add8c9288e601d1066b8a0}{CONFIG\+\_\+\+VERSION}})  \\
+{\ttfamily \doxylink{class_bluetooth}{Bluetooth}}  &Имя модуля (до 20 символов), пароль, {\ttfamily Online\+Delay} (сек до автоотключения, 0 — всегда активен)  &«\+Growbox», 1234, 300  \\
+{\ttfamily Lamp} / {\ttfamily Fan} / {\ttfamily Humidifier} ({\ttfamily \doxylink{struct_relay_config}{Relay\+Config}})  &Режим (авто/\+ручной), период активности  &авто, 06:00–00:00  \\
+{\ttfamily Pump} ({\ttfamily \doxylink{struct_pump_config}{Pump\+Config}})  &Режим, {\ttfamily Max\+Work\+Time}, {\ttfamily Pause\+Between\+Start}, {\ttfamily Freq\+Watering}, период активности  &авто, 300 с, 600 с, 72 ч, 00:00–00:00 (круглосуточно)  \\
+{\ttfamily Soil\+Sensor1/\+2} ({\ttfamily \doxylink{struct_soil_moisture_config}{Soil\+Moisture\+Config}})  &Пороги полива {\ttfamily Start\+Watering}/{\ttfamily End\+Watering}, калибровка {\ttfamily Min\+Value}/{\ttfamily Max\+Value}  &30 \%/\+60 \%, 630/\+330  \\
+{\ttfamily Air\+Sensor} ({\ttfamily \doxylink{struct_air_config}{Air\+Config}})  &Пороги вентиляции по температуре и влажности, пороги увлажнения  &24/\+20 °C, 70/\+50 \%, 30/\+40 \%  \\
+\end{DoxyTable}
+
+
+Константа {\ttfamily \doxylink{config_8h_aa2982de7dc2a5de80bbbba0862806f36}{DEFAULT\+\_\+\+CONFIGURATION}} — образец конфигурации по умолчанию, в неё сбрасываются настройки ({\ttfamily Reset\+Config()}) при отсутствии/\+повреждении данных в EEPROM.
+
+Изменение конфигурации возможно только по \doxylink{class_bluetooth}{Bluetooth} командой {\ttfamily \doxylink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\+\_\+\+SET\+\_\+\+STATUS}} (флаг {\ttfamily Save\+Changes} определяет, будет ли результат записан в EEPROM). Команда позволяет задать пороги датчиков, периоды активности и режимы реле, а также вручную включить/\+выключить устройство в ручном режиме.\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md84}{}\doxysubsection{\texorpdfstring{10.\+1. Хранение в EEPROM (wear leveling)}{10.\+1. Хранение в EEPROM (wear leveling)}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md84}
+EEPROM AT24\+C256 имеет ограниченный ресурс записи (обычно \texorpdfstring{$\sim$}{\string~}10⁵ циклов на ячейку), поэтому запись организована циклически ({\ttfamily \doxylink{storage_8cpp}{lib/\+hal/\+storage.\+cpp}}):
+
+
+\begin{DoxyItemize}
+\item Память делится на {\bfseries{слоты}} размером 128 байт (структура {\ttfamily \doxylink{struct_data_slice}{Data\+Slice}} размером 97 байт выравнивается вверх до границы 32 байт): слот = байт статуса, 4-\/байтный счётчик записей и сама конфигурация (92 байта). Всего 256 слотов.
+\item Каждая запись помещает конфигурацию в {\bfseries{следующий}} слот со значением счётчика на единицу больше максимального, затем выполняется контрольное чтение (верификация). Прежний слот помечается пустым ({\ttfamily \doxylink{at24c256_8h_ae5d3042e80b1b73b78799f018dd3cfc9}{SLOT\+\_\+\+EMPTY}} = 0x\+FF, активный слот помечен {\ttfamily \doxylink{at24c256_8h_adfec1aac7a2ceeac9ef0a19ec720535e}{SLOT\+\_\+\+ACTIVE}} = 0x\+A9).
+\item Перебор слотов {\bfseries{циклический}}: после последнего слота запись продолжается с начала памяти, перезаписывая самые старые данные.
+\item При чтении просматриваются все слоты и выбирается активный с максимальным счётчиком записей, таким образом восстанавливается и номер текущего слота.
+\end{DoxyItemize}
+
+Благодаря этому запись при каждом изменении конфигурации попадает в новые ячейки, равномерно распределяя износ по всей памяти; ресурса EEPROM (порядка 10⁵ циклов записи на ячейку) хватает на десятилетия штатной эксплуатации.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md86}{}\doxysection{\texorpdfstring{11. Управление по Bluetooth}{11. Управление по Bluetooth}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md86}
+Транспортный класс {\ttfamily \doxylink{class_bluetooth}{Bluetooth}} ({\ttfamily \doxylink{bluetooth_8cpp}{lib/\+hal/\+bluetooth.\+cpp}}) работает с модулем HC-\/05.\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md87}{}\doxysubsection{\texorpdfstring{11.\+1. Режимы работы модуля}{11.\+1. Режимы работы модуля}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md87}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Режим ({\ttfamily \doxylink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{Enum\+Status}})  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Скорость порта  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Назначение  \\
+{\ttfamily Disabled}  &—  &Питание модуля снято (пин D6)  \\
+{\ttfamily Config}  &38400 бод  &AT-\/команды: настройка имени/\+пароля, чтение параметров  \\
+{\ttfamily Transport}  &9600 бод  &Рабочий обмен данными по протоколу  \\
+\end{DoxyTable}
+
+
+Переключение режимов выполняется пином {\ttfamily BT\+\_\+\+MODE} (D13) без снятия питания ({\ttfamily Change\+Mode()}), либо вместе с подачей питания ({\ttfamily Activate(is\+Transport)}). Состояние соединения определяется по пину {\ttfamily BT\+\_\+\+STATE} (D12).\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md88}{}\doxysubsection{\texorpdfstring{11.\+2. Энергосбережение}{11.\+2. Энергосбережение}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md88}
+\doxylink{class_bluetooth}{Bluetooth} не обязан быть включён постоянно:
+
+
+\begin{DoxyItemize}
+\item при старте и после смены имени/\+пароля модуль выключается, если неактивен;
+\item кнопка на D7 включает модуль в транспортном режиме (антидребезг 50 мс, подтяжка к питанию, активный уровень — LOW);
+\item параметр {\ttfamily Online\+Delay} (из конфигурации \doxylink{class_bluetooth}{Bluetooth}, значение передаётся в поле {\ttfamily Idle\+Offline\+Delay}) задаёт таймаут в секундах: если соединения нет дольше этого времени, модуль автоматически обесточивается. Значение 0 означает «не выключать».
+\end{DoxyItemize}\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md89}{}\doxysubsection{\texorpdfstring{11.\+3. Обмен пакетами}{11.\+3. Обмен пакетами}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md89}
+Протокол — двоичный, пакетная структура (подробно и с таблицами — в \doxysectlink{md_docs_2_b_t___p_r_o_t_o_c_o_l___r_u}{BT\+\_\+\+PROTOCOL\+\_\+\+RU.md}{0}):
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<Сигнатура\ 0xFE><Команда\ 0x01–0x0A><Длина\ данных><Данные>}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Пакет запроса начинается с {\ttfamily 0x\+FE}, ответа — с {\ttfamily 0x\+EF}.
+\item При корректном приёме запроса устройство отвечает однобайтовым подтверждением {\ttfamily ACK} (0x\+AA), при ошибке формата — {\ttfamily NACK} (0x\+BB) с переходом к ожиданию нового пакета.
+\item Приёмник работает конечным автоматом ({\ttfamily \doxylink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbd}{Enum\+Receive\+Stage}}): ожидание сигнатуры → команда → длина → чтение данных → ожидание ACK на ответ. Для команд без данных (длина 0) обработчик вызывается сразу после проверки длины.
+\item Ответ на команду отправляется с сигнатурой {\ttfamily 0x\+EF} и проходит проверку длины строго по формату команды; если мастер ответил {\ttfamily NACK}, ответ отправляется повторно.
+\item Если при ожидании ACK приходит новая сигнатура запроса 0x\+FE, автомат переходит к приёму новой команды.
+\end{DoxyItemize}\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md90}{}\doxysubsection{\texorpdfstring{11.\+4. Команды протокола}{11.\+4. Команды протокола}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md90}
+Обработка команд выполняется в {\ttfamily Controller::\+on\+Receive}, который диспетчеризует команду по коду на соответствующий обработчик:
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Код  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Команда  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Действие  \\
+\SetCell{c}0x01  &{\ttfamily \doxylink{commands_8h_a42bf1fd637b1c921700bf479cc2f8533}{CMD\+\_\+\+INFO}}  &Возвращает имя/\+версии прошивки и \doxylink{class_bluetooth}{Bluetooth}, маску устройств, режим  \\
+\SetCell{c}0x02  &{\ttfamily \doxylink{commands_8h_afacf9de9d9f12b90cf850eac70e5b48b}{CMD\+\_\+\+GET\+\_\+\+BT\+\_\+\+INFO}}  &Возвращает имя и адрес Bluetooth-\/модуля  \\
+\SetCell{c}0x03  &{\ttfamily \doxylink{commands_8h_a1b78ee87bf0c178fd14cb6c88a36d6f0}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+NAME}}  &Устанавливает новое имя модуля (через AT-\/режим)  \\
+\SetCell{c}0x04  &{\ttfamily \doxylink{commands_8h_a900bdf8a70cc1fee39ba4e5e29e20f5f}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+PASS}}  &Устанавливает новый пароль модуля (через AT-\/режим)  \\
+\SetCell{c}0x05  &{\ttfamily \doxylink{commands_8h_a77d8c029e23ff9e179769b546d85a275}{CMD\+\_\+\+GET\+\_\+\+TIME}}  &Возвращает текущее Unix-\/время \doxylink{class_r_t_c}{RTC}  \\
+\SetCell{c}0x06  &{\ttfamily \doxylink{commands_8h_ab972af079e26bcb287c46f0b44d36766}{CMD\+\_\+\+SET\+\_\+\+TIME}}  &Устанавливает Unix-\/время \doxylink{class_r_t_c}{RTC}  \\
+\SetCell{c}0x07  &{\ttfamily \doxylink{commands_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a}{CMD\+\_\+\+GET\+\_\+\+STATUS}}  &Возвращает показания и настройки устройств по маске  \\
+\SetCell{c}0x08  &{\ttfamily \doxylink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\+\_\+\+SET\+\_\+\+STATUS}}  &Изменяет настройки/\+состояние устройств, опционально сохраняет в EEPROM  \\
+\SetCell{c}0x09  &{\ttfamily \doxylink{commands_8h_ad37107a45db89a0aa7f06dfbf096d917}{CMD\+\_\+\+GET\+\_\+\+MODE}}  &Возвращает текущий режим (стандартный/\+калибровка)  \\
+\SetCell{c}0x0A  &{\ttfamily \doxylink{commands_8h_ab08c18e4b6ea58665d8743bd47182946}{CMD\+\_\+\+SET\+\_\+\+MODE}}  &Переключает режим работы  \\
+\end{DoxyTable}
+
+
+Особенности выполнения команд:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{commands_8h_a1b78ee87bf0c178fd14cb6c88a36d6f0}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+NAME}}/{\ttfamily \doxylink{commands_8h_a900bdf8a70cc1fee39ba4e5e29e20f5f}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+PASS}}: устройство само переводит модуль в AT-\/режим, выполняет команду, возвращает транспортный режим; ответ содержит код результата (0x00 — успех, 0x01 — некорректные данные, 0x02 — не удалось переключить режим, 0x03 — аппаратная ошибка).
+\item {\ttfamily \doxylink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\+\_\+\+SET\+\_\+\+STATUS}} принимает последовательность блоков «идентификатор устройства + данные»; значения вне допустимых диапазонов отклоняются с указанием проблемных устройств в маске ошибок; невалидные поля периода активности интерпретируются как «круглосуточная активность».
+\item Ответ {\ttfamily \doxylink{commands_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a}{CMD\+\_\+\+GET\+\_\+\+STATUS}} собирается из блоков только тех устройств, которые есть и в запрошенной маске, и в маске инициализированных; в полях периода активности значение 100 означает «период не задан/\+некорректен» (круглосуточная активность).
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md92}{}\doxysection{\texorpdfstring{12. Режимы работы устройства}{12. Режимы работы устройства}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md92}
+Устройство работает в одном из двух режимов ({\ttfamily Controller::\+is\+Std\+Mode}):
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Стандартный режим (0x01)}} — штатная работа: автоматика по разделу 9 активна.
+\item {\bfseries{Режим калибровки (0x00)}} — автоматика отключена; при входе в режим все исполнительные механизмы принудительно отключаются ({\ttfamily Activate\+Devices(0x0000)}). Предназначен для калибровки датчиков и безопасного изменения настроек.
+\end{DoxyItemize}
+
+Режим переключается командой {\ttfamily \doxylink{commands_8h_ab08c18e4b6ea58665d8743bd47182946}{CMD\+\_\+\+SET\+\_\+\+MODE}}, текущее значение возвращается {\ttfamily \doxylink{commands_8h_ad37107a45db89a0aa7f06dfbf096d917}{CMD\+\_\+\+GET\+\_\+\+MODE}} (а также битом в ответе {\ttfamily \doxylink{commands_8h_a42bf1fd637b1c921700bf479cc2f8533}{CMD\+\_\+\+INFO}}). Состояние режима не сохраняется в EEPROM и после перезагрузки всегда стандартный.
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md94}{}\doxysection{\texorpdfstring{13. Замечания и ограничения текущей реализации}{13. Замечания и ограничения текущей реализации}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md94}
+Замечания, зафиксированные в предыдущей редакции документа (незадействованные параметры насоса и почвы, немедленное отключение насоса при {\ttfamily Max\+Work\+Time = 0}, неработающие команды смены пароля/\+времени/\+имени по \doxylink{class_bluetooth}{Bluetooth}, запись настроек насоса и обоих датчиков почвы в {\ttfamily \doxylink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\+\_\+\+SET\+\_\+\+STATUS}}, опечатка в {\ttfamily process\+Humidifier()}, бесконечный перебор слотов EEPROM, переполнение буфера имени \doxylink{class_bluetooth}{Bluetooth} и условие в {\ttfamily \doxylink{commands_8h_ab08c18e4b6ea58665d8743bd47182946}{CMD\+\_\+\+SET\+\_\+\+MODE}}), устранены в коде. Актуальные ограничения:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Имя \doxylink{class_bluetooth}{Bluetooth}.}} Протокол допускает имя до 32 символов, а имя, применяемое при старте, хранится в конфигурации в поле на 20 символов: имя, заданное командой {\ttfamily \doxylink{commands_8h_a1b78ee87bf0c178fd14cb6c88a36d6f0}{CMD\+\_\+\+SET\+\_\+\+BT\+\_\+\+NAME}} без изменения конфигурации, после перезагрузки будет сброшено к конфигурационному значению.
+\item {\bfseries{Частота опроса датчика воздуха}} принудительно ограничена паузой 2 с; неверные значения (вне 0–100 \%) отбрасываются с кодом ошибки.
+\item {\bfseries{Инициализация \doxylink{class_bluetooth}{Bluetooth}.}} Модуль считается инициализированным, если удалось прочитать ненулевой пароль; сбой опроса параметров на старте отражается на работе транспорта до перезагрузки.
+\item {\bfseries{Пороги почвы.}} По протоколу требуется {\ttfamily Start\+Watering \texorpdfstring{$<$}{<} End\+Watering} — блок настроек с нарушением порядка порогов отклоняется с кодом 0x02. Ранее записанные в EEPROM конфигурации с некорректными порогами читаются, но работают как обычный порог включения без гистерезиса.
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md96}{}\doxysection{\texorpdfstring{14. Сборка и прошивка}{14. Сборка и прошивка}}\label{md_docs_2_o_v_e_r_v_i_e_w___r_u_autotoc_md96}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ сборка}
+\DoxyCodeLine{pio\ run}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ загрузка\ в\ плату\ (при\ подключённом\ Arduino\ Uno)}
+\DoxyCodeLine{pio\ run\ -\/-\/target\ upload}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ очистка}
+\DoxyCodeLine{pio\ run\ -\/-\/target\ clean}
+
+\end{DoxyCode}
+
+
+Отключение необязательного оборудования выполняется удалением соответствующего макроса пина в {\ttfamily \doxylink{hal_8h}{lib/\+hal/\+hal.\+h}} ({\ttfamily \doxylink{hal_8h_a2f504be032367b69f0a326e994a64ca0}{AIR\+\_\+\+SENSOR\+\_\+\+PIN}}, {\ttfamily SOIL\+\_\+\+MOISTURE\+\_\+\+PIN1/\+2}, {\ttfamily \doxylink{hal_8h_a046a49bd08acf968b93841a7ab578fb3}{LAMP\+\_\+\+RELAY\+\_\+\+PIN}}, {\ttfamily \doxylink{hal_8h_acfb8938df8d06e8573bea2c084ca8a81}{FAN\+\_\+\+RELAY\+\_\+\+PIN}}, {\ttfamily \doxylink{hal_8h_af993f7047a3904a5525ef56aafdc6f6d}{PUMP\+\_\+\+RELAY\+\_\+\+PIN}}, {\ttfamily \doxylink{hal_8h_a48efbbc3e90a979e8977246eae79df1e}{HUMIDIFIER\+\_\+\+RELAY\+\_\+\+PIN}}, {\ttfamily \doxylink{hal_8h_a4879a25d5237d80d7a49c8d6dc3702ce}{BT\+\_\+\+BUTTON\+\_\+\+PIN}}) — отсутствующие устройства исключаются из маски и автоматики.
+
+Изменение типа \doxylink{class_r_t_c}{RTC} выполняется макросом {\ttfamily \doxylink{hal_8h_a804fd4df86d20e652240bec3fa61e064}{RTC\+\_\+\+DEVICE}} ({\ttfamily \doxylink{hal_8h}{lib/\+hal/\+hal.\+h}}): поддерживаются {\ttfamily RTC\+\_\+\+DS1302}, {\ttfamily RTC\+\_\+\+DS1307}, {\ttfamily RTC\+\_\+\+DS3231}, {\ttfamily RTC\+\_\+\+RX8025}. 

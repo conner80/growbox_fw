@@ -1,0 +1,66 @@
+\doxysection{bluetooth.\+h}
+\hypertarget{bluetooth_8h_source}{}\label{bluetooth_8h_source}\index{lib/hal/bluetooth.h@{lib/hal/bluetooth.h}}
+\doxymbox{\hyperlink{bluetooth_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <SoftwareSerial.h>}}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{hal_8h}{hal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{relay_8h}{relay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00016}\doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78afa535ffb25e1fd20341652f9be21e06e}{00016}}\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{EnumStatus}}\ \{\doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78ab9f5c797ebbf55adccdd8539a65a0241}{Disabled}},\ \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78afa535ffb25e1fd20341652f9be21e06e}{Config}},\ \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78af5f0c488ed56cf789d19a13ffba8abe3}{Transport}}\};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00021}\doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda4566ddee71dbbaa7eb1837c04528599a}{00021}}\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbd}{EnumReceiveStage}}\ \{\doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda644bc4f59bfee61861265888d0bbf395}{WAIT\_BEGIN}},\ \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda397c0f5610bf069b9f399953e0f44724}{WAIT\_COMMAND}},\ \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda95e3346da3425a2097e38bda493b33a9}{WAIT\_LENGTH}},\ \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbdae7635aa284a1d1a0f40518b9ad3d2645}{READ\_DATA}},\ \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda4566ddee71dbbaa7eb1837c04528599a}{ACK\_DATA}}\};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00032}\doxymbox{\hyperlink{bluetooth_8h_a3e8a623d41e061851206e9a045816b70}{00032}}\ \textcolor{keyword}{typedef}\ void\ (*\doxymbox{\hyperlink{bluetooth_8h_a3e8a623d41e061851206e9a045816b70}{OnReceiveDataEvent}})\ (\textcolor{keywordtype}{void}\ *context,\ \textcolor{keyword}{const}\ uint8\_t\ cmd,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00038}\doxymbox{\hyperlink{class_bluetooth}{00038}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_bluetooth_adff22f9e5f2bd81b1fc5b8eeba71f68b}{Bluetooth}}\ \{}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00039}00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00040}00040\ \ \ \ \ \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{EnumStatus}}\ status\ =\ \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78ab9f5c797ebbf55adccdd8539a65a0241}{EnumStatus::Disabled}};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00041}00041\ \ \ \ \ \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbd}{EnumReceiveStage}}\ stage\ =\ \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda644bc4f59bfee61861265888d0bbf395}{EnumReceiveStage::WAIT\_BEGIN}};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00042}00042\ \ \ \ \ uint8\_t\ cmd\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00043}00043\ \ \ \ \ uint8\_t\ req\_len\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00044}00044\ \ \ \ \ uint8\_t\ rcv\_len\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInited\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00046}00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ isCalibrate\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00047}00047\ \ \ \ \ SoftwareSerial\ *port\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00048}00048\ \ \ \ \ \doxymbox{\hyperlink{class_relay}{Relay}}\ *pwr\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00049}00049\ \ \ \ \ uint8\_t\ req\_buf[255]\ =\ \{0x00\};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ last\_op;}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00051}00051\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00062}00062\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_a333a3340c06afdf1b82543c5b7bd3c57}{sendATCommand}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *cmd,\ \textcolor{keywordtype}{char}\ *asw,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00067}00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bluetooth_a1abba2696da2fbddcf36f560ca6f0fb5}{onReceive}}(\textcolor{keyword}{const}\ uint8\_t\ cmd);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00071}00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bluetooth_a7e96b3885451dc7ce8bc7ffeb3519a16}{sendACK}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00075}00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bluetooth_a3288ead9b982b03f3a0dcc3f38aad441}{sendNACK}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00079}00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bluetooth_afa183142aba0b9351e2229651b30332f}{reqBTParams}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00080}00080\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00084}\doxymbox{\hyperlink{class_bluetooth_a19b59b6f6616093604c189aceeb0f67b}{00084}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{class_bluetooth_a19b59b6f6616093604c189aceeb0f67b}{IdleOfflineDelay}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00088}\doxymbox{\hyperlink{class_bluetooth_a740b6c06dcef799336e0cb0355546167}{00088}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{class_bluetooth_a740b6c06dcef799336e0cb0355546167}{Name}}[33]\ =\ \{\textcolor{stringliteral}{"{}\(\backslash\)0"{}}\};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00092}\doxymbox{\hyperlink{class_bluetooth_af3949a293e824925a31c3adec57d3703}{00092}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{class_bluetooth_af3949a293e824925a31c3adec57d3703}{Password}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00096}\doxymbox{\hyperlink{class_bluetooth_aeacc72fa28534fb4ccfca6b9975c154b}{00096}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{class_bluetooth_aeacc72fa28534fb4ccfca6b9975c154b}{Address}}[15]\ =\ \{\textcolor{stringliteral}{"{}\(\backslash\)0"{}}\};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00100}\doxymbox{\hyperlink{class_bluetooth_a4054181cdeb126278c699b4d489a1e76}{00100}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{class_bluetooth_a4054181cdeb126278c699b4d489a1e76}{Version}}[20]\ =\ \{\textcolor{stringliteral}{"{}\(\backslash\)0"{}}\};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00104}\doxymbox{\hyperlink{class_bluetooth_a29abd53e952ca57409a27eed8a434e05}{00104}}\ \ \ \ \ \textcolor{keywordtype}{void}\ *\doxymbox{\hyperlink{class_bluetooth_a29abd53e952ca57409a27eed8a434e05}{Context}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00108}\doxymbox{\hyperlink{class_bluetooth_af8e81045028c5655875e35b9ac52deb1}{00108}}\ \ \ \ \ \doxymbox{\hyperlink{bluetooth_8h_a3e8a623d41e061851206e9a045816b70}{OnReceiveDataEvent}}\ \doxymbox{\hyperlink{class_bluetooth_af8e81045028c5655875e35b9ac52deb1}{OnReceiveData}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00113}00113\ \ \ \ \ \doxymbox{\hyperlink{class_bluetooth_adff22f9e5f2bd81b1fc5b8eeba71f68b}{Bluetooth}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00117}00117\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{class_bluetooth_adff22f9e5f2bd81b1fc5b8eeba71f68b}{\string~Bluetooth}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00122}00122\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_bluetooth_a917dacf088dcb369d9f09dab03757779}{IsActivated}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00127}00127\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_bluetooth_a7d467d81e74df0da061aaf3a6892709c}{IsInited}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00132}00132\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_bluetooth_aa2f6ed745938ecc312040e45b1f0b694}{IsConnected}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00137}00137\ \ \ \ \ \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{EnumStatus}}\ \doxymbox{\hyperlink{class_bluetooth_a4f866cc35fffbed8b774ad11bc2d5189}{Status}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00146}00146\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_a14c5fea81fb4c6bfc6299293d78a08d6}{Activate}}(\textcolor{keywordtype}{bool}\ isTransport\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00154}00154\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_ab513155f229f9603b836de6723108ac3}{Deactivate}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00162}00162\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_aa30ece1277a610aec94bb11645f7ed92}{ChangeMode}}(\textcolor{keywordtype}{bool}\ isConfig\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00170}00170\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_a07a9311f857f8ef04d223d0208010146}{SendATPing}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00179}00179\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_ab3ddfe64bf65820b8eb6a272752b0958}{GetAddr}}(\textcolor{keywordtype}{char}\ *addr);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00188}00188\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_aec00f24b6b335736ddf9c0f40b84fd3c}{GetVersion}}(\textcolor{keywordtype}{char}\ *ver);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00196}00196\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_a8326cffbaff45a11e7f4cf37358c9664}{ResetToDefault}}();}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00205}00205\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_adc21735138707432ff61d99e9a3c40bf}{GetName}}(\textcolor{keywordtype}{char}\ *name);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00214}00214\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_a5f7e9aec1f74cf736023f84a921ef972}{SetName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00223}00223\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_ab0c8bd7533bb5db590600158f0206ac2}{GetPassword}}(\textcolor{keywordtype}{char}\ *pass);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00232}00232\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_aeeacc4bc71f03d81741b2bd59527a73c}{SetPassword}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *pass);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00245}00245\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bluetooth_ab271a851783dac3b6f379e7acb061038}{SendAnswer}}(\textcolor{keyword}{const}\ uint8\_t\ cmd,\ \textcolor{keyword}{const}\ uint8\_t\ *asw,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00249}00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bluetooth_a843b0608336f3afe001e38578f2f3804}{ProcessCommands}}();\ \ }
+\DoxyCodeLine{\Hypertarget{bluetooth_8h_source_l00250}00250\ \};}
+
+\end{DoxyCode}

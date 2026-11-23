@@ -1,0 +1,256 @@
+\doxysection{lib/\+controller/\+controller.h File Reference}
+\hypertarget{controller_8h}{}\label{controller_8h}\index{lib/controller/controller.h@{lib/controller/controller.h}}
+
+
+Header for the main Growbox controller class.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \+\#include "{}hal.\+h"{}}\newline
+{\ttfamily \+\#include "{}rtc.\+h"{}}\newline
+{\ttfamily \+\#include "{}soil.\+h"{}}\newline
+{\ttfamily \+\#include "{}air.\+h"{}}\newline
+{\ttfamily \+\#include "{}storage.\+h"{}}\newline
+{\ttfamily \+\#include "{}relay.\+h"{}}\newline
+{\ttfamily \+\#include "{}parameters.\+h"{}}\newline
+{\ttfamily \+\#include "{}bluetooth.\+h"{}}\newline
+{\ttfamily \+\#include "{}button.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_controller}{Controller}}
+\begin{DoxyCompactList}\small\item\em The main Growbox controller class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\+\_\+\+RTC}}~0x0001
+\begin{DoxyCompactList}\small\item\em \doxylink{class_r_t_c}{RTC}. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113}{SENS\+\_\+\+STORAGE}}~0x0002
+\begin{DoxyCompactList}\small\item\em EEPROM storage. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\+\_\+\+AIR}}~0x0004
+\begin{DoxyCompactList}\small\item\em \doxylink{class_air}{Air} humidity and temperature sensor (DHT-\/11, DHT-\/22). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\+\_\+\+SOIL1}}~0x0008
+\begin{DoxyCompactList}\small\item\em \doxylink{class_soil}{Soil} moisture sensor 1. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\+\_\+\+SOIL2}}~0x0010
+\begin{DoxyCompactList}\small\item\em \doxylink{class_soil}{Soil} moisture sensor 2. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_afaae2dae7b83701aa66e3d0fae1b8fe4}{SENS\+\_\+\+RES1}}~0x0020
+\begin{DoxyCompactList}\small\item\em Reserved for sensor. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_ad1c4755e925009a9ff2621c99d9d8d2d}{SENS\+\_\+\+RES2}}~0x0040
+\begin{DoxyCompactList}\small\item\em Reserved for sensor. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_a1aab5adfa62d238186c9c32f2b98d810}{SENS\+\_\+\+RES3}}~0x0080
+\begin{DoxyCompactList}\small\item\em Reserved for sensor. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\+\_\+\+LAMP}}~0x0100
+\begin{DoxyCompactList}\small\item\em Lamp relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\+\_\+\+FAN}}~0x0200
+\begin{DoxyCompactList}\small\item\em Fan relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\+\_\+\+PUMP}}~0x0400
+\begin{DoxyCompactList}\small\item\em Pump relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\+\_\+\+HUMIDIFIER}}~0x0800
+\begin{DoxyCompactList}\small\item\em \doxylink{class_air}{Air} humidifier relay. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{controller_8h_a8cbcd851a9ae7fba7d9e60aeffae0976}{DEV\+\_\+\+BT\+\_\+\+BUTTON}}~0x1000
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} activation button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for the main Growbox controller class. 
+
+\begin{DoxyAuthor}{Authors}
+John Doe 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026-\/11-\/10 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+Definition in file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+
+
+\label{controller_8h_doc-define-members}
+\Hypertarget{controller_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{controller_8h_a8cbcd851a9ae7fba7d9e60aeffae0976}\index{controller.h@{controller.h}!DEV\_BT\_BUTTON@{DEV\_BT\_BUTTON}}
+\index{DEV\_BT\_BUTTON@{DEV\_BT\_BUTTON}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{DEV\_BT\_BUTTON}{DEV\_BT\_BUTTON}}
+{\footnotesize\ttfamily \label{controller_8h_a8cbcd851a9ae7fba7d9e60aeffae0976} 
+\+\#define DEV\+\_\+\+BT\+\_\+\+BUTTON~0x1000}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} activation button. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00071}{71}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}\index{controller.h@{controller.h}!DEV\_FAN@{DEV\_FAN}}
+\index{DEV\_FAN@{DEV\_FAN}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{DEV\_FAN}{DEV\_FAN}}
+{\footnotesize\ttfamily \label{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0} 
+\+\#define DEV\+\_\+\+FAN~0x0200}
+
+
+
+Fan relay. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00059}{59}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}\index{controller.h@{controller.h}!DEV\_HUMIDIFIER@{DEV\_HUMIDIFIER}}
+\index{DEV\_HUMIDIFIER@{DEV\_HUMIDIFIER}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{DEV\_HUMIDIFIER}{DEV\_HUMIDIFIER}}
+{\footnotesize\ttfamily \label{controller_8h_a7af449dcabaeb6e3f7789ca0200089df} 
+\+\#define DEV\+\_\+\+HUMIDIFIER~0x0800}
+
+
+
+\doxylink{class_air}{Air} humidifier relay. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00067}{67}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}\index{controller.h@{controller.h}!DEV\_LAMP@{DEV\_LAMP}}
+\index{DEV\_LAMP@{DEV\_LAMP}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{DEV\_LAMP}{DEV\_LAMP}}
+{\footnotesize\ttfamily \label{controller_8h_aa7c756774ccb9c7e062faf504feee0d3} 
+\+\#define DEV\+\_\+\+LAMP~0x0100}
+
+
+
+Lamp relay. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00055}{55}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}\index{controller.h@{controller.h}!DEV\_PUMP@{DEV\_PUMP}}
+\index{DEV\_PUMP@{DEV\_PUMP}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{DEV\_PUMP}{DEV\_PUMP}}
+{\footnotesize\ttfamily \label{controller_8h_adb3502c5cbd77fb17604df8e4dd90229} 
+\+\#define DEV\+\_\+\+PUMP~0x0400}
+
+
+
+Pump relay. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00063}{63}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}\index{controller.h@{controller.h}!SENS\_AIR@{SENS\_AIR}}
+\index{SENS\_AIR@{SENS\_AIR}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{SENS\_AIR}{SENS\_AIR}}
+{\footnotesize\ttfamily \label{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c} 
+\+\#define SENS\+\_\+\+AIR~0x0004}
+
+
+
+\doxylink{class_air}{Air} humidity and temperature sensor (DHT-\/11, DHT-\/22). 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00031}{31}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_afaae2dae7b83701aa66e3d0fae1b8fe4}\index{controller.h@{controller.h}!SENS\_RES1@{SENS\_RES1}}
+\index{SENS\_RES1@{SENS\_RES1}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{SENS\_RES1}{SENS\_RES1}}
+{\footnotesize\ttfamily \label{controller_8h_afaae2dae7b83701aa66e3d0fae1b8fe4} 
+\+\#define SENS\+\_\+\+RES1~0x0020}
+
+
+
+Reserved for sensor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00043}{43}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_ad1c4755e925009a9ff2621c99d9d8d2d}\index{controller.h@{controller.h}!SENS\_RES2@{SENS\_RES2}}
+\index{SENS\_RES2@{SENS\_RES2}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{SENS\_RES2}{SENS\_RES2}}
+{\footnotesize\ttfamily \label{controller_8h_ad1c4755e925009a9ff2621c99d9d8d2d} 
+\+\#define SENS\+\_\+\+RES2~0x0040}
+
+
+
+Reserved for sensor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00047}{47}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_a1aab5adfa62d238186c9c32f2b98d810}\index{controller.h@{controller.h}!SENS\_RES3@{SENS\_RES3}}
+\index{SENS\_RES3@{SENS\_RES3}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{SENS\_RES3}{SENS\_RES3}}
+{\footnotesize\ttfamily \label{controller_8h_a1aab5adfa62d238186c9c32f2b98d810} 
+\+\#define SENS\+\_\+\+RES3~0x0080}
+
+
+
+Reserved for sensor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00051}{51}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_aec15f51271494c6268bbe9ace3334e7c}\index{controller.h@{controller.h}!SENS\_RTC@{SENS\_RTC}}
+\index{SENS\_RTC@{SENS\_RTC}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{SENS\_RTC}{SENS\_RTC}}
+{\footnotesize\ttfamily \label{controller_8h_aec15f51271494c6268bbe9ace3334e7c} 
+\+\#define SENS\+\_\+\+RTC~0x0001}
+
+
+
+\doxylink{class_r_t_c}{RTC}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00023}{23}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_ab879bfc6ff4671e2748624e79566b424}\index{controller.h@{controller.h}!SENS\_SOIL1@{SENS\_SOIL1}}
+\index{SENS\_SOIL1@{SENS\_SOIL1}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{SENS\_SOIL1}{SENS\_SOIL1}}
+{\footnotesize\ttfamily \label{controller_8h_ab879bfc6ff4671e2748624e79566b424} 
+\+\#define SENS\+\_\+\+SOIL1~0x0008}
+
+
+
+\doxylink{class_soil}{Soil} moisture sensor 1. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00035}{35}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_a520472ec81977db010771191577720cb}\index{controller.h@{controller.h}!SENS\_SOIL2@{SENS\_SOIL2}}
+\index{SENS\_SOIL2@{SENS\_SOIL2}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{SENS\_SOIL2}{SENS\_SOIL2}}
+{\footnotesize\ttfamily \label{controller_8h_a520472ec81977db010771191577720cb} 
+\+\#define SENS\+\_\+\+SOIL2~0x0010}
+
+
+
+\doxylink{class_soil}{Soil} moisture sensor 2. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00039}{39}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+\Hypertarget{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113}\index{controller.h@{controller.h}!SENS\_STORAGE@{SENS\_STORAGE}}
+\index{SENS\_STORAGE@{SENS\_STORAGE}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{SENS\_STORAGE}{SENS\_STORAGE}}
+{\footnotesize\ttfamily \label{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113} 
+\+\#define SENS\+\_\+\+STORAGE~0x0002}
+
+
+
+EEPROM storage. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00027}{27}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+

@@ -1,0 +1,105 @@
+\doxysection{Soil Class Reference}
+\hypertarget{class_soil}{}\label{class_soil}\index{Soil@{Soil}}
+
+
+\doxylink{class_soil}{Soil} moisture sensor class.  
+
+
+
+
+{\ttfamily \+\#include $<$soil.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_soil_ae51f2ec133fed21e6f34f9c591926a30}{Soil}} (uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_soil_a81ead04bca15b678f461528b017f2dfb}{Is\+Inited}} ()
+\begin{DoxyCompactList}\small\item\em Is soil moisture sensor successfully initialized. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_soil_a0fd30e72d41460d9a1aa491771fc9495}{Get\+Humidity}} ()
+\begin{DoxyCompactList}\small\item\em Get soil moisture sensor value in percent. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_soil}{Soil} moisture sensor class. 
+
+Definition at line \doxymbox{\hyperlink{soil_8h_source_l00014}{14}} of file \doxymbox{\hyperlink{soil_8h_source}{soil.\+h}}.
+
+
+
+\label{class_soil_doc-constructors}
+\Hypertarget{class_soil_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_soil_ae51f2ec133fed21e6f34f9c591926a30}\index{Soil@{Soil}!Soil@{Soil}}
+\index{Soil@{Soil}!Soil@{Soil}}
+\doxysubsubsection{\texorpdfstring{Soil()}{Soil()}}
+{\footnotesize\ttfamily \label{class_soil_ae51f2ec133fed21e6f34f9c591926a30} 
+Soil::\+\+Soil (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em pin} & MCU analog PIN number for reading data from soil moisture sensor class \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{soil_8cpp_source_l00011}{11}} of file \doxymbox{\hyperlink{soil_8cpp_source}{soil.\+cpp}}.
+
+
+
+\label{class_soil_doc-func-members}
+\Hypertarget{class_soil_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_soil_a0fd30e72d41460d9a1aa491771fc9495}\index{Soil@{Soil}!GetHumidity@{GetHumidity}}
+\index{GetHumidity@{GetHumidity}!Soil@{Soil}}
+\doxysubsubsection{\texorpdfstring{GetHumidity()}{GetHumidity()}}
+{\footnotesize\ttfamily \label{class_soil_a0fd30e72d41460d9a1aa491771fc9495} 
+uint8\+\_\+t Soil::\+\+Get\+Humidity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get soil moisture sensor value in percent. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_soil}{Soil} moisture sensor current value in percent 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0-\/100} & \doxylink{class_soil}{Soil} moisture in percent \\
+\hline
+{\em 254} & Incorrect sensor value \\
+\hline
+{\em 255} & Sensor wasn\textquotesingle{}t successfully inititialized \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{soil_8cpp_source_l00022}{22}} of file \doxymbox{\hyperlink{soil_8cpp_source}{soil.\+cpp}}.
+
+\Hypertarget{class_soil_a81ead04bca15b678f461528b017f2dfb}\index{Soil@{Soil}!IsInited@{IsInited}}
+\index{IsInited@{IsInited}!Soil@{Soil}}
+\doxysubsubsection{\texorpdfstring{IsInited()}{IsInited()}}
+{\footnotesize\ttfamily \label{class_soil_a81ead04bca15b678f461528b017f2dfb} 
+bool Soil::\+\+Is\+Inited (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Is soil moisture sensor successfully initialized. 
+
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} \doxylink{class_soil}{Soil} moisture sensor was successfully initialized, otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{soil_8cpp_source_l00018}{18}} of file \doxymbox{\hyperlink{soil_8cpp_source}{soil.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+lib/\+hal/\doxymbox{\hyperlink{soil_8h}{soil.\+h}}\item 
+lib/\+hal/\doxymbox{\hyperlink{soil_8cpp}{soil.\+cpp}}\end{DoxyCompactItemize}

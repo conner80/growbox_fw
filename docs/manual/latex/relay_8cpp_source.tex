@@ -1,0 +1,67 @@
+\doxysection{relay.\+cpp}
+\hypertarget{relay_8cpp_source}{}\label{relay_8cpp_source}\index{lib/hal/relay.cpp@{lib/hal/relay.cpp}}
+\doxymbox{\hyperlink{relay_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{relay_8h}{relay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{hal_8h}{hal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00011}\doxymbox{\hyperlink{class_relay_adae45e21118b9fa7f9b51a11f8513238}{00011}}\ \doxymbox{\hyperlink{class_relay_adae45e21118b9fa7f9b51a11f8513238}{Relay::Relay}}(uint8\_t\ pin,\ uint8\_t\ relay\_type)\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00012}00012\ \ \ \ \ pinMode(pin,\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{switch}\ (relay\_type)\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ this-\/>delay\_ms\ =\ \doxymbox{\hyperlink{hal_8h_a4e86c3a056afe8536887eaff10df96b9}{KEY\_DELAY}};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ this-\/>is\_normal\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ this-\/>delay\_ms\ =\ \doxymbox{\hyperlink{hal_8h_a4e86c3a056afe8536887eaff10df96b9}{KEY\_DELAY}};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ this-\/>is\_normal\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ this-\/>delay\_ms\ =\ \doxymbox{\hyperlink{hal_8h_ad787f815b01fc0e0806ce942df3bf8cf}{RELAY\_DELAY}};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ this-\/>is\_normal\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00026}00026\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00027}00027\ \ \ \ \ digitalWrite(pin,\ (this-\/>is\_normal\ ?\ LOW\ :\ HIGH));}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00028}00028\ \ \ \ \ this-\/>pin\ =\ pin;}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00029}00029\ \ \ \ \ this-\/>last\_op\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00032}\doxymbox{\hyperlink{class_relay_a4d2207e50b0f2279b6608ab48d17d142}{00032}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_relay_a4d2207e50b0f2279b6608ab48d17d142}{Relay::IsActivated}}()}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (digitalRead(this-\/>pin)\ ==\ HIGH)\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>is\_normal)\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00040}00040\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>is\_normal)\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00047}00047\ \}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00049}\doxymbox{\hyperlink{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363}{00049}}\ uint8\_t\ \doxymbox{\hyperlink{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363}{Relay::Activate}}()\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ cur\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{if}\ ((cur\ -\/\ this-\/>last\_op)\ <\ this-\/>delay\_ms)\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00054}00054\ \ \ \ \ digitalWrite(this-\/>pin,\ (this-\/>is\_normal\ ?\ HIGH\ :\ LOW));}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00055}00055\ \ \ \ \ this-\/>last\_op\ =\ cur;}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00059}\doxymbox{\hyperlink{class_relay_aeb0fd7553770dfcb705af40690bfc1f3}{00059}}\ uint8\_t\ \doxymbox{\hyperlink{class_relay_aeb0fd7553770dfcb705af40690bfc1f3}{Relay::Deactivate}}()\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ cur\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{if}\ ((cur\ -\/\ this-\/>last\_op)\ <\ this-\/>delay\_ms)\ \{}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00064}00064\ \ \ \ \ digitalWrite(this-\/>pin,\ (this-\/>is\_normal\ ?\ LOW\ :\ HIGH));}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00065}00065\ \ \ \ \ this-\/>last\_op\ =\ cur;}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{relay_8cpp_source_l00067}00067\ \}}
+
+\end{DoxyCode}

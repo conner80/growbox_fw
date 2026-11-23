@@ -1,0 +1,126 @@
+\doxysection{Relay Class Reference}
+\hypertarget{class_relay}{}\label{class_relay}\index{Relay@{Relay}}
+
+
+{\ttfamily \+\#include $<$relay.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_relay_adae45e21118b9fa7f9b51a11f8513238}{Relay}} (uint8\+\_\+t pin, uint8\+\_\+t relay\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_relay_a4d2207e50b0f2279b6608ab48d17d142}{Is\+Activated}} ()
+\begin{DoxyCompactList}\small\item\em Check relay activation status. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363}{Activate}} ()
+\begin{DoxyCompactList}\small\item\em Activate relay by high level signal. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_relay_aeb0fd7553770dfcb705af40690bfc1f3}{Deactivate}} ()
+\begin{DoxyCompactList}\small\item\em Deactivate relay by low level signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{relay_8h_source_l00011}{11}} of file \doxymbox{\hyperlink{relay_8h_source}{relay.\+h}}.
+
+
+
+\label{class_relay_doc-constructors}
+\Hypertarget{class_relay_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_relay_adae45e21118b9fa7f9b51a11f8513238}\index{Relay@{Relay}!Relay@{Relay}}
+\index{Relay@{Relay}!Relay@{Relay}}
+\doxysubsubsection{\texorpdfstring{Relay()}{Relay()}}
+{\footnotesize\ttfamily \label{class_relay_adae45e21118b9fa7f9b51a11f8513238} 
+Relay::\+\+Relay (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin}{, }\item[{uint8\+\_\+t}]{relay\+\_\+type}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em pin} & MCU analog PIN number for relay signal \\
+\hline
+\doxymbox{\texttt{in}}  & {\em relay\+\_\+type} & \doxylink{class_relay}{Relay} type: 1 -\/ relay, 2 -\/ n-\/channel key, 3 -\/ p-\/channel key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{relay_8cpp_source_l00011}{11}} of file \doxymbox{\hyperlink{relay_8cpp_source}{relay.\+cpp}}.
+
+
+
+\label{class_relay_doc-func-members}
+\Hypertarget{class_relay_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363}\index{Relay@{Relay}!Activate@{Activate}}
+\index{Activate@{Activate}!Relay@{Relay}}
+\doxysubsubsection{\texorpdfstring{Activate()}{Activate()}}
+{\footnotesize\ttfamily \label{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363} 
+uint8\+\_\+t Relay::\+\+Activate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Activate relay by high level signal. 
+
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & \doxylink{class_relay}{Relay} rate limit error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{relay_8cpp_source_l00049}{49}} of file \doxymbox{\hyperlink{relay_8cpp_source}{relay.\+cpp}}.
+
+\Hypertarget{class_relay_aeb0fd7553770dfcb705af40690bfc1f3}\index{Relay@{Relay}!Deactivate@{Deactivate}}
+\index{Deactivate@{Deactivate}!Relay@{Relay}}
+\doxysubsubsection{\texorpdfstring{Deactivate()}{Deactivate()}}
+{\footnotesize\ttfamily \label{class_relay_aeb0fd7553770dfcb705af40690bfc1f3} 
+uint8\+\_\+t Relay::\+\+Deactivate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Deactivate relay by low level signal. 
+
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & \doxylink{class_relay}{Relay} rate limit error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{relay_8cpp_source_l00059}{59}} of file \doxymbox{\hyperlink{relay_8cpp_source}{relay.\+cpp}}.
+
+\Hypertarget{class_relay_a4d2207e50b0f2279b6608ab48d17d142}\index{Relay@{Relay}!IsActivated@{IsActivated}}
+\index{IsActivated@{IsActivated}!Relay@{Relay}}
+\doxysubsubsection{\texorpdfstring{IsActivated()}{IsActivated()}}
+{\footnotesize\ttfamily \label{class_relay_a4d2207e50b0f2279b6608ab48d17d142} 
+bool Relay::\+\+Is\+Activated (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Check relay activation status. 
+
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} \doxylink{class_relay}{Relay} was activate by high level signal, otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{relay_8cpp_source_l00032}{32}} of file \doxymbox{\hyperlink{relay_8cpp_source}{relay.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+lib/\+hal/\doxymbox{\hyperlink{relay_8h}{relay.\+h}}\item 
+lib/\+hal/\doxymbox{\hyperlink{relay_8cpp}{relay.\+cpp}}\end{DoxyCompactItemize}

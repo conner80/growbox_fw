@@ -97,7 +97,7 @@ pio run --target upload
 
 ## Лицензия
 
-Copyright © 2026 Growbox PIPAS authors.
+Copyright © 2026 John Doe.
 
 Программное обеспечение распространяется на условиях
 **GNU General Public License v3.0** (GNU GPL v3): вы можете свободно

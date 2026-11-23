@@ -1,0 +1,66 @@
+\doxysection{air.\+cpp}
+\hypertarget{air_8cpp_source}{}\label{air_8cpp_source}\index{lib/hal/air.cpp@{lib/hal/air.cpp}}
+\doxymbox{\hyperlink{air_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{air_8h}{air.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{hal_8h}{hal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00011}\doxymbox{\hyperlink{class_air_a06c9331de6ffc64ef23b59c23e65b25c}{00011}}\ \doxymbox{\hyperlink{class_air_a06c9331de6ffc64ef23b59c23e65b25c}{Air::Air}}(uint8\_t\ pin)\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00012}00012\ \ \ \ \ this-\/>isInited\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00013}00013\ \ \ \ \ this-\/>air\ =\ \textcolor{keyword}{new}\ iarduino\_DHT(pin);}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00014}00014\ \ \ \ \ this-\/>pin\ =\ pin;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00015}00015\ \ \ \ \ this-\/>last\_op\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00016}00016\ \ \ \ \ delay(\doxymbox{\hyperlink{hal_8h_adb749f3b8bac47cc5598c5c7616537d0}{AIR\_SENSOR\_START\_DELAY}});}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00017}00017\ \ \ \ \ this-\/>isInited\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00020}\doxymbox{\hyperlink{class_air_a09684162ee7c9fd6b68e18bd60b42576}{00020}}\ \doxymbox{\hyperlink{class_air_a09684162ee7c9fd6b68e18bd60b42576}{Air::\string~Air}}()\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>air\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>air;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ this-\/>air\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ this-\/>isInited\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00028}\doxymbox{\hyperlink{class_air_ac99d7bc232e0fbd9ae6b6fe38e02d2f3}{00028}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_air_ac99d7bc232e0fbd9ae6b6fe38e02d2f3}{Air::IsInited}}()\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>isInited;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00032}\doxymbox{\hyperlink{class_air_ad366d4b1a1bbf8428838de948dd4d8f9}{00032}}\ uint8\_t\ \doxymbox{\hyperlink{class_air_ad366d4b1a1bbf8428838de948dd4d8f9}{Air::GetData}}(\doxymbox{\hyperlink{struct_air_data}{AirData}}\ *data)}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (!this-\/>isInited\ ||\ this-\/>air\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (data\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ now\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{if}\ ((now\ -\/\ this-\/>last\_op)\ <\ \doxymbox{\hyperlink{hal_8h_ae3b7ba5223047a968f613599b5ed9e35}{AIR\_SENSOR\_OPERATION\_DELAY}})\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 3;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00044}00044\ \ \ \ \ int8\_t\ rc\ =\ this-\/>air-\/>read();}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00045}00045\ \ \ \ \ this-\/>last\_op\ =\ now;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordtype}{float}\ hum\ =\ this-\/>air-\/>hum;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (hum\ <\ 0\ ||\ hum\ >\ 100)\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 5;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{switch}\ (rc)\ \{}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{case}\ DHT\_OK:}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ data-\/>\doxymbox{\hyperlink{struct_air_data_a04587a845f96569d648b9feaa1f2bc93}{Temperature}}\ =\ this-\/>air-\/>tem;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ data-\/>\doxymbox{\hyperlink{struct_air_data_af22d1cd121dd8a987dfc01ed250ff363}{Humidity}}\ =\ round(hum);}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{case}\ DHT\_ERROR\_CHECKSUM:}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{case}\ DHT\_ERROR\_DATA:}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 5;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{case}\ DHT\_ERROR\_NO\_REPLY:}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 6;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00063}00063\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{return}\ 7;}
+\DoxyCodeLine{\Hypertarget{air_8cpp_source_l00066}00066\ \}}
+
+\end{DoxyCode}

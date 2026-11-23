@@ -1,0 +1,49 @@
+\doxysection{rtc.\+cpp}
+\hypertarget{rtc_8cpp_source}{}\label{rtc_8cpp_source}\index{lib/hal/rtc.cpp@{lib/hal/rtc.cpp}}
+\doxymbox{\hyperlink{rtc_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{rtc_8h}{rtc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{hal_8h}{hal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00011}\doxymbox{\hyperlink{class_r_t_c_ada31c5120d18d2dd2863b3d440308da2}{00011}}\ \doxymbox{\hyperlink{class_r_t_c_ada31c5120d18d2dd2863b3d440308da2}{RTC::RTC}}()\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00012}00012\ \ \ \ \ this-\/>rtc\ =\ \textcolor{keyword}{new}\ iarduino\_RTC(\doxymbox{\hyperlink{hal_8h_a804fd4df86d20e652240bec3fa61e064}{RTC\_DEVICE}});\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00013}00013\ \ \ \ \ this-\/>isInited\ =\ this-\/>rtc-\/>begin();\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00016}\doxymbox{\hyperlink{class_r_t_c_abc7ca124964fe2c8593bbabf82431e70}{00016}}\ \doxymbox{\hyperlink{class_r_t_c_abc7ca124964fe2c8593bbabf82431e70}{RTC::\string~RTC}}()\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>rtc\ !=\ \textcolor{keyword}{nullptr})\ \{\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>rtc;}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ this-\/>rtc\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00020}00020\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00021}00021\ \ \ \ \ this-\/>isInited\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00024}\doxymbox{\hyperlink{class_r_t_c_aea29e5952b8d90fec0b7f3863e9656ec}{00024}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_r_t_c_aea29e5952b8d90fec0b7f3863e9656ec}{RTC::IsInited}}()\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>isInited;}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00028}\doxymbox{\hyperlink{class_r_t_c_ada22b65ab1376e8b20adda9a2d513595}{00028}}\ uint8\_t\ \doxymbox{\hyperlink{class_r_t_c_ada22b65ab1376e8b20adda9a2d513595}{RTC::SetTime}}(uint32\_t\ unixtime)\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (!this-\/>isInited\ ||\ this-\/>rtc\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00032}00032\ \ \ \ \ this-\/>rtc-\/>settimeUnix(unixtime);}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00033}00033\ \ \ \ \ uint32\_t\ now\ =\ this-\/>rtc-\/>gettimeUnix();}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (now\ !=\ unixtime)\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00040}\doxymbox{\hyperlink{class_r_t_c_ae77a3fd0e9ebccd61f85e0c0b856a052}{00040}}\ uint8\_t\ \doxymbox{\hyperlink{class_r_t_c_ae77a3fd0e9ebccd61f85e0c0b856a052}{RTC::GetTime}}(uint32\_t\ *unixtime)\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!this-\/>isInited\ ||\ this-\/>rtc\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (unixtime\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00047}00047\ \ \ \ \ *unixtime\ =\ this-\/>rtc-\/>gettimeUnix();}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{rtc_8cpp_source_l00049}00049\ \}}
+
+\end{DoxyCode}

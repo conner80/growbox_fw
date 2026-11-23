@@ -1,0 +1,177 @@
+\doxysection{Storage Class Reference}
+\hypertarget{class_storage}{}\label{class_storage}\index{Storage@{Storage}}
+
+
+Data storage class.  
+
+
+
+
+{\ttfamily \+\#include $<$storage.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_storage_a80ef6af5e4c9fd4424ae16e808d05291}{Storage}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_storage_a017937051333431c3eb4adecf446440c}{Is\+Inited}} ()
+\begin{DoxyCompactList}\small\item\em Is storage successfully initialized. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_storage_a950b2bdc8787cbd915f5a9cc0f55fb66}{Read}} (\doxymbox{\hyperlink{struct_grow_config}{Grow\+Config}} \&dest)
+\begin{DoxyCompactList}\small\item\em Read configuration data from EEPROM. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_storage_a075679c259856ed51735d7ebc4916c65}{Write}} (const \doxymbox{\hyperlink{struct_grow_config}{Grow\+Config}} \&src)
+\begin{DoxyCompactList}\small\item\em Write configuration data to EEPROM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint16\+\_\+t \doxymbox{\hyperlink{class_storage_a6a52e28104952293d18d7e95fe7022c4}{align\+Size}} (uint16\+\_\+t sz)
+\begin{DoxyCompactList}\small\item\em Leveling the slot size up. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data storage class. 
+
+Supported chips: AT24\+C256 
+
+Definition at line \doxymbox{\hyperlink{storage_8h_source_l00016}{16}} of file \doxymbox{\hyperlink{storage_8h_source}{storage.\+h}}.
+
+
+
+\label{class_storage_doc-constructors}
+\Hypertarget{class_storage_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_storage_a80ef6af5e4c9fd4424ae16e808d05291}\index{Storage@{Storage}!Storage@{Storage}}
+\index{Storage@{Storage}!Storage@{Storage}}
+\doxysubsubsection{\texorpdfstring{Storage()}{Storage()}}
+{\footnotesize\ttfamily \label{class_storage_a80ef6af5e4c9fd4424ae16e808d05291} 
+Storage::\+\+Storage (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{storage_8cpp_source_l00042}{42}} of file \doxymbox{\hyperlink{storage_8cpp_source}{storage.\+cpp}}.
+
+
+
+\label{class_storage_doc-func-members}
+\Hypertarget{class_storage_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_storage_a6a52e28104952293d18d7e95fe7022c4}\index{Storage@{Storage}!alignSize@{alignSize}}
+\index{alignSize@{alignSize}!Storage@{Storage}}
+\doxysubsubsection{\texorpdfstring{alignSize()}{alignSize()}}
+{\footnotesize\ttfamily \label{class_storage_a6a52e28104952293d18d7e95fe7022c4} 
+uint16\+\_\+t Storage::\+align\+Size (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{sz}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Leveling the slot size up. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em sz} & Slot size with user\textquotesingle{}s data block \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aligned slot 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{storage_8cpp_source_l00029}{29}} of file \doxymbox{\hyperlink{storage_8cpp_source}{storage.\+cpp}}.
+
+\Hypertarget{class_storage_a017937051333431c3eb4adecf446440c}\index{Storage@{Storage}!IsInited@{IsInited}}
+\index{IsInited@{IsInited}!Storage@{Storage}}
+\doxysubsubsection{\texorpdfstring{IsInited()}{IsInited()}}
+{\footnotesize\ttfamily \label{class_storage_a017937051333431c3eb4adecf446440c} 
+bool Storage::\+\+Is\+Inited (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Is storage successfully initialized. 
+
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} \doxylink{class_storage}{Storage} successfully initialized otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{storage_8cpp_source_l00059}{59}} of file \doxymbox{\hyperlink{storage_8cpp_source}{storage.\+cpp}}.
+
+\Hypertarget{class_storage_a950b2bdc8787cbd915f5a9cc0f55fb66}\index{Storage@{Storage}!Read@{Read}}
+\index{Read@{Read}!Storage@{Storage}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily \label{class_storage_a950b2bdc8787cbd915f5a9cc0f55fb66} 
+uint8\+\_\+t Storage::\+\+Read (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_grow_config}{Grow\+Config}} \&}]{dest}{}\end{DoxyParamCaption})}
+
+
+
+Read configuration data from EEPROM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em dest} & Buffer for read configuration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect data block \\
+\hline
+{\em 2} & Incorrect data block length \\
+\hline
+{\em 3} & Incorrect EEPROM memory address \\
+\hline
+{\em 4} & Device wasn\textquotesingle{}t initialized (no data found) \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{storage_8cpp_source_l00063}{63}} of file \doxymbox{\hyperlink{storage_8cpp_source}{storage.\+cpp}}.
+
+\Hypertarget{class_storage_a075679c259856ed51735d7ebc4916c65}\index{Storage@{Storage}!Write@{Write}}
+\index{Write@{Write}!Storage@{Storage}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily \label{class_storage_a075679c259856ed51735d7ebc4916c65} 
+uint8\+\_\+t Storage::\+\+Write (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_grow_config}{Grow\+Config}} \&}]{src}{}\end{DoxyParamCaption})}
+
+
+
+Write configuration data to EEPROM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em addr} & The address of the memory location from which the data recording will start \\
+\hline
+\doxymbox{\texttt{in}}  & {\em src} & Specified configuration for write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect data block \\
+\hline
+{\em 2} & Incorrect data block length \\
+\hline
+{\em 3} & Incorrect EEPROM memory address \\
+\hline
+{\em 4} & Data write error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{storage_8cpp_source_l00103}{103}} of file \doxymbox{\hyperlink{storage_8cpp_source}{storage.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+lib/\+hal/\doxymbox{\hyperlink{storage_8h}{storage.\+h}}\item 
+lib/\+hal/\doxymbox{\hyperlink{storage_8cpp}{storage.\+cpp}}\end{DoxyCompactItemize}

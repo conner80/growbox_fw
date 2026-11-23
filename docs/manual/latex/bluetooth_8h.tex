@@ -1,0 +1,174 @@
+\doxysection{lib/\+hal/\+bluetooth.h File Reference}
+\hypertarget{bluetooth_8h}{}\label{bluetooth_8h}\index{lib/hal/bluetooth.h@{lib/hal/bluetooth.h}}
+
+
+Header for bluetooth transport class for chip HC-\/05.  
+
+
+{\ttfamily \+\#include $<$Software\+Serial.\+h$>$}\newline
+{\ttfamily \+\#include "{}hal.\+h"{}}\newline
+{\ttfamily \+\#include "{}relay.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_bluetooth}{Bluetooth}}
+\begin{DoxyCompactList}\small\item\em Header for bluetooth transport class for chip HC-\/05. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*}) \doxymbox{\hyperlink{bluetooth_8h_a3e8a623d41e061851206e9a045816b70}{On\+Receive\+Data\+Event}}(void \texorpdfstring{$\ast$}{*}context, const uint8\+\_\+t cmd, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}req\+\_\+data, const size\+\_\+t req\+\_\+len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}asw\+\_\+data, size\+\_\+t \texorpdfstring{$\ast$}{*}asw\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Receive answer data event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{Enum\+Status}} \{ \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78ab9f5c797ebbf55adccdd8539a65a0241}{Disabled}}
+, \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78afa535ffb25e1fd20341652f9be21e06e}{Config}}
+, \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78af5f0c488ed56cf789d19a13ffba8abe3}{Transport}}
+ \}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} device status. \end{DoxyCompactList}\item 
+enum class \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbd}{Enum\+Receive\+Stage}} \{ \newline
+\doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda644bc4f59bfee61861265888d0bbf395}{WAIT\+\_\+\+BEGIN}}
+, \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda397c0f5610bf069b9f399953e0f44724}{WAIT\+\_\+\+COMMAND}}
+, \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda95e3346da3425a2097e38bda493b33a9}{WAIT\+\_\+\+LENGTH}}
+, \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbdae7635aa284a1d1a0f40518b9ad3d2645}{READ\+\_\+\+DATA}}
+, \newline
+\doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda4566ddee71dbbaa7eb1837c04528599a}{ACK\+\_\+\+DATA}}
+ \}
+\begin{DoxyCompactList}\small\item\em Receive packet (answer data) stage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for bluetooth transport class for chip HC-\/05. 
+
+\begin{DoxyAuthor}{Authors}
+John Doe 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026-\/11-\/16 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+Definition in file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+
+
+\label{bluetooth_8h_doc-typedef-members}
+\Hypertarget{bluetooth_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{bluetooth_8h_a3e8a623d41e061851206e9a045816b70}\index{bluetooth.h@{bluetooth.h}!OnReceiveDataEvent@{OnReceiveDataEvent}}
+\index{OnReceiveDataEvent@{OnReceiveDataEvent}!bluetooth.h@{bluetooth.h}}
+\doxysubsubsection{\texorpdfstring{OnReceiveDataEvent}{OnReceiveDataEvent}}
+{\footnotesize\ttfamily \label{bluetooth_8h_a3e8a623d41e061851206e9a045816b70} 
+typedef void(\texorpdfstring{$\ast$}{*}) On\+Receive\+Data\+Event(void \texorpdfstring{$\ast$}{*}context, const uint8\+\_\+t cmd, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}req\+\_\+data, const size\+\_\+t req\+\_\+len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}asw\+\_\+data, size\+\_\+t \texorpdfstring{$\ast$}{*}asw\+\_\+len)}
+
+
+
+Receive answer data event. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em context} & Reference to the caller class \\
+\hline
+\doxymbox{\texttt{in}}  & {\em cmd} & Command \\
+\hline
+\doxymbox{\texttt{in}}  & {\em req\+\_\+data} & Request data \\
+\hline
+\doxymbox{\texttt{in}}  & {\em req\+\_\+len} & Request data length \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em asw\+\_\+data} & Answer data \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em asw\+\_\+len} & Answer data length \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00032}{32}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+
+
+\label{bluetooth_8h_doc-enum-members}
+\Hypertarget{bluetooth_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbd}\index{bluetooth.h@{bluetooth.h}!EnumReceiveStage@{EnumReceiveStage}}
+\index{EnumReceiveStage@{EnumReceiveStage}!bluetooth.h@{bluetooth.h}}
+\doxysubsubsection{\texorpdfstring{EnumReceiveStage}{EnumReceiveStage}}
+{\footnotesize\ttfamily \label{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbd} 
+enum class \doxymbox{\hyperlink{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbd}{Enum\+Receive\+Stage}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Receive packet (answer data) stage. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WAIT\_BEGIN@{WAIT\_BEGIN}!bluetooth.h@{bluetooth.h}}
+\index{bluetooth.h@{bluetooth.h}!WAIT\_BEGIN@{WAIT\_BEGIN}}
+}\Hypertarget{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda644bc4f59bfee61861265888d0bbf395}\label{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda644bc4f59bfee61861265888d0bbf395} 
+WAIT\+\_\+\+BEGIN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WAIT\_COMMAND@{WAIT\_COMMAND}!bluetooth.h@{bluetooth.h}}
+\index{bluetooth.h@{bluetooth.h}!WAIT\_COMMAND@{WAIT\_COMMAND}}
+}\Hypertarget{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda397c0f5610bf069b9f399953e0f44724}\label{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda397c0f5610bf069b9f399953e0f44724} 
+WAIT\+\_\+\+COMMAND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WAIT\_LENGTH@{WAIT\_LENGTH}!bluetooth.h@{bluetooth.h}}
+\index{bluetooth.h@{bluetooth.h}!WAIT\_LENGTH@{WAIT\_LENGTH}}
+}\Hypertarget{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda95e3346da3425a2097e38bda493b33a9}\label{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda95e3346da3425a2097e38bda493b33a9} 
+WAIT\+\_\+\+LENGTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READ\_DATA@{READ\_DATA}!bluetooth.h@{bluetooth.h}}
+\index{bluetooth.h@{bluetooth.h}!READ\_DATA@{READ\_DATA}}
+}\Hypertarget{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbdae7635aa284a1d1a0f40518b9ad3d2645}\label{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbdae7635aa284a1d1a0f40518b9ad3d2645} 
+READ\+\_\+\+DATA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ACK\_DATA@{ACK\_DATA}!bluetooth.h@{bluetooth.h}}
+\index{bluetooth.h@{bluetooth.h}!ACK\_DATA@{ACK\_DATA}}
+}\Hypertarget{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda4566ddee71dbbaa7eb1837c04528599a}\label{bluetooth_8h_ac687b1e88bfe65084740f2f70b47ffbda4566ddee71dbbaa7eb1837c04528599a} 
+ACK\+\_\+\+DATA&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00021}{21}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+\Hypertarget{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}\index{bluetooth.h@{bluetooth.h}!EnumStatus@{EnumStatus}}
+\index{EnumStatus@{EnumStatus}!bluetooth.h@{bluetooth.h}}
+\doxysubsubsection{\texorpdfstring{EnumStatus}{EnumStatus}}
+{\footnotesize\ttfamily \label{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78} 
+enum class \doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{Enum\+Status}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} device status. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Disabled@{Disabled}!bluetooth.h@{bluetooth.h}}
+\index{bluetooth.h@{bluetooth.h}!Disabled@{Disabled}}
+}\Hypertarget{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78ab9f5c797ebbf55adccdd8539a65a0241}\label{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78ab9f5c797ebbf55adccdd8539a65a0241} 
+Disabled&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Config@{Config}!bluetooth.h@{bluetooth.h}}
+\index{bluetooth.h@{bluetooth.h}!Config@{Config}}
+}\Hypertarget{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78afa535ffb25e1fd20341652f9be21e06e}\label{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78afa535ffb25e1fd20341652f9be21e06e} 
+Config&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Transport@{Transport}!bluetooth.h@{bluetooth.h}}
+\index{bluetooth.h@{bluetooth.h}!Transport@{Transport}}
+}\Hypertarget{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78af5f0c488ed56cf789d19a13ffba8abe3}\label{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78af5f0c488ed56cf789d19a13ffba8abe3} 
+Transport&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00016}{16}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+

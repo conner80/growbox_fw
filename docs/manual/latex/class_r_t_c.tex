@@ -1,0 +1,154 @@
+\doxysection{RTC Class Reference}
+\hypertarget{class_r_t_c}{}\label{class_r_t_c}\index{RTC@{RTC}}
+
+
+Class describes the main methods of Real Time Clock.  
+
+
+
+
+{\ttfamily \+\#include $<$rtc.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_r_t_c_ada31c5120d18d2dd2863b3d440308da2}{RTC}} ()
+\begin{DoxyCompactList}\small\item\em The main constructor. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_r_t_c_abc7ca124964fe2c8593bbabf82431e70}{\texorpdfstring{$\sim$}{\string~}\+RTC}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_r_t_c_aea29e5952b8d90fec0b7f3863e9656ec}{Is\+Inited}} ()
+\begin{DoxyCompactList}\small\item\em Is \doxylink{class_r_t_c}{RTC} successfully initialized. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_r_t_c_ada22b65ab1376e8b20adda9a2d513595}{Set\+Time}} (uint32\+\_\+t unixtime)
+\begin{DoxyCompactList}\small\item\em Set new time to \doxylink{class_r_t_c}{RTC} (Unix format). \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_r_t_c_ae77a3fd0e9ebccd61f85e0c0b856a052}{Get\+Time}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}unixtime)
+\begin{DoxyCompactList}\small\item\em Get current time from \doxylink{class_r_t_c}{RTC} (Unix format). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class describes the main methods of Real Time Clock. 
+
+Supported \doxylink{class_r_t_c}{RTC}: DS1302, DS1307, DS3231, RX8025 
+
+Definition at line \doxymbox{\hyperlink{rtc_8h_source_l00016}{16}} of file \doxymbox{\hyperlink{rtc_8h_source}{rtc.\+h}}.
+
+
+
+\label{class_r_t_c_doc-constructors}
+\Hypertarget{class_r_t_c_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_r_t_c_ada31c5120d18d2dd2863b3d440308da2}\index{RTC@{RTC}!RTC@{RTC}}
+\index{RTC@{RTC}!RTC@{RTC}}
+\doxysubsubsection{\texorpdfstring{RTC()}{RTC()}}
+{\footnotesize\ttfamily \label{class_r_t_c_ada31c5120d18d2dd2863b3d440308da2} 
+RTC::\+\+RTC (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The main constructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{rtc_8cpp_source_l00011}{11}} of file \doxymbox{\hyperlink{rtc_8cpp_source}{rtc.\+cpp}}.
+
+\Hypertarget{class_r_t_c_abc7ca124964fe2c8593bbabf82431e70}\index{RTC@{RTC}!````~RTC@{\texorpdfstring{$\sim$}{\string~}RTC}}
+\index{````~RTC@{\texorpdfstring{$\sim$}{\string~}RTC}!RTC@{RTC}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}RTC()}{\string~RTC()}}
+{\footnotesize\ttfamily \label{class_r_t_c_abc7ca124964fe2c8593bbabf82431e70} 
+RTC::\+\texorpdfstring{$\sim$}{\string~}\+RTC (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{rtc_8cpp_source_l00016}{16}} of file \doxymbox{\hyperlink{rtc_8cpp_source}{rtc.\+cpp}}.
+
+
+
+\label{class_r_t_c_doc-func-members}
+\Hypertarget{class_r_t_c_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_r_t_c_ae77a3fd0e9ebccd61f85e0c0b856a052}\index{RTC@{RTC}!GetTime@{GetTime}}
+\index{GetTime@{GetTime}!RTC@{RTC}}
+\doxysubsubsection{\texorpdfstring{GetTime()}{GetTime()}}
+{\footnotesize\ttfamily \label{class_r_t_c_ae77a3fd0e9ebccd61f85e0c0b856a052} 
+uint8\+\_\+t RTC::\+\+Get\+Time (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{unixtime}{}\end{DoxyParamCaption})}
+
+
+
+Get current time from \doxylink{class_r_t_c}{RTC} (Unix format). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em unixtime} & Current datetime in Unix-\/format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Get datetime error due to device error or uninitialized \\
+\hline
+{\em 2} & Parameter is nil \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{rtc_8cpp_source_l00040}{40}} of file \doxymbox{\hyperlink{rtc_8cpp_source}{rtc.\+cpp}}.
+
+\Hypertarget{class_r_t_c_aea29e5952b8d90fec0b7f3863e9656ec}\index{RTC@{RTC}!IsInited@{IsInited}}
+\index{IsInited@{IsInited}!RTC@{RTC}}
+\doxysubsubsection{\texorpdfstring{IsInited()}{IsInited()}}
+{\footnotesize\ttfamily \label{class_r_t_c_aea29e5952b8d90fec0b7f3863e9656ec} 
+bool RTC::\+\+Is\+Inited (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Is \doxylink{class_r_t_c}{RTC} successfully initialized. 
+
+\begin{DoxyReturn}{Returns}
+Initialization status ({\bfseries{TRUE}} -\/ \doxylink{class_r_t_c}{RTC} was successfully initialized, otherwise {\bfseries{FALSE}}) 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{rtc_8cpp_source_l00024}{24}} of file \doxymbox{\hyperlink{rtc_8cpp_source}{rtc.\+cpp}}.
+
+\Hypertarget{class_r_t_c_ada22b65ab1376e8b20adda9a2d513595}\index{RTC@{RTC}!SetTime@{SetTime}}
+\index{SetTime@{SetTime}!RTC@{RTC}}
+\doxysubsubsection{\texorpdfstring{SetTime()}{SetTime()}}
+{\footnotesize\ttfamily \label{class_r_t_c_ada22b65ab1376e8b20adda9a2d513595} 
+uint8\+\_\+t RTC::\+\+Set\+Time (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{}\end{DoxyParamCaption})}
+
+
+
+Set new time to \doxylink{class_r_t_c}{RTC} (Unix format). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & New datetime in Unix-\/format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Set datetime error due to device error or uninitialized \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{rtc_8cpp_source_l00028}{28}} of file \doxymbox{\hyperlink{rtc_8cpp_source}{rtc.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+lib/\+hal/\doxymbox{\hyperlink{rtc_8h}{rtc.\+h}}\item 
+lib/\+hal/\doxymbox{\hyperlink{rtc_8cpp}{rtc.\+cpp}}\end{DoxyCompactItemize}

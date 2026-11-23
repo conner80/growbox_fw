@@ -1,0 +1,779 @@
+\doxysection{Bluetooth Class Reference}
+\hypertarget{class_bluetooth}{}\label{class_bluetooth}\index{Bluetooth@{Bluetooth}}
+
+
+Header for bluetooth transport class for chip HC-\/05.  
+
+
+
+
+{\ttfamily \+\#include $<$bluetooth.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_bluetooth_adff22f9e5f2bd81b1fc5b8eeba71f68b}{Bluetooth}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_bluetooth_aa1544a5f4cadcc689627a6c69031e583}{\texorpdfstring{$\sim$}{\string~}\+Bluetooth}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_bluetooth_a917dacf088dcb369d9f09dab03757779}{Is\+Activated}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} module power active status. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_bluetooth_a7d467d81e74df0da061aaf3a6892709c}{Is\+Inited}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} successfully initalized or nor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_bluetooth_aa2f6ed745938ecc312040e45b1f0b694}{Is\+Connected}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} device connection status. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{Enum\+Status}} \doxymbox{\hyperlink{class_bluetooth_a4f866cc35fffbed8b774ad11bc2d5189}{Status}} ()
+\begin{DoxyCompactList}\small\item\em Returns \doxylink{class_bluetooth}{Bluetooth} device current status. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_a14c5fea81fb4c6bfc6299293d78a08d6}{Activate}} (bool is\+Transport=true)
+\begin{DoxyCompactList}\small\item\em Activate \doxylink{class_bluetooth}{Bluetooth} device (POWER ON). \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_ab513155f229f9603b836de6723108ac3}{Deactivate}} ()
+\begin{DoxyCompactList}\small\item\em Deactivate \doxylink{class_bluetooth}{Bluetooth} device (POWER OFF). \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_aa30ece1277a610aec94bb11645f7ed92}{Change\+Mode}} (bool is\+Config=false)
+\begin{DoxyCompactList}\small\item\em Change \doxylink{class_bluetooth}{Bluetooth} device mode. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_a07a9311f857f8ef04d223d0208010146}{Send\+ATPing}} ()
+\begin{DoxyCompactList}\small\item\em Send AT-\/command for checking \doxylink{class_bluetooth}{Bluetooth} device available. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_ab3ddfe64bf65820b8eb6a272752b0958}{Get\+Addr}} (char \texorpdfstring{$\ast$}{*}addr)
+\begin{DoxyCompactList}\small\item\em Get \doxylink{class_bluetooth}{Bluetooth} address. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_aec00f24b6b335736ddf9c0f40b84fd3c}{Get\+Version}} (char \texorpdfstring{$\ast$}{*}ver)
+\begin{DoxyCompactList}\small\item\em Get \doxylink{class_bluetooth}{Bluetooth} device firmware version. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_a8326cffbaff45a11e7f4cf37358c9664}{Reset\+To\+Default}} ()
+\begin{DoxyCompactList}\small\item\em Reset \doxylink{class_bluetooth}{Bluetooth} device settings to default. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_adc21735138707432ff61d99e9a3c40bf}{Get\+Name}} (char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Get current \doxylink{class_bluetooth}{Bluetooth} device name. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_a5f7e9aec1f74cf736023f84a921ef972}{Set\+Name}} (const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Set new \doxylink{class_bluetooth}{Bluetooth} device name for current module. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_ab0c8bd7533bb5db590600158f0206ac2}{Get\+Password}} (char \texorpdfstring{$\ast$}{*}pass)
+\begin{DoxyCompactList}\small\item\em Get current \doxylink{class_bluetooth}{Bluetooth} device password. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_aeeacc4bc71f03d81741b2bd59527a73c}{Set\+Password}} (const char \texorpdfstring{$\ast$}{*}pass)
+\begin{DoxyCompactList}\small\item\em Set new password for current \doxylink{class_bluetooth}{Bluetooth} device. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_ab271a851783dac3b6f379e7acb061038}{Send\+Answer}} (const uint8\+\_\+t cmd, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}asw, const size\+\_\+t asw\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Send answer response to the Master \doxylink{class_bluetooth}{Bluetooth} device. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bluetooth_a843b0608336f3afe001e38578f2f3804}{Process\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Processing \doxylink{class_bluetooth}{Bluetooth} transport commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{class_bluetooth_a19b59b6f6616093604c189aceeb0f67b}{Idle\+Offline\+Delay}} = 0
+\begin{DoxyCompactList}\small\item\em The time without connection after which \doxylink{class_bluetooth}{Bluetooth} will turn off automatically in seconds. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{class_bluetooth_a740b6c06dcef799336e0cb0355546167}{Name}} \+[33] = \{"{}\textbackslash{}0"{}\}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} slave device name. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{class_bluetooth_af3949a293e824925a31c3adec57d3703}{Password}} = 0
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} slave device password. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{class_bluetooth_aeacc72fa28534fb4ccfca6b9975c154b}{Address}} \+[15] = \{"{}\textbackslash{}0"{}\}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} device address. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{class_bluetooth_a4054181cdeb126278c699b4d489a1e76}{Version}} \+[20] = \{"{}\textbackslash{}0"{}\}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bluetooth}{Bluetooth} firmware version. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_bluetooth_a29abd53e952ca57409a27eed8a434e05}{Context}} = nullptr
+\begin{DoxyCompactList}\small\item\em Reference to the caller class. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{bluetooth_8h_a3e8a623d41e061851206e9a045816b70}{On\+Receive\+Data\+Event}} \doxymbox{\hyperlink{class_bluetooth_af8e81045028c5655875e35b9ac52deb1}{On\+Receive\+Data}} = nullptr
+\begin{DoxyCompactList}\small\item\em Receive answer data event (callback) function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bluetooth_a333a3340c06afdf1b82543c5b7bd3c57}{send\+ATCommand}} (const char \texorpdfstring{$\ast$}{*}cmd, char \texorpdfstring{$\ast$}{*}asw, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Send AT-\/command to \doxylink{class_bluetooth}{Bluetooth}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bluetooth_a1abba2696da2fbddcf36f560ca6f0fb5}{on\+Receive}} (const uint8\+\_\+t cmd)
+\begin{DoxyCompactList}\small\item\em Receive data event callback pre-\/processor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bluetooth_a7e96b3885451dc7ce8bc7ffeb3519a16}{send\+ACK}} ()
+\begin{DoxyCompactList}\small\item\em Send positive acknowlage packet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bluetooth_a3288ead9b982b03f3a0dcc3f38aad441}{send\+NACK}} ()
+\begin{DoxyCompactList}\small\item\em Send negative acknowlage packet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bluetooth_afa183142aba0b9351e2229651b30332f}{req\+BTParams}} ()
+\begin{DoxyCompactList}\small\item\em Request common \doxylink{class_bluetooth}{Bluetooth} parameters via AT-\/commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for bluetooth transport class for chip HC-\/05. 
+
+For configre using AT-\/commands (ASCII text), for transport -\/ transport commands (binary data) 
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00038}{38}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+
+
+\label{class_bluetooth_doc-constructors}
+\Hypertarget{class_bluetooth_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_bluetooth_adff22f9e5f2bd81b1fc5b8eeba71f68b}\index{Bluetooth@{Bluetooth}!Bluetooth@{Bluetooth}}
+\index{Bluetooth@{Bluetooth}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Bluetooth()}{Bluetooth()}}
+{\footnotesize\ttfamily \label{class_bluetooth_adff22f9e5f2bd81b1fc5b8eeba71f68b} 
+Bluetooth::\+\+Bluetooth (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00110}{110}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_aa1544a5f4cadcc689627a6c69031e583}\index{Bluetooth@{Bluetooth}!````~Bluetooth@{\texorpdfstring{$\sim$}{\string~}Bluetooth}}
+\index{````~Bluetooth@{\texorpdfstring{$\sim$}{\string~}Bluetooth}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Bluetooth()}{\string~Bluetooth()}}
+{\footnotesize\ttfamily \label{class_bluetooth_aa1544a5f4cadcc689627a6c69031e583} 
+Bluetooth::\+\texorpdfstring{$\sim$}{\string~}\+Bluetooth (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00130}{130}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+
+
+\label{class_bluetooth_doc-func-members}
+\Hypertarget{class_bluetooth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_bluetooth_a14c5fea81fb4c6bfc6299293d78a08d6}\index{Bluetooth@{Bluetooth}!Activate@{Activate}}
+\index{Activate@{Activate}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Activate()}{Activate()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a14c5fea81fb4c6bfc6299293d78a08d6} 
+uint8\+\_\+t Bluetooth::\+\+Activate (\begin{DoxyParamCaption}\item[{bool}]{is\+Transport}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Activate \doxylink{class_bluetooth}{Bluetooth} device (POWER ON). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em is\+Transport} & Set device transport mode or config mode (AT-\/commands) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Opration result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & \doxylink{class_relay}{Relay} rate limit error \\
+\hline
+{\em 2} & \doxylink{class_relay}{Relay} not initialized \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00161}{161}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_aa30ece1277a610aec94bb11645f7ed92}\index{Bluetooth@{Bluetooth}!ChangeMode@{ChangeMode}}
+\index{ChangeMode@{ChangeMode}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{ChangeMode()}{ChangeMode()}}
+{\footnotesize\ttfamily \label{class_bluetooth_aa30ece1277a610aec94bb11645f7ed92} 
+uint8\+\_\+t Bluetooth::\+\+Change\+Mode (\begin{DoxyParamCaption}\item[{bool}]{is\+Config}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Change \doxylink{class_bluetooth}{Bluetooth} device mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em is\+Config} & Перевести устройство в режим AT-\/команд (конфигурационный) или работать в транспортном режиме \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Device not initialized \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00208}{208}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_ab513155f229f9603b836de6723108ac3}\index{Bluetooth@{Bluetooth}!Deactivate@{Deactivate}}
+\index{Deactivate@{Deactivate}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Deactivate()}{Deactivate()}}
+{\footnotesize\ttfamily \label{class_bluetooth_ab513155f229f9603b836de6723108ac3} 
+uint8\+\_\+t Bluetooth::\+\+Deactivate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Deactivate \doxylink{class_bluetooth}{Bluetooth} device (POWER OFF). 
+
+\begin{DoxyReturn}{Returns}
+Opration result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & \doxylink{class_relay}{Relay} rate limit error \\
+\hline
+{\em 2} & \doxylink{class_relay}{Relay} not initialized \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00192}{192}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_ab3ddfe64bf65820b8eb6a272752b0958}\index{Bluetooth@{Bluetooth}!GetAddr@{GetAddr}}
+\index{GetAddr@{GetAddr}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{GetAddr()}{GetAddr()}}
+{\footnotesize\ttfamily \label{class_bluetooth_ab3ddfe64bf65820b8eb6a272752b0958} 
+uint8\+\_\+t Bluetooth::\+\+Get\+Addr (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{addr}{}\end{DoxyParamCaption})}
+
+
+
+Get \doxylink{class_bluetooth}{Bluetooth} address. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em addr} & Address of the device (NAP:\+\+UAP:LAP) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00238}{238}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_adc21735138707432ff61d99e9a3c40bf}\index{Bluetooth@{Bluetooth}!GetName@{GetName}}
+\index{GetName@{GetName}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily \label{class_bluetooth_adc21735138707432ff61d99e9a3c40bf} 
+uint8\+\_\+t Bluetooth::\+\+Get\+Name (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Get current \doxylink{class_bluetooth}{Bluetooth} device name. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em name} & \doxylink{class_bluetooth}{Bluetooth} device name (max 32 characters) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00280}{280}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_ab0c8bd7533bb5db590600158f0206ac2}\index{Bluetooth@{Bluetooth}!GetPassword@{GetPassword}}
+\index{GetPassword@{GetPassword}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{GetPassword()}{GetPassword()}}
+{\footnotesize\ttfamily \label{class_bluetooth_ab0c8bd7533bb5db590600158f0206ac2} 
+uint8\+\_\+t Bluetooth::\+\+Get\+Password (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{pass}{}\end{DoxyParamCaption})}
+
+
+
+Get current \doxylink{class_bluetooth}{Bluetooth} device password. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em pass} & \doxylink{class_bluetooth}{Bluetooth} device password (max 16 characters) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00310}{310}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_aec00f24b6b335736ddf9c0f40b84fd3c}\index{Bluetooth@{Bluetooth}!GetVersion@{GetVersion}}
+\index{GetVersion@{GetVersion}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{GetVersion()}{GetVersion()}}
+{\footnotesize\ttfamily \label{class_bluetooth_aec00f24b6b335736ddf9c0f40b84fd3c} 
+uint8\+\_\+t Bluetooth::\+\+Get\+Version (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{ver}{}\end{DoxyParamCaption})}
+
+
+
+Get \doxylink{class_bluetooth}{Bluetooth} device firmware version. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em ver} & Version of the device firmware \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00253}{253}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a917dacf088dcb369d9f09dab03757779}\index{Bluetooth@{Bluetooth}!IsActivated@{IsActivated}}
+\index{IsActivated@{IsActivated}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{IsActivated()}{IsActivated()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a917dacf088dcb369d9f09dab03757779} 
+bool Bluetooth::\+\+Is\+Activated (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} module power active status. 
+
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} -\/ Power is ON and \doxylink{class_bluetooth}{Bluetooth} module is active otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00142}{142}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_aa2f6ed745938ecc312040e45b1f0b694}\index{Bluetooth@{Bluetooth}!IsConnected@{IsConnected}}
+\index{IsConnected@{IsConnected}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{IsConnected()}{IsConnected()}}
+{\footnotesize\ttfamily \label{class_bluetooth_aa2f6ed745938ecc312040e45b1f0b694} 
+bool Bluetooth::\+\+Is\+Connected (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} device connection status. 
+
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} -\/ Master device already connected otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00153}{153}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a7d467d81e74df0da061aaf3a6892709c}\index{Bluetooth@{Bluetooth}!IsInited@{IsInited}}
+\index{IsInited@{IsInited}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{IsInited()}{IsInited()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a7d467d81e74df0da061aaf3a6892709c} 
+bool Bluetooth::\+\+Is\+Inited (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} successfully initalized or nor. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_bluetooth}{Bluetooth} initialization status 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00149}{149}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a1abba2696da2fbddcf36f560ca6f0fb5}\index{Bluetooth@{Bluetooth}!onReceive@{onReceive}}
+\index{onReceive@{onReceive}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{onReceive()}{onReceive()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a1abba2696da2fbddcf36f560ca6f0fb5} 
+void Bluetooth::\+on\+Receive (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{cmd}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Receive data event callback pre-\/processor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em cmd} & Command \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00055}{55}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a843b0608336f3afe001e38578f2f3804}\index{Bluetooth@{Bluetooth}!ProcessCommands@{ProcessCommands}}
+\index{ProcessCommands@{ProcessCommands}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{ProcessCommands()}{ProcessCommands()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a843b0608336f3afe001e38578f2f3804} 
+void Bluetooth::\+\+Process\+Commands (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Processing \doxylink{class_bluetooth}{Bluetooth} transport commands. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00404}{404}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_afa183142aba0b9351e2229651b30332f}\index{Bluetooth@{Bluetooth}!reqBTParams@{reqBTParams}}
+\index{reqBTParams@{reqBTParams}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{reqBTParams()}{reqBTParams()}}
+{\footnotesize\ttfamily \label{class_bluetooth_afa183142aba0b9351e2229651b30332f} 
+void Bluetooth::\+req\+BTParams (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Request common \doxylink{class_bluetooth}{Bluetooth} parameters via AT-\/commands. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00084}{84}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a8326cffbaff45a11e7f4cf37358c9664}\index{Bluetooth@{Bluetooth}!ResetToDefault@{ResetToDefault}}
+\index{ResetToDefault@{ResetToDefault}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{ResetToDefault()}{ResetToDefault()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a8326cffbaff45a11e7f4cf37358c9664} 
+uint8\+\_\+t Bluetooth::\+\+Reset\+To\+Default (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reset \doxylink{class_bluetooth}{Bluetooth} device settings to default. 
+
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00268}{268}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a7e96b3885451dc7ce8bc7ffeb3519a16}\index{Bluetooth@{Bluetooth}!sendACK@{sendACK}}
+\index{sendACK@{sendACK}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{sendACK()}{sendACK()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a7e96b3885451dc7ce8bc7ffeb3519a16} 
+void Bluetooth::\+send\+ACK (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Send positive acknowlage packet. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00074}{74}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_ab271a851783dac3b6f379e7acb061038}\index{Bluetooth@{Bluetooth}!SendAnswer@{SendAnswer}}
+\index{SendAnswer@{SendAnswer}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{SendAnswer()}{SendAnswer()}}
+{\footnotesize\ttfamily \label{class_bluetooth_ab271a851783dac3b6f379e7acb061038} 
+uint8\+\_\+t Bluetooth::\+\+Send\+Answer (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{cmd}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{asw}{, }\item[{const size\+\_\+t}]{asw\+\_\+len}{}\end{DoxyParamCaption})}
+
+
+
+Send answer response to the Master \doxylink{class_bluetooth}{Bluetooth} device. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em cmd} & Command \\
+\hline
+\doxymbox{\texttt{in}}  & {\em asw} & Answer data \\
+\hline
+\doxymbox{\texttt{in}}  & {\em asw\+\_\+len} & Answer data length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect command \\
+\hline
+{\em 2} & Incorrect answer data \\
+\hline
+{\em 3} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 4} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00340}{340}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a333a3340c06afdf1b82543c5b7bd3c57}\index{Bluetooth@{Bluetooth}!sendATCommand@{sendATCommand}}
+\index{sendATCommand@{sendATCommand}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{sendATCommand()}{sendATCommand()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a333a3340c06afdf1b82543c5b7bd3c57} 
+uint8\+\_\+t Bluetooth::\+send\+ATCommand (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{cmd}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{asw}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Send AT-\/command to \doxylink{class_bluetooth}{Bluetooth}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em cmd} & AT-\/command \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em asw} & Answer from \doxylink{class_bluetooth}{Bluetooth} \\
+\hline
+\doxymbox{\texttt{in}}  & {\em len} & Answer string/\+buffer maximum length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Invalid AT-\/command \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00030}{30}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a07a9311f857f8ef04d223d0208010146}\index{Bluetooth@{Bluetooth}!SendATPing@{SendATPing}}
+\index{SendATPing@{SendATPing}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{SendATPing()}{SendATPing()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a07a9311f857f8ef04d223d0208010146} 
+uint8\+\_\+t Bluetooth::\+\+Send\+ATPing (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Send AT-\/command for checking \doxylink{class_bluetooth}{Bluetooth} device available. 
+
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00226}{226}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a3288ead9b982b03f3a0dcc3f38aad441}\index{Bluetooth@{Bluetooth}!sendNACK@{sendNACK}}
+\index{sendNACK@{sendNACK}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{sendNACK()}{sendNACK()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a3288ead9b982b03f3a0dcc3f38aad441} 
+void Bluetooth::\+send\+NACK (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Send negative acknowlage packet. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00079}{79}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a5f7e9aec1f74cf736023f84a921ef972}\index{Bluetooth@{Bluetooth}!SetName@{SetName}}
+\index{SetName@{SetName}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{SetName()}{SetName()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a5f7e9aec1f74cf736023f84a921ef972} 
+uint8\+\_\+t Bluetooth::\+\+Set\+Name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Set new \doxylink{class_bluetooth}{Bluetooth} device name for current module. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em name} & \doxylink{class_bluetooth}{Bluetooth} device name (max 32 characters) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00295}{295}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_aeeacc4bc71f03d81741b2bd59527a73c}\index{Bluetooth@{Bluetooth}!SetPassword@{SetPassword}}
+\index{SetPassword@{SetPassword}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{SetPassword()}{SetPassword()}}
+{\footnotesize\ttfamily \label{class_bluetooth_aeeacc4bc71f03d81741b2bd59527a73c} 
+uint8\+\_\+t Bluetooth::\+\+Set\+Password (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{pass}{}\end{DoxyParamCaption})}
+
+
+
+Set new password for current \doxylink{class_bluetooth}{Bluetooth} device. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em pass} & New \doxylink{class_bluetooth}{Bluetooth} device password (max 16 characters) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect \doxylink{class_bluetooth}{Bluetooth} mode \\
+\hline
+{\em 2} & Device is not available or error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00325}{325}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+\Hypertarget{class_bluetooth_a4f866cc35fffbed8b774ad11bc2d5189}\index{Bluetooth@{Bluetooth}!Status@{Status}}
+\index{Status@{Status}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Status()}{Status()}}
+{\footnotesize\ttfamily \label{class_bluetooth_a4f866cc35fffbed8b774ad11bc2d5189} 
+\doxymbox{\hyperlink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{Enum\+Status}} Bluetooth::\+\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns \doxylink{class_bluetooth}{Bluetooth} device current status. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_bluetooth}{Bluetooth} device current status (see \doxylink{bluetooth_8h_a4f90afdef792cf1ac3d6bb9622301e78}{Enum\+Status}) 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8cpp_source_l00157}{157}} of file \doxymbox{\hyperlink{bluetooth_8cpp_source}{bluetooth.\+cpp}}.
+
+
+
+\label{class_bluetooth_doc-variable-members}
+\Hypertarget{class_bluetooth_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_bluetooth_aeacc72fa28534fb4ccfca6b9975c154b}\index{Bluetooth@{Bluetooth}!Address@{Address}}
+\index{Address@{Address}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Address}{Address}}
+{\footnotesize\ttfamily \label{class_bluetooth_aeacc72fa28534fb4ccfca6b9975c154b} 
+char Bluetooth::\+\+Address\+[15] = \{"{}\textbackslash{}0"{}\}}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} device address. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00096}{96}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+\Hypertarget{class_bluetooth_a29abd53e952ca57409a27eed8a434e05}\index{Bluetooth@{Bluetooth}!Context@{Context}}
+\index{Context@{Context}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Context}{Context}}
+{\footnotesize\ttfamily \label{class_bluetooth_a29abd53e952ca57409a27eed8a434e05} 
+void\texorpdfstring{$\ast$}{*} Bluetooth::\+\+Context = nullptr}
+
+
+
+Reference to the caller class. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00104}{104}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+\Hypertarget{class_bluetooth_a19b59b6f6616093604c189aceeb0f67b}\index{Bluetooth@{Bluetooth}!IdleOfflineDelay@{IdleOfflineDelay}}
+\index{IdleOfflineDelay@{IdleOfflineDelay}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{IdleOfflineDelay}{IdleOfflineDelay}}
+{\footnotesize\ttfamily \label{class_bluetooth_a19b59b6f6616093604c189aceeb0f67b} 
+uint16\+\_\+t Bluetooth::\+\+Idle\+Offline\+Delay = 0}
+
+
+
+The time without connection after which \doxylink{class_bluetooth}{Bluetooth} will turn off automatically in seconds. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00084}{84}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+\Hypertarget{class_bluetooth_a740b6c06dcef799336e0cb0355546167}\index{Bluetooth@{Bluetooth}!Name@{Name}}
+\index{Name@{Name}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily \label{class_bluetooth_a740b6c06dcef799336e0cb0355546167} 
+char Bluetooth::\+\+Name\+[33] = \{"{}\textbackslash{}0"{}\}}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} slave device name. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00088}{88}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+\Hypertarget{class_bluetooth_af8e81045028c5655875e35b9ac52deb1}\index{Bluetooth@{Bluetooth}!OnReceiveData@{OnReceiveData}}
+\index{OnReceiveData@{OnReceiveData}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{OnReceiveData}{OnReceiveData}}
+{\footnotesize\ttfamily \label{class_bluetooth_af8e81045028c5655875e35b9ac52deb1} 
+\doxymbox{\hyperlink{bluetooth_8h_a3e8a623d41e061851206e9a045816b70}{On\+Receive\+Data\+Event}} Bluetooth::\+\+On\+Receive\+Data = nullptr}
+
+
+
+Receive answer data event (callback) function. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00108}{108}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+\Hypertarget{class_bluetooth_af3949a293e824925a31c3adec57d3703}\index{Bluetooth@{Bluetooth}!Password@{Password}}
+\index{Password@{Password}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Password}{Password}}
+{\footnotesize\ttfamily \label{class_bluetooth_af3949a293e824925a31c3adec57d3703} 
+uint16\+\_\+t Bluetooth::\+\+Password = 0}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} slave device password. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00092}{92}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+\Hypertarget{class_bluetooth_a4054181cdeb126278c699b4d489a1e76}\index{Bluetooth@{Bluetooth}!Version@{Version}}
+\index{Version@{Version}!Bluetooth@{Bluetooth}}
+\doxysubsubsection{\texorpdfstring{Version}{Version}}
+{\footnotesize\ttfamily \label{class_bluetooth_a4054181cdeb126278c699b4d489a1e76} 
+char Bluetooth::\+\+Version\+[20] = \{"{}\textbackslash{}0"{}\}}
+
+
+
+\doxylink{class_bluetooth}{Bluetooth} firmware version. 
+
+
+
+Definition at line \doxymbox{\hyperlink{bluetooth_8h_source_l00100}{100}} of file \doxymbox{\hyperlink{bluetooth_8h_source}{bluetooth.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+lib/\+hal/\doxymbox{\hyperlink{bluetooth_8h}{bluetooth.\+h}}\item 
+lib/\+hal/\doxymbox{\hyperlink{bluetooth_8cpp}{bluetooth.\+cpp}}\end{DoxyCompactItemize}

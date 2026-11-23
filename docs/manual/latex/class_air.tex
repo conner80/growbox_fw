@@ -1,0 +1,136 @@
+\doxysection{Air Class Reference}
+\hypertarget{class_air}{}\label{class_air}\index{Air@{Air}}
+
+
+\doxylink{class_air}{Air} humidity and temperature sensor class.  
+
+
+
+
+{\ttfamily \+\#include $<$air.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_air_a06c9331de6ffc64ef23b59c23e65b25c}{Air}} (uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_air_a09684162ee7c9fd6b68e18bd60b42576}{\texorpdfstring{$\sim$}{\string~}\+Air}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_air_ac99d7bc232e0fbd9ae6b6fe38e02d2f3}{Is\+Inited}} ()
+\begin{DoxyCompactList}\small\item\em Is air humidity and temperature sensor successfully initialized. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_air_ad366d4b1a1bbf8428838de948dd4d8f9}{Get\+Data}} (\doxymbox{\hyperlink{struct_air_data}{Air\+Data}} \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Get air humidity and temperature data from sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_air}{Air} humidity and temperature sensor class. 
+
+Definition at line \doxymbox{\hyperlink{air_8h_source_l00030}{30}} of file \doxymbox{\hyperlink{air_8h_source}{air.\+h}}.
+
+
+
+\label{class_air_doc-constructors}
+\Hypertarget{class_air_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_air_a06c9331de6ffc64ef23b59c23e65b25c}\index{Air@{Air}!Air@{Air}}
+\index{Air@{Air}!Air@{Air}}
+\doxysubsubsection{\texorpdfstring{Air()}{Air()}}
+{\footnotesize\ttfamily \label{class_air_a06c9331de6ffc64ef23b59c23e65b25c} 
+Air::\+\+Air (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em pin} & MCU PIN number for air humidity and temperature sensor \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{air_8cpp_source_l00011}{11}} of file \doxymbox{\hyperlink{air_8cpp_source}{air.\+cpp}}.
+
+\Hypertarget{class_air_a09684162ee7c9fd6b68e18bd60b42576}\index{Air@{Air}!````~Air@{\texorpdfstring{$\sim$}{\string~}Air}}
+\index{````~Air@{\texorpdfstring{$\sim$}{\string~}Air}!Air@{Air}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Air()}{\string~Air()}}
+{\footnotesize\ttfamily \label{class_air_a09684162ee7c9fd6b68e18bd60b42576} 
+Air::\+\texorpdfstring{$\sim$}{\string~}\+Air (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{air_8cpp_source_l00020}{20}} of file \doxymbox{\hyperlink{air_8cpp_source}{air.\+cpp}}.
+
+
+
+\label{class_air_doc-func-members}
+\Hypertarget{class_air_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_air_ad366d4b1a1bbf8428838de948dd4d8f9}\index{Air@{Air}!GetData@{GetData}}
+\index{GetData@{GetData}!Air@{Air}}
+\doxysubsubsection{\texorpdfstring{GetData()}{GetData()}}
+{\footnotesize\ttfamily \label{class_air_ad366d4b1a1bbf8428838de948dd4d8f9} 
+uint8\+\_\+t Air::\+\+Get\+Data (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_air_data}{Air\+Data}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Get air humidity and temperature data from sensor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em data} & Variable for save values (see \doxylink{struct_air_data}{Air\+Data}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Sensor wasn\textquotesingle{}t successfully initialized \\
+\hline
+{\em 2} & Data variable is not initialized \\
+\hline
+{\em 3} & Sensor rate limit error \\
+\hline
+{\em 4} & Invalid data checksum \\
+\hline
+{\em 5} & Invalid or corrupted data \\
+\hline
+{\em 6} & No answer \\
+\hline
+{\em 7} & Undefined sensor error \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{air_8cpp_source_l00032}{32}} of file \doxymbox{\hyperlink{air_8cpp_source}{air.\+cpp}}.
+
+\Hypertarget{class_air_ac99d7bc232e0fbd9ae6b6fe38e02d2f3}\index{Air@{Air}!IsInited@{IsInited}}
+\index{IsInited@{IsInited}!Air@{Air}}
+\doxysubsubsection{\texorpdfstring{IsInited()}{IsInited()}}
+{\footnotesize\ttfamily \label{class_air_ac99d7bc232e0fbd9ae6b6fe38e02d2f3} 
+bool Air::\+\+Is\+Inited (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Is air humidity and temperature sensor successfully initialized. 
+
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} \doxylink{class_air}{Air} humidity and temeprature sensor successfully initialized, otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{air_8cpp_source_l00028}{28}} of file \doxymbox{\hyperlink{air_8cpp_source}{air.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+lib/\+hal/\doxymbox{\hyperlink{air_8h}{air.\+h}}\item 
+lib/\+hal/\doxymbox{\hyperlink{air_8cpp}{air.\+cpp}}\end{DoxyCompactItemize}

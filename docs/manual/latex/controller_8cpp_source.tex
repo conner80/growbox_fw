@@ -1,0 +1,1218 @@
+\doxysection{controller.\+cpp}
+\hypertarget{controller_8cpp_source}{}\label{controller_8cpp_source}\index{lib/controller/controller.cpp@{lib/controller/controller.cpp}}
+\doxymbox{\hyperlink{controller_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{controller_8h}{controller.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}../include/common/datetime.h"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{commands_8h}{common/commands.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{version_8h}{version.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00016}\doxymbox{\hyperlink{controller_8cpp_a25dbd6fd7142c23a240fd9b0fdc07749}{00016}}\ \textcolor{preprocessor}{\#define\ CHECK\_SENSORS\_FREQ\ 1000}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00018}00018\ \textcolor{keywordtype}{void}\ Controller::onReceive(\textcolor{keywordtype}{void}\ *context,\ \textcolor{keyword}{const}\ uint8\_t\ cmd,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00019}00019\ \ \ \ \ \doxymbox{\hyperlink{class_controller}{Controller}}\ *instance\ =\ (\doxymbox{\hyperlink{class_controller}{Controller}}*)context;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{switch}\ (cmd)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_a42bf1fd637b1c921700bf479cc2f8533}{CMD\_INFO}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ Controller::getInfo(instance,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_afacf9de9d9f12b90cf850eac70e5b48b}{CMD\_GET\_BT\_INFO}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ Controller::getBTInfo(instance,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_a1b78ee87bf0c178fd14cb6c88a36d6f0}{CMD\_SET\_BT\_NAME}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ Controller::setBTName(instance,\ req\_data,\ req\_len,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_a900bdf8a70cc1fee39ba4e5e29e20f5f}{CMD\_SET\_BT\_PASS}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ Controller::setBTPass(instance,\ req\_data,\ req\_len,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_a77d8c029e23ff9e179769b546d85a275}{CMD\_GET\_TIME}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ Controller::getTime(instance,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_ab972af079e26bcb287c46f0b44d36766}{CMD\_SET\_TIME}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ Controller::setTime(instance,\ req\_data,\ req\_len,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a}{CMD\_GET\_STATUS}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ Controller::getStatus(instance,\ req\_data,\ req\_len,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_a8ddab075ebf1c378815abb74577783ed}{CMD\_SET\_STATUS}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ Controller::setStatus(instance,\ req\_data,\ req\_len,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_ad37107a45db89a0aa7f06dfbf096d917}{CMD\_GET\_MODE}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ Controller::getMode(instance,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{commands_8h_ab08c18e4b6ea58665d8743bd47182946}{CMD\_SET\_MODE}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ Controller::setMode(instance,\ req\_data,\ req\_len,\ asw\_data,\ asw\_len);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00057}00057\ \textcolor{keywordtype}{void}\ Controller::getInfo(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00058}00058\ \ \ \ \ CmdInfoReponse\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00059}00059\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdInfoReponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00060}00060\ \ \ \ \ strcpy(resp.Name,\ \doxymbox{\hyperlink{version_8h_a3bc66337e7ce9d3c2e27c479177e435b}{FIRMWARE\_NAME}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00061}00061\ \ \ \ \ strcpy(resp.FWVer,\ \doxymbox{\hyperlink{version_8h_a93287963944e7d389bc958d84ab4e99f}{FIRMWARE\_VERSION}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00062}00062\ \ \ \ \ strcpy(resp.BTVer,\ instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_a4054181cdeb126278c699b4d489a1e76}{Version}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00063}00063\ \ \ \ \ resp.Devices\ =\ instance-\/>\doxymbox{\hyperlink{class_controller_a39b9bc28093fe897d00f1d40c45a371e}{Devices}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00064}00064\ \ \ \ \ resp.Mode\ =\ !instance-\/>\doxymbox{\hyperlink{class_controller_a10ea87d612c3959fbc3aa43bcfa18fe9}{IsStdMode}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00065}00065\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdInfoReponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00066}00066\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00068}00068\ \textcolor{keywordtype}{void}\ Controller::getBTInfo(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00069}00069\ \ \ \ \ CmdBTInfoResponse\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00070}00070\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdBTInfoResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00071}00071\ \ \ \ \ strcpy(resp.Name,\ instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_a740b6c06dcef799336e0cb0355546167}{Name}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00072}00072\ \ \ \ \ strcpy(resp.Addr,\ instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_aeacc72fa28534fb4ccfca6b9975c154b}{Address}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00073}00073\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdBTInfoResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00074}00074\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00076}00076\ \textcolor{keywordtype}{void}\ Controller::setBTName(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00077}00077\ \ \ \ \ CmdBTSetNameRequest\ req;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00078}00078\ \ \ \ \ CmdResponse\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{if}\ (req\_data\ ==\ \textcolor{keyword}{nullptr}\ ||\ req\_len\ <\ 32)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00082}00082\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ memcpy(\&req,\ req\_data,\ \textcolor{keyword}{sizeof}(CmdBTSetNameRequest));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ strlen(req.Name);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ >\ 32\ ||\ len\ <\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_aa30ece1277a610aec94bb11645f7ed92}{ChangeMode}}(\textcolor{keyword}{true}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_a5f7e9aec1f74cf736023f84a921ef972}{SetName}}(req.Name))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_aa30ece1277a610aec94bb11645f7ed92}{ChangeMode}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x03;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00100}00100\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00101}00101\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00102}00102\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00104}00104\ \textcolor{keywordtype}{void}\ Controller::setBTPass(\doxymbox{\hyperlink{class_controller}{Controller}}\ *\ instance,\ \textcolor{keyword}{const}\ uint8\_t\ *\ req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *\ asw\_data,\ \textcolor{keywordtype}{size\_t}\ *\ asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00105}00105\ \ \ \ \ CmdBTSetPassRequest\ req;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00106}00106\ \ \ \ \ CmdResponse\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (req\_data\ ==\ \textcolor{keyword}{nullptr}\ ||\ req\_len\ <\ 4)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00110}00110\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ memcpy(\&req,\ req\_data,\ \textcolor{keyword}{sizeof}(CmdBTSetPassRequest));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ strlen(req.Pass);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ >\ 4\ ||\ len\ <\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_valid\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ len;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (req.Pass[i]\ <\ \textcolor{charliteral}{'0'}\ ||\ req.Pass[i]\ >\ \textcolor{charliteral}{'9'})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_valid)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_aa30ece1277a610aec94bb11645f7ed92}{ChangeMode}}(\textcolor{keyword}{true}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_aeeacc4bc71f03d81741b2bd59527a73c}{SetPassword}}(req.Pass))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>bt-\/>\doxymbox{\hyperlink{class_bluetooth_aa30ece1277a610aec94bb11645f7ed92}{ChangeMode}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x03;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00137}00137\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00138}00138\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00139}00139\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00141}00141\ \textcolor{keywordtype}{void}\ Controller::getTime(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00142}00142\ \ \ \ \ CmdGetTimeResponse\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(instance-\/>\doxymbox{\hyperlink{class_controller_a39b9bc28093fe897d00f1d40c45a371e}{Devices}}()\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00146}00146\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ resp.Time\ =\ instance-\/>pars.\doxymbox{\hyperlink{struct_params_a3538b398d465bc637550dccf9b9697bd}{Now}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00149}00149\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00150}00150\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdGetTimeResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00151}00151\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdGetTimeResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00152}00152\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00154}00154\ \textcolor{keywordtype}{void}\ Controller::setTime(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00155}00155\ \ \ \ \ CmdSetTimeRequest\ req;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00156}00156\ \ \ \ \ CmdResponse\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{if}\ (req\_data\ ==\ \textcolor{keyword}{nullptr}\ ||\ req\_len\ <\ \textcolor{keyword}{sizeof}(CmdSetTimeRequest))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00160}00160\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ memcpy(\&req,\ req\_data,\ \textcolor{keyword}{sizeof}(CmdSetTimeRequest));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!req.Time)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(instance-\/>\doxymbox{\hyperlink{class_controller_a39b9bc28093fe897d00f1d40c45a371e}{Devices}}()\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>rtc-\/>\doxymbox{\hyperlink{class_r_t_c_ada22b65ab1376e8b20adda9a2d513595}{SetTime}}(req.Time))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_a3538b398d465bc637550dccf9b9697bd}{Now}}\ =\ req.Time;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00176}00176\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00178}00178\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00179}00179\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00180}00180\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00182}00182\ \textcolor{keywordtype}{void}\ Controller::getStatus(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00183}00183\ \ \ \ \ CmdGetStatusRequest\ req;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00184}00184\ \ \ \ \ CmdResponse\ respHdr;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00185}00185\ \ \ \ \ AirSensorInfo\ *respAir\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00186}00186\ \ \ \ \ SoilSensorInfo\ *respSoil1\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00187}00187\ \ \ \ \ SoilSensorInfo\ *respSoil2\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00188}00188\ \ \ \ \ RelayInfo\ *lampRelay\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00189}00189\ \ \ \ \ PumpRelayInfo\ *pumpRelay\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00190}00190\ \ \ \ \ RelayInfo\ *fanRelay\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00191}00191\ \ \ \ \ RelayInfo\ *humRelay\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00193}00193\ \ \ \ \ \textcolor{keywordflow}{if}\ (req\_data\ ==\ \textcolor{keyword}{nullptr}\ ||\ req\_len\ <\ \textcolor{keyword}{sizeof}(CmdGetStatusRequest))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ respHdr.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00195}00195\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ memcpy(\&req,\ req\_data,\ \textcolor{keyword}{sizeof}(CmdGetStatusRequest));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (req.Mask\ ==\ 0x0000)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ respHdr.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ respHdr.Code\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00202}00202\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00204}00204\ \ \ \ \ \textcolor{keywordflow}{if}\ (respHdr.Code\ !=\ 0x00)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ memcpy(asw\_data,\ \&respHdr,\ \textcolor{keyword}{sizeof}(CmdResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00208}00208\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00210}00210\ \ \ \ \ \textcolor{comment}{//\ Air\ humidity\ and\ temperature\ sensor}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00211}00211\ \ \ \ \ \textcolor{keywordflow}{if}\ ((req.Mask\ \&\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}})\ \&\&\ (instance-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ respAir\ =\ \textcolor{keyword}{new}\ AirSensorInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ respAir-\/>DeviceID\ =\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ respAir-\/>Hum\ =\ instance-\/>pars.\doxymbox{\hyperlink{struct_params_acf6425d696f5ebd518fff871d5f04f48}{AirSensor}}.\doxymbox{\hyperlink{struct_air_data_af22d1cd121dd8a987dfc01ed250ff363}{Humidity}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ respAir-\/>Temp\ =\ instance-\/>pars.\doxymbox{\hyperlink{struct_params_acf6425d696f5ebd518fff871d5f04f48}{AirSensor}}.\doxymbox{\hyperlink{struct_air_data_a04587a845f96569d648b9feaa1f2bc93}{Temperature}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ respAir-\/>HumStartVent\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_a4a28c6e66c9388f7cfc4646e5c4bb5e0}{HumStartVent}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ respAir-\/>HumEndVent\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_a22f13e3c83b922c8cb405a730e74f0c9}{HumEndVent}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ respAir-\/>TempStartVent\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_ace706b38541aaa9d620aee13b36688f7}{TempStartVent}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ respAir-\/>TempEndVent\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_a714a12610fce24ec75d6918adb6eb2d5}{TempEndVent}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ respAir-\/>HumStartHum\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_a90188d6539a110dcc013e6a092c6dfda}{HumStartHum}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ respAir-\/>HumEndHum\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_aa897824fca3a81e9c3bfcf86167b70ba}{HumEndHum}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00222}00222\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00224}00224\ \ \ \ \ \textcolor{comment}{//\ Soil\ moisture\ sensor\ 1}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00225}00225\ \ \ \ \ \textcolor{keywordflow}{if}\ ((req.Mask\ \&\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}})\ \&\&\ (instance-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ respSoil1\ =\ \textcolor{keyword}{new}\ SoilSensorInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ respSoil1-\/>DeviceID\ =\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ respSoil1-\/>Hum\ =\ instance-\/>pars.\doxymbox{\hyperlink{struct_params_a5d39dba2d50d126ea24d795a7d0f374d}{SoilSensor1}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ respSoil1-\/>MinValue\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a63096e2567aa7ca05b01e4c136be1634}{SoilSensor1}}.\doxymbox{\hyperlink{struct_soil_moisture_config_a60cc8713920197199428127612a0d9ac}{MinValue}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ respSoil1-\/>MaxValue\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a63096e2567aa7ca05b01e4c136be1634}{SoilSensor1}}.\doxymbox{\hyperlink{struct_soil_moisture_config_a692d0d9d5c016d1dac9b3fa2eace27f8}{MaxValue}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ respSoil1-\/>StartWatering\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a63096e2567aa7ca05b01e4c136be1634}{SoilSensor1}}.\doxymbox{\hyperlink{struct_soil_moisture_config_a525dac21c2e167aef5738a09b63b12eb}{StartWatering}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ respSoil1-\/>EndWatering\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a63096e2567aa7ca05b01e4c136be1634}{SoilSensor1}}.\doxymbox{\hyperlink{struct_soil_moisture_config_a884839f91e78e09ed47478889a379611}{EndWatering}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00233}00233\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00235}00235\ \ \ \ \ \textcolor{comment}{//\ Soil\ moisture\ sensor\ 2}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00236}00236\ \ \ \ \ \textcolor{keywordflow}{if}\ ((req.Mask\ \&\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}})\ \&\&\ (instance-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ respSoil2\ =\ \textcolor{keyword}{new}\ SoilSensorInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ respSoil2-\/>DeviceID\ =\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ respSoil2-\/>Hum\ =\ instance-\/>pars.\doxymbox{\hyperlink{struct_params_a09ea5e6a9ddac4faa945cbc7235f8b90}{SoilSensor2}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ respSoil2-\/>MinValue\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a1b0e4cb8ab2bc35a9512553dfc390377}{SoilSensor2}}.\doxymbox{\hyperlink{struct_soil_moisture_config_a60cc8713920197199428127612a0d9ac}{MinValue}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ respSoil2-\/>MaxValue\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a1b0e4cb8ab2bc35a9512553dfc390377}{SoilSensor2}}.\doxymbox{\hyperlink{struct_soil_moisture_config_a692d0d9d5c016d1dac9b3fa2eace27f8}{MaxValue}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ respSoil2-\/>StartWatering\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a1b0e4cb8ab2bc35a9512553dfc390377}{SoilSensor2}}.\doxymbox{\hyperlink{struct_soil_moisture_config_a525dac21c2e167aef5738a09b63b12eb}{StartWatering}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ respSoil2-\/>EndWatering\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a1b0e4cb8ab2bc35a9512553dfc390377}{SoilSensor2}}.\doxymbox{\hyperlink{struct_soil_moisture_config_a884839f91e78e09ed47478889a379611}{EndWatering}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00244}00244\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00246}00246\ \ \ \ \ \textcolor{comment}{//\ Lamp\ relay}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00247}00247\ \ \ \ \ \textcolor{keywordflow}{if}\ ((req.Mask\ \&\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}})\ \&\&\ (instance-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ lampRelay\ =\ \textcolor{keyword}{new}\ RelayInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ lampRelay-\/>DeviceID\ =\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ <=\ 23)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ lampRelay-\/>Activity.StartH\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ lampRelay-\/>Activity.StartH\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ <=\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ lampRelay-\/>Activity.StartM\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ lampRelay-\/>Activity.StartM\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ <=\ 23)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ lampRelay-\/>Activity.EndH\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ lampRelay-\/>Activity.EndH\ =\ 100;\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ <=\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ lampRelay-\/>Activity.EndM\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ lampRelay-\/>Activity.EndM\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ lampRelay-\/>IsActive\ =\ (uint8\_t)instance-\/>pars.\doxymbox{\hyperlink{struct_params_aaec28614e9246ac9a56c1e2a8419f0e1}{LampActive}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ lampRelay-\/>IsAuto\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a68929a157d2b98528d8a2f58c31d5cea}{IsAuto}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00272}00272\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00274}00274\ \ \ \ \ \textcolor{comment}{//\ Pump\ relay}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00275}00275\ \ \ \ \ \textcolor{keywordflow}{if}\ ((req.Mask\ \&\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}})\ \&\&\ (instance-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ pumpRelay\ =\ \textcolor{keyword}{new}\ PumpRelayInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.DeviceID\ =\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ <=\ 23)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.Activity.StartH\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.Activity.StartH\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ <=\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.Activity.StartM\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.Activity.StartM\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ <=\ 23)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.Activity.EndH\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.Activity.EndH\ =\ 100;\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00292}00292\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ <=\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.Activity.EndM\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.Activity.EndM\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00297}00297\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00298}00298\ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.IsActive\ =\ (uint8\_t)instance-\/>pars.\doxymbox{\hyperlink{struct_params_a7fadc6b270475b77521fddb637bdba4c}{PumpActive}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00299}00299\ \ \ \ \ \ \ \ \ pumpRelay-\/>Common.IsAuto\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aba86865f1244058249327c973f769fd5}{IsAuto}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00300}00300\ \ \ \ \ \ \ \ \ pumpRelay-\/>FreqWatering\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_a9190c3cd8cef25709a959c95c2134952}{FreqWatering}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00301}00301\ \ \ \ \ \ \ \ \ pumpRelay-\/>MaxWorkTime\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_a5cd539ac2f0acdcd0e6e9eee8af375da}{MaxWorkTime}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ pumpRelay-\/>PauseBetweenStart\ =\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_a73b968c4ff0774b8b1322b8afa486435}{PauseBetweenStart}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00303}00303\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00305}00305\ \ \ \ \ \textcolor{comment}{//\ Fan\ relay}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00306}00306\ \ \ \ \ \textcolor{keywordflow}{if}\ ((req.Mask\ \&\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}})\ \&\&\ (instance-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00307}00307\ \ \ \ \ \ \ \ \ fanRelay\ =\ \textcolor{keyword}{new}\ RelayInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00308}00308\ \ \ \ \ \ \ \ \ fanRelay-\/>DeviceID\ =\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ <=\ 23)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ fanRelay-\/>Activity.StartH\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00311}00311\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ fanRelay-\/>Activity.StartH\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00313}00313\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ <=\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ fanRelay-\/>Activity.StartM\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00316}00316\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ fanRelay-\/>Activity.StartM\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00318}00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00319}00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ <=\ 23)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ fanRelay-\/>Activity.EndH\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ fanRelay-\/>Activity.EndH\ =\ 100;\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00323}00323\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00324}00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ <=\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ fanRelay-\/>Activity.EndM\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00326}00326\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ fanRelay-\/>Activity.EndM\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00328}00328\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00329}00329\ \ \ \ \ \ \ \ \ fanRelay-\/>IsActive\ =\ (uint8\_t)instance-\/>pars.\doxymbox{\hyperlink{struct_params_ae8442342b41f94a2f0932ac25854e342}{FanActive}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00330}00330\ \ \ \ \ \ \ \ \ fanRelay-\/>IsAuto\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a68929a157d2b98528d8a2f58c31d5cea}{IsAuto}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00331}00331\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00333}00333\ \ \ \ \ \textcolor{comment}{//\ Humidifier\ relay}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00334}00334\ \ \ \ \ \textcolor{keywordflow}{if}\ ((req.Mask\ \&\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}})\ \&\&\ (instance-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00335}00335\ \ \ \ \ \ \ \ \ humRelay\ =\ \textcolor{keyword}{new}\ RelayInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00336}00336\ \ \ \ \ \ \ \ \ humRelay-\/>DeviceID\ =\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00337}00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ <=\ 23)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ humRelay-\/>Activity.StartH\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00339}00339\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ humRelay-\/>Activity.StartH\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00341}00341\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ <=\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ humRelay-\/>Activity.StartM\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00344}00344\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ humRelay-\/>Activity.StartM\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00346}00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ <=\ 23)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ humRelay-\/>Activity.EndH\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00349}00349\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ humRelay-\/>Activity.EndH\ =\ 100;\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00351}00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00352}00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ >=\ 0\ \&\&\ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ <=\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ humRelay-\/>Activity.EndM\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00354}00354\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ humRelay-\/>Activity.EndM\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00356}00356\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00357}00357\ \ \ \ \ \ \ \ \ humRelay-\/>IsActive\ =\ (uint8\_t)instance-\/>pars.\doxymbox{\hyperlink{struct_params_a4b939ba98fdf71a2e6d75f1fc22fa123}{HumidifierActive}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00358}00358\ \ \ \ \ \ \ \ \ humRelay-\/>IsAuto\ =\ (uint8\_t)instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a68929a157d2b98528d8a2f58c31d5cea}{IsAuto}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00359}00359\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00360}00360\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00361}00361\ \ \ \ \ \textcolor{comment}{//\ Create\ output\ buffer}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00362}00362\ \ \ \ \ \textcolor{comment}{//\ Copy\ header}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00363}00363\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00364}00364\ \ \ \ \ uint8\_t\ ofs\ =\ \textcolor{keyword}{sizeof}(CmdResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00365}00365\ \ \ \ \ memcpy(asw\_data,\ \&respHdr,\ \textcolor{keyword}{sizeof}(CmdResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00366}00366\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00367}00367\ \ \ \ \ \textcolor{comment}{//\ Copy\ air\ sensor\ data}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00368}00368\ \ \ \ \ \textcolor{keywordflow}{if}\ (respAir\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00369}00369\ \ \ \ \ \ \ \ \ memcpy(asw\_data+ofs,\ respAir,\ \textcolor{keyword}{sizeof}(AirSensorInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00370}00370\ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(AirSensorInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00371}00371\ \ \ \ \ \ \ \ \ *asw\_len\ +=\ \textcolor{keyword}{sizeof}(AirSensorInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00372}00372\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ respAir;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00373}00373\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00375}00375\ \ \ \ \ \textcolor{comment}{//\ Soil\ moisture\ sesnsor\ 1\ data}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00376}00376\ \ \ \ \ \textcolor{keywordflow}{if}\ (respSoil1\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00377}00377\ \ \ \ \ \ \ \ \ memcpy(asw\_data+ofs,\ respSoil1,\ \textcolor{keyword}{sizeof}(SoilSensorInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00378}00378\ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(SoilSensorInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00379}00379\ \ \ \ \ \ \ \ \ *asw\_len\ +=\ \textcolor{keyword}{sizeof}(SoilSensorInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00380}00380\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ respSoil1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00381}00381\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00382}00382\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00383}00383\ \ \ \ \ \textcolor{comment}{//\ Soil\ moisture\ sesnsor\ 2\ data}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00384}00384\ \ \ \ \ \textcolor{keywordflow}{if}\ (respSoil2\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00385}00385\ \ \ \ \ \ \ \ \ memcpy(asw\_data+ofs,\ respSoil2,\ \textcolor{keyword}{sizeof}(SoilSensorInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00386}00386\ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(SoilSensorInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00387}00387\ \ \ \ \ \ \ \ \ *asw\_len\ +=\ \textcolor{keyword}{sizeof}(SoilSensorInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ respSoil2;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00389}00389\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00391}00391\ \ \ \ \ \textcolor{comment}{//\ Lamp\ relay\ data}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00392}00392\ \ \ \ \ \textcolor{keywordflow}{if}\ (lampRelay\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00393}00393\ \ \ \ \ \ \ \ \ memcpy(asw\_data+ofs,\ lampRelay,\ \textcolor{keyword}{sizeof}(RelayInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(RelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00395}00395\ \ \ \ \ \ \ \ \ *asw\_len\ +=\ \textcolor{keyword}{sizeof}(RelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ lampRelay;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00397}00397\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00399}00399\ \ \ \ \ \textcolor{comment}{//\ Pump\ relay\ data}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00400}00400\ \ \ \ \ \textcolor{keywordflow}{if}\ (pumpRelay\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00401}00401\ \ \ \ \ \ \ \ \ memcpy(asw\_data+ofs,\ pumpRelay,\ \textcolor{keyword}{sizeof}(PumpRelayInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00402}00402\ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(PumpRelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ *asw\_len\ +=\ \textcolor{keyword}{sizeof}(PumpRelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00404}00404\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ pumpRelay;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00405}00405\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00406}00406\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00407}00407\ \ \ \ \ \textcolor{comment}{//\ Fan\ relay\ data}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00408}00408\ \ \ \ \ \textcolor{keywordflow}{if}\ (fanRelay\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00409}00409\ \ \ \ \ \ \ \ \ memcpy(asw\_data+ofs,\ fanRelay,\ \textcolor{keyword}{sizeof}(RelayInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00410}00410\ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(RelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00411}00411\ \ \ \ \ \ \ \ \ *asw\_len\ +=\ \textcolor{keyword}{sizeof}(RelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00412}00412\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ fanRelay;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00413}00413\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00414}00414\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00415}00415\ \ \ \ \ \textcolor{comment}{//\ Humidifier\ relay\ data}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00416}00416\ \ \ \ \ \textcolor{keywordflow}{if}\ (humRelay\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00417}00417\ \ \ \ \ \ \ \ \ memcpy(asw\_data+ofs,\ humRelay,\ \textcolor{keyword}{sizeof}(RelayInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00418}00418\ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(RelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00419}00419\ \ \ \ \ \ \ \ \ *asw\_len\ +=\ \textcolor{keyword}{sizeof}(RelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00420}00420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ humRelay;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00421}00421\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00422}00422\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00423}00423\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00424}00424\ \textcolor{keywordtype}{void}\ Controller::setStatus(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00425}00425\ \ \ \ \ uint8\_t\ ofs\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00426}00426\ \ \ \ \ CmdSetStatusRequest\ reqHdr;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00427}00427\ \ \ \ \ CmdSetStatusResponse\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00428}00428\ \ \ \ \ AirSensorInfo\ *respAir\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00429}00429\ \ \ \ \ SoilSensorInfo\ *respSoil1\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00430}00430\ \ \ \ \ RelayInfo\ *relay\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00431}00431\ \ \ \ \ PumpRelayInfo\ *pumpRelay\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00432}00432\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00433}00433\ \ \ \ \ \textcolor{keywordflow}{if}\ (req\_data\ ==\ \textcolor{keyword}{nullptr}\ ||\ req\_len\ <\ \textcolor{keyword}{sizeof}(CmdSetStatusRequest))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00434}00434\ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00435}00435\ \ \ \ \ \ \ \ \ resp.FaultMask\ =\ 0xFFFF;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00436}00436\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00437}00437\ \ \ \ \ \ \ \ \ memcpy(\&reqHdr,\ req\_data,\ \textcolor{keyword}{sizeof}(CmdSetStatusRequest));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00438}00438\ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(CmdSetStatusRequest);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00439}00439\ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00440}00440\ \ \ \ \ \ \ \ \ resp.FaultMask\ =\ 0x0000;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00441}00441\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00442}00442\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00443}00443\ \ \ \ \ \textcolor{keywordflow}{if}\ (resp.Code\ !=\ 0x00)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00444}00444\ \ \ \ \ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00445}00445\ \ \ \ \ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00446}00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00447}00447\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00448}00448\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00449}00449\ \ \ \ \ \textcolor{comment}{//\ Read\ devices\ and\ their\ settings}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00450}00450\ \ \ \ \ uint16\_t\ loaded\ =\ 0x0000;\ \textcolor{comment}{//\ loaded\ devices\ mask}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00451}00451\ \ \ \ \ \textcolor{keywordflow}{while}\ (ofs\ <\ req\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00452}00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ofs+\textcolor{keyword}{sizeof}(uint16\_t)\ >=\ req\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00457}00457\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00458}00458\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00459}00459\ \ \ \ \ \ \ \ \ uint16\_t\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00460}00460\ \ \ \ \ \ \ \ \ memcpy(\&devId,\ req\_data+ofs,\ \textcolor{keyword}{sizeof}(uint16\_t));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00461}00461\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (devId)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00462}00462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ofs+\textcolor{keyword}{sizeof}(AirSensorInfo)\ >\ req\_len\ ||\ (loaded\ \&\ devId))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.FaultMask\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00470}00470\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ respAir\ =\ \textcolor{keyword}{new}\ AirSensorInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(respAir,\ req\_data+ofs,\ \textcolor{keyword}{sizeof}(AirSensorInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(AirSensorInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (respAir-\/>HumStartVent\ >\ 100\ ||\ respAir-\/>HumEndVent\ >\ 100\ ||\ respAir-\/>TempStartVent\ <=\ 0\ ||\ respAir-\/>TempStartVent\ >=\ 100\ ||\ respAir-\/>TempEndVent\ <=\ 0\ ||\ respAir-\/>TempEndVent\ >=\ 100)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.FaultMask\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_a4a28c6e66c9388f7cfc4646e5c4bb5e0}{HumStartVent}}\ =\ respAir-\/>HumStartVent;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_a22f13e3c83b922c8cb405a730e74f0c9}{HumEndVent}}\ =\ respAir-\/>HumEndVent;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_ace706b38541aaa9d620aee13b36688f7}{TempStartVent}}\ =\ respAir-\/>TempStartVent;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_a714a12610fce24ec75d6918adb6eb2d5}{TempEndVent}}\ =\ respAir-\/>TempEndVent;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_a90188d6539a110dcc013e6a092c6dfda}{HumStartHum}}\ =\ respAir-\/>HumStartHum;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}}.\doxymbox{\hyperlink{struct_air_config_aa897824fca3a81e9c3bfcf86167b70ba}{HumEndHum}}\ =\ respAir-\/>HumEndHum;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ loaded\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ respAir;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00488}00488\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00489}00489\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00490}00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ofs+\textcolor{keyword}{sizeof}(SoilSensorInfo)\ >\ req\_len\ ||\ (loaded\ \&\ devId))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.FaultMask\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00498}00498\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ respSoil1\ =\ \textcolor{keyword}{new}\ SoilSensorInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(respSoil1,\ req\_data+ofs,\ \textcolor{keyword}{sizeof}(SoilSensorInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(SoilSensorInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SoilMoistureConfig\ *soil\_cfg\ =\ (devId\ ==\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}})\ ?\ \&instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a63096e2567aa7ca05b01e4c136be1634}{SoilSensor1}}\ :\ \&instance-\/>cfg.SoilSensor2;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (respSoil1-\/>MinValue\ ==\ respSoil1-\/>MaxValue\ ||\ respSoil1-\/>EndWatering\ >\ 100\ ||\ respSoil1-\/>StartWatering\ >\ 100\ ||\ respSoil1-\/>StartWatering\ >=\ respSoil1-\/>EndWatering)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.FaultMask\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ soil\_cfg-\/>\doxymbox{\hyperlink{struct_soil_moisture_config_a60cc8713920197199428127612a0d9ac}{MinValue}}\ =\ respSoil1-\/>MinValue;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ soil\_cfg-\/>\doxymbox{\hyperlink{struct_soil_moisture_config_a692d0d9d5c016d1dac9b3fa2eace27f8}{MaxValue}}\ =\ respSoil1-\/>MaxValue;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ soil\_cfg-\/>\doxymbox{\hyperlink{struct_soil_moisture_config_a525dac21c2e167aef5738a09b63b12eb}{StartWatering}}\ =\ respSoil1-\/>StartWatering;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ soil\_cfg-\/>\doxymbox{\hyperlink{struct_soil_moisture_config_a884839f91e78e09ed47478889a379611}{EndWatering}}\ =\ respSoil1-\/>EndWatering;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ loaded\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ respSoil1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00517}00517\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00518}00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00519}00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00520}00520\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ofs+\textcolor{keyword}{sizeof}(RelayInfo)\ >\ req\_len\ ||\ (loaded\ \&\ devId))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.FaultMask\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00528}00528\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ relay\ =\ \textcolor{keyword}{new}\ RelayInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(relay,\ req\_data+ofs,\ \textcolor{keyword}{sizeof}(RelayInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(RelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ PeriodConfig\ *period;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (devId\ ==\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ \&instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}}.\doxymbox{\hyperlink{struct_relay_config_a68929a157d2b98528d8a2f58c31d5cea}{IsAuto}}\ =\ relay-\/>IsAuto;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!relay-\/>IsAuto\ \&\&\ instance-\/>lamp\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ instance-\/>lamp-\/>\doxymbox{\hyperlink{class_relay_a4d2207e50b0f2279b6608ab48d17d142}{IsActivated}}()\ !=\ relay-\/>IsActive)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relay-\/>IsActive)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>lamp-\/>\doxymbox{\hyperlink{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363}{Activate}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_aaec28614e9246ac9a56c1e2a8419f0e1}{LampActive}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>lamp-\/>\doxymbox{\hyperlink{class_relay_aeb0fd7553770dfcb705af40690bfc1f3}{Deactivate}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_aaec28614e9246ac9a56c1e2a8419f0e1}{LampActive}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (devId\ ==\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ \&instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}}.\doxymbox{\hyperlink{struct_relay_config_a68929a157d2b98528d8a2f58c31d5cea}{IsAuto}}\ =\ relay-\/>IsAuto;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!relay-\/>IsAuto\ \&\&\ instance-\/>fan\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ instance-\/>fan-\/>\doxymbox{\hyperlink{class_relay_a4d2207e50b0f2279b6608ab48d17d142}{IsActivated}}()\ !=\ relay-\/>IsActive)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relay-\/>IsActive)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>fan-\/>\doxymbox{\hyperlink{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363}{Activate}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_ae8442342b41f94a2f0932ac25854e342}{FanActive}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>fan-\/>\doxymbox{\hyperlink{class_relay_aeb0fd7553770dfcb705af40690bfc1f3}{Deactivate}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_ae8442342b41f94a2f0932ac25854e342}{FanActive}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ \&instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}}.\doxymbox{\hyperlink{struct_relay_config_a68929a157d2b98528d8a2f58c31d5cea}{IsAuto}}\ =\ relay-\/>IsAuto;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!relay-\/>IsAuto\ \&\&\ instance-\/>humidifier\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ instance-\/>humidifier-\/>\doxymbox{\hyperlink{class_relay_a4d2207e50b0f2279b6608ab48d17d142}{IsActivated}}()\ !=\ relay-\/>IsActive)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relay-\/>IsActive)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>humidifier-\/>\doxymbox{\hyperlink{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363}{Activate}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_a4b939ba98fdf71a2e6d75f1fc22fa123}{HumidifierActive}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>humidifier-\/>\doxymbox{\hyperlink{class_relay_aeb0fd7553770dfcb705af40690bfc1f3}{Deactivate}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_a4b939ba98fdf71a2e6d75f1fc22fa123}{HumidifierActive}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relay-\/>Activity.StartH\ >\ 23\ ||\ relay-\/>Activity.EndH\ >\ 23\ ||\ relay-\/>Activity.StartM\ >\ 59\ ||\ relay-\/>Activity.EndM\ >\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period-\/>\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period-\/>\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period-\/>\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period-\/>\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period-\/>\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ =\ relay-\/>Activity.StartH;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period-\/>\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ =\ relay-\/>Activity.StartM;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period-\/>\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ =\ relay-\/>Activity.EndH;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period-\/>\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ =\ relay-\/>Activity.EndM;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ loaded\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ relay;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00590}00590\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00591}00591\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}}:}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ofs+\textcolor{keyword}{sizeof}(PumpRelayInfo)\ >\ req\_len\ ||\ (loaded\ \&\ devId))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00593}00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x02;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp.FaultMask\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00595}00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00598}00598\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00599}00599\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \ \ pumpRelay\ =\ \textcolor{keyword}{new}\ PumpRelayInfo();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ memcpy(pumpRelay,\ req\_data+ofs,\ \textcolor{keyword}{sizeof}(PumpRelayInfo));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ ofs\ +=\ \textcolor{keyword}{sizeof}(PumpRelayInfo);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00603}00603\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pumpRelay-\/>Common.Activity.StartH\ >\ 23\ ||\ pumpRelay-\/>Common.Activity.EndH\ >\ 23\ ||\ pumpRelay-\/>Common.Activity.StartM\ >\ 59\ ||\ pumpRelay-\/>Common.Activity.EndM\ >\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00605}00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00606}00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00607}00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00608}00608\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00609}00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ =\ pumpRelay-\/>Common.Activity.StartH;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00610}00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ =\ pumpRelay-\/>Common.Activity.StartM;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00611}00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ =\ pumpRelay-\/>Common.Activity.EndH;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00612}00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}}.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ =\ pumpRelay-\/>Common.Activity.EndM;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00613}00613\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_a9190c3cd8cef25709a959c95c2134952}{FreqWatering}}\ =\ pumpRelay-\/>FreqWatering;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00615}00615\ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_a5cd539ac2f0acdcd0e6e9eee8af375da}{MaxWorkTime}}\ =\ pumpRelay-\/>MaxWorkTime;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_a73b968c4ff0774b8b1322b8afa486435}{PauseBetweenStart}}\ =\ pumpRelay-\/>PauseBetweenStart;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00617}00617\ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>cfg.\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}}.\doxymbox{\hyperlink{struct_pump_config_aba86865f1244058249327c973f769fd5}{IsAuto}}\ =\ pumpRelay-\/>Common.IsAuto;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pumpRelay-\/>Common.IsAuto\ \&\&\ instance-\/>pump\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ instance-\/>pump-\/>\doxymbox{\hyperlink{class_relay_a4d2207e50b0f2279b6608ab48d17d142}{IsActivated}}()\ !=\ pumpRelay-\/>Common.IsActive)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pumpRelay-\/>Common.IsActive)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>pump-\/>\doxymbox{\hyperlink{class_relay_a8bbd9a6dcf6d5468a29c49fc384e7363}{Activate}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_a7fadc6b270475b77521fddb637bdba4c}{PumpActive}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00624}00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!instance-\/>pump-\/>\doxymbox{\hyperlink{class_relay_aeb0fd7553770dfcb705af40690bfc1f3}{Deactivate}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instance-\/>pars.\doxymbox{\hyperlink{struct_params_a7fadc6b270475b77521fddb637bdba4c}{PumpActive}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00626}00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00627}00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00629}00629\ \ \ \ \ \ \ \ \ \ \ \ \ loaded\ |=\ devId;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00630}00630\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ pumpRelay;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00632}00632\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ case}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00633}00633\ \ \ \ \ \}\ \textcolor{comment}{//\ while}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00634}00634\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00635}00635\ \ \ \ \ \textcolor{comment}{//\ Save\ data\ to\ EEPROM}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00636}00636\ \ \ \ \ \textcolor{keywordflow}{if}\ (reqHdr.SaveChanges)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00637}00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance-\/>\doxymbox{\hyperlink{class_controller_a8db20fadd6023923f24f0571c913cacb}{WriteConfig}}())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00638}00638\ \ \ \ \ \ \ \ \ \ \ \ \ resp.Code\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00639}00639\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00640}00640\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00641}00641\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00642}00642\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00643}00643\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdSetStatusResponse));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00644}00644\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00645}00645\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00646}00646\ \textcolor{keywordtype}{void}\ Controller::getMode(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00647}00647\ \ \ \ \ CmdMode\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00648}00648\ \ \ \ \ resp.Mode\ =\ (uint8\_t)instance-\/>\doxymbox{\hyperlink{class_controller_a10ea87d612c3959fbc3aa43bcfa18fe9}{IsStdMode}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00649}00649\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdMode);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00650}00650\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdMode));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00651}00651\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00652}00652\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00653}00653\ \textcolor{keywordtype}{void}\ Controller::setMode(\doxymbox{\hyperlink{class_controller}{Controller}}\ *instance,\ \textcolor{keyword}{const}\ uint8\_t\ *req\_data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ req\_len,\ uint8\_t\ *asw\_data,\ \textcolor{keywordtype}{size\_t}\ *asw\_len)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00654}00654\ \ \ \ \ CmdMode\ resp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00655}00655\ \ \ \ \ resp.Mode\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00656}00656\ \ \ \ \ \textcolor{keywordflow}{if}\ (req\_data\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ req\_len\ ==\ \textcolor{keyword}{sizeof}(CmdMode))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00657}00657\ \ \ \ \ \ \ \ \ memcpy(\&resp,\ req\_data,\ \textcolor{keyword}{sizeof}(CmdMode));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00658}00658\ \ \ \ \ \ \ \ \ instance-\/>\doxymbox{\hyperlink{class_controller_a2fc6e60e3a6ee1545ce4bc65b79235d3}{SetMode}}((\textcolor{keywordtype}{bool})resp.Mode);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00659}00659\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00660}00660\ \ \ \ \ *asw\_len\ =\ \textcolor{keyword}{sizeof}(CmdMode);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00661}00661\ \ \ \ \ memcpy(asw\_data,\ \&resp,\ \textcolor{keyword}{sizeof}(CmdMode));}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00662}00662\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00663}00663\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00664}\doxymbox{\hyperlink{class_controller_aa7fe591e119d87fda3984085664b371c}{00664}}\ uint8\_t\ \doxymbox{\hyperlink{class_controller_aa7fe591e119d87fda3984085664b371c}{Controller::readSensors}}()}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00665}00665\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00666}00666\ \ \ \ \ uint8\_t\ res\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00667}00667\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ now\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00668}00668\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ lim\ =\ max(\doxymbox{\hyperlink{controller_8cpp_a25dbd6fd7142c23a240fd9b0fdc07749}{CHECK\_SENSORS\_FREQ}},\ \doxymbox{\hyperlink{hal_8h_ae3b7ba5223047a968f613599b5ed9e35}{AIR\_SENSOR\_OPERATION\_DELAY}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00669}00669\ \ \ \ \ \textcolor{keywordflow}{if}\ ((now\ -\/\ this-\/>last\_op)\ <\ lim)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00670}00670\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00671}00671\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00672}00672\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00673}00673\ \ \ \ \ \ \ \ \ uint32\_t\ cur;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00674}00674\ \ \ \ \ \ \ \ \ uint8\_t\ rc\ =this-\/>rtc-\/>GetTime(\&cur);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00675}00675\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00676}00676\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.Now\ =\ cur;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00677}00677\ \ \ \ \ \ \ \ \ \ \ \ \ res\ |=\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00678}00678\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00679}00679\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00680}00680\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00681}00681\ \ \ \ \ \ \ \ \ uint8\_t\ rc\ =\ this-\/>sensor1-\/>GetHumidity();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00682}00682\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rc\ <=\ 100)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00683}00683\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.SoilSensor1\ =\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \ \ res\ |=\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00685}00685\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00686}00686\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00687}00687\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00688}00688\ \ \ \ \ \ \ \ \ uint8\_t\ rc\ =\ this-\/>sensor2-\/>GetHumidity();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00689}00689\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rc\ <=\ 100)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00690}00690\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.SoilSensor2\ =\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00691}00691\ \ \ \ \ \ \ \ \ \ \ \ \ res\ |=\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00692}00692\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00693}00693\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00694}00694\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00695}00695\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_air_data}{AirData}}\ dat;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00696}00696\ \ \ \ \ \ \ \ \ uint8\_t\ rc\ =\ this-\/>air-\/>GetData(\&dat);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00697}00697\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00698}00698\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.AirSensor\ =\ dat;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00699}00699\ \ \ \ \ \ \ \ \ \ \ \ \ res\ |=\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00700}00700\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00701}00701\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00702}00702\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00703}00703\ \ \ \ \ this-\/>last\_op\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00704}00704\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00705}00705\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00706}00706\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00707}\doxymbox{\hyperlink{class_controller_a5bf8337b8ca3e7a48ac0635adaa4ff56}{00707}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a5bf8337b8ca3e7a48ac0635adaa4ff56}{Controller::checkPumpRunning}}()\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00708}00708\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00709}00709\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00710}00710\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00711}00711\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>pars.PumpActive\ \&\&\ this-\/>cfg.Pump.MaxWorkTime\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00712}00712\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ now\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00713}00713\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((now\ -\/\ this-\/>pump\_act)\ >=\ ((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})this-\/>cfg.Pump.MaxWorkTime\ *\ 1000UL))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00714}00714\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ rc\ =\ this-\/>pump-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00715}00715\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00716}00716\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.PumpActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00717}00717\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pump\_sleep\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00718}00718\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00719}00719\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00720}00720\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00721}00721\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00722}00722\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00723}\doxymbox{\hyperlink{class_controller_aac06bce3db2ce1aa73f74b589e83cfa4}{00723}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_aac06bce3db2ce1aa73f74b589e83cfa4}{Controller::processLamp}}(\textcolor{keywordtype}{bool}\ is\_active\_rtc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00724}00724\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}})\ ||\ !is\_active\_rtc\ ||\ !this-\/>cfg.Lamp.IsAuto)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00725}00725\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00726}00726\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00727}00727\ \ \ \ \ \textcolor{keywordtype}{bool}\ act\ =\ this-\/>lamp-\/>IsActivated();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00728}00728\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}{IsAlwaysActivity}}(this-\/>cfg.Lamp.ActivityPeriod))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00729}00729\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00730}00730\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>lamp-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00731}00731\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.LampActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00732}00732\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00733}00733\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00734}00734\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00735}00735\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{datetime_8h_ab195dafc45c7d235f40326912a0e6010}{IsTimeInRange}}(this-\/>pars.Now,\ this-\/>cfg.Lamp.ActivityPeriod.StartH,\ this-\/>cfg.Lamp.ActivityPeriod.StartM,\ 0,\ this-\/>cfg.Lamp.ActivityPeriod.EndH,\ this-\/>cfg.Lamp.ActivityPeriod.EndM,\ 0))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00736}00736\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00737}00737\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>lamp-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00738}00738\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.LampActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00739}00739\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00740}00740\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00741}00741\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00742}00742\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>lamp-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00743}00743\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.LampActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00744}00744\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00745}00745\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00746}00746\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00747}00747\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00748}\doxymbox{\hyperlink{class_controller_a4143d08c376b66ddb488632b40413320}{00748}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a4143d08c376b66ddb488632b40413320}{Controller::processFan}}(\textcolor{keywordtype}{bool}\ is\_active\_rtc,\ \textcolor{keywordtype}{bool}\ is\_active\_air)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00749}00749\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}})\ ||\ !this-\/>cfg.Fan.IsAuto)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00750}00750\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00751}00751\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00752}00752\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00753}00753\ \ \ \ \ \textcolor{keywordtype}{bool}\ act\ =\ this-\/>fan-\/>IsActivated();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00754}00754\ \ \ \ \ \textcolor{keywordtype}{bool}\ time\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00755}00755\ \ \ \ \ \textcolor{keywordtype}{bool}\ air\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00756}00756\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}{IsAlwaysActivity}}(this-\/>cfg.Fan.ActivityPeriod)\ ||\ !is\_active\_rtc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00757}00757\ \ \ \ \ \ \ \ \ time\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00758}00758\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00759}00759\ \ \ \ \ \ \ \ \ time\_flg\ =\ \doxymbox{\hyperlink{datetime_8h_ab195dafc45c7d235f40326912a0e6010}{IsTimeInRange}}(this-\/>pars.Now,\ this-\/>cfg.Fan.ActivityPeriod.StartH,\ this-\/>cfg.Fan.ActivityPeriod.StartM,\ 0,\ this-\/>cfg.Fan.ActivityPeriod.EndH,\ this-\/>cfg.Fan.ActivityPeriod.EndM,\ 0);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00760}00760\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00761}00761\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00762}00762\ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_active\_air)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00763}00763\ \ \ \ \ \ \ \ \ air\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00764}00764\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00765}00765\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>pars.AirSensor.Humidity\ >=\ this-\/>cfg.AirSensor.HumStartVent\ ||\ this-\/>pars.AirSensor.Temperature\ >=\ this-\/>cfg.AirSensor.TempStartVent)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00766}00766\ \ \ \ \ \ \ \ \ \ \ \ \ air\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00767}00767\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>pars.AirSensor.Humidity\ <=\ this-\/>cfg.AirSensor.HumEndVent\ \&\&\ this-\/>pars.AirSensor.Temperature\ <=\ this-\/>cfg.AirSensor.TempEndVent)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00768}00768\ \ \ \ \ \ \ \ \ \ \ \ \ air\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00769}00769\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00770}00770\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00771}00771\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00772}00772\ \ \ \ \ \textcolor{keywordflow}{if}\ (air\_flg\ \&\&\ time\_flg\ \&\&\ !act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00773}00773\ \ \ \ \ \ \ \ \ this-\/>fan-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00774}00774\ \ \ \ \ \ \ \ \ this-\/>pars.FanActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00775}00775\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((!air\_flg\ ||\ !time\_flg)\ \&\&\ act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00776}00776\ \ \ \ \ \ \ \ \ this-\/>fan-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00777}00777\ \ \ \ \ \ \ \ \ this-\/>pars.FanActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00778}00778\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00779}00779\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00780}00780\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00781}\doxymbox{\hyperlink{class_controller_a8b2d3422e3f490828c3c61c4985e011d}{00781}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a8b2d3422e3f490828c3c61c4985e011d}{Controller::processPump}}(\textcolor{keywordtype}{bool}\ is\_active\_rtc,\ \textcolor{keywordtype}{bool}\ is\_active\_soil1,\ \textcolor{keywordtype}{bool}\ is\_active\_soil2)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00782}00782\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}})\ ||\ (!is\_active\_soil1\ \&\&\ !is\_active\_soil2)\ ||\ !this-\/>cfg.Pump.IsAuto)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00783}00783\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00784}00784\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00785}00785\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00786}00786\ \ \ \ \ \textcolor{keywordtype}{bool}\ act\ =\ this-\/>pump-\/>IsActivated();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00787}00787\ \ \ \ \ \textcolor{keywordtype}{bool}\ time\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00788}00788\ \ \ \ \ \textcolor{keywordtype}{bool}\ soil1\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00789}00789\ \ \ \ \ \textcolor{keywordtype}{bool}\ soil2\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00790}00790\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00791}00791\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}{IsAlwaysActivity}}(this-\/>cfg.Pump.ActivityPeriod)\ ||\ !is\_active\_rtc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00792}00792\ \ \ \ \ \ \ \ \ time\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00793}00793\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00794}00794\ \ \ \ \ \ \ \ \ time\_flg\ =\ \doxymbox{\hyperlink{datetime_8h_ab195dafc45c7d235f40326912a0e6010}{IsTimeInRange}}(this-\/>pars.Now,\ this-\/>cfg.Pump.ActivityPeriod.StartH,\ this-\/>cfg.Pump.ActivityPeriod.StartM,\ 0,\ this-\/>cfg.Pump.ActivityPeriod.EndH,\ this-\/>cfg.Pump.ActivityPeriod.EndM,\ 0);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00795}00795\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00796}00796\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00797}00797\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_active\_soil1)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00798}00798\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>pars.SoilSensor1\ <=\ this-\/>cfg.SoilSensor1.StartWatering)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00799}00799\ \ \ \ \ \ \ \ \ \ \ \ \ soil1\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00800}00800\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>pars.SoilSensor1\ >=\ this-\/>cfg.SoilSensor1.EndWatering)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00801}00801\ \ \ \ \ \ \ \ \ \ \ \ \ soil1\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00802}00802\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00803}00803\ \ \ \ \ \ \ \ \ \ \ \ \ soil1\_flg\ =\ act;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00804}00804\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00805}00805\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00806}00806\ \ \ \ \ \ \ \ \ soil1\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00807}00807\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00808}00808\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00809}00809\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_active\_soil2)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00810}00810\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>pars.SoilSensor2\ <=\ this-\/>cfg.SoilSensor2.StartWatering)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00811}00811\ \ \ \ \ \ \ \ \ \ \ \ \ soil2\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00812}00812\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>pars.SoilSensor2\ >=\ this-\/>cfg.SoilSensor2.EndWatering)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00813}00813\ \ \ \ \ \ \ \ \ \ \ \ \ soil2\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00814}00814\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00815}00815\ \ \ \ \ \ \ \ \ \ \ \ \ soil2\_flg\ =\ act;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00816}00816\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00817}00817\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00818}00818\ \ \ \ \ \ \ \ \ soil2\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00819}00819\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00820}00820\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00821}00821\ \ \ \ \ \textcolor{keywordflow}{if}\ (time\_flg\ \&\&\ soil1\_flg\ \&\&\ soil2\_flg\ \&\&\ !act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00822}00822\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ now\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00823}00823\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ min\_interval\ =\ (\textcolor{keywordtype}{unsigned}\ long)this-\/>cfg.Pump.PauseBetweenStart\ *\ 1000UL;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00824}00824\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ freq\_interval\ =\ (\textcolor{keywordtype}{unsigned}\ long)this-\/>cfg.Pump.FreqWatering\ *\ 3600UL\ *\ 1000UL;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00825}00825\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (freq\_interval\ >\ min\_interval)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00826}00826\ \ \ \ \ \ \ \ \ \ \ \ \ min\_interval\ =\ freq\_interval;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00827}00827\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00828}00828\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>pump\_act\ ==\ 0\ ||\ (now\ -\/\ this-\/>pump\_act)\ >=\ min\_interval)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00829}00829\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pump-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00830}00830\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.PumpActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00831}00831\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pump\_act\ =\ now;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00832}00832\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00833}00833\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((!soil1\_flg\ ||\ !soil2\_flg\ ||\ !time\_flg)\ \&\&\ act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00834}00834\ \ \ \ \ \ \ \ \ this-\/>pump-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00835}00835\ \ \ \ \ \ \ \ \ this-\/>pars.PumpActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00836}00836\ \ \ \ \ \ \ \ \ this-\/>pump\_sleep\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00837}00837\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00838}00838\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00839}00839\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00840}\doxymbox{\hyperlink{class_controller_ab157533b6a81f5d7210ac63caa806758}{00840}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_ab157533b6a81f5d7210ac63caa806758}{Controller::processHumidifier}}(\textcolor{keywordtype}{bool}\ is\_active\_rtc,\ \textcolor{keywordtype}{bool}\ is\_active\_air)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00841}00841\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}})\ ||\ !this-\/>cfg.Humidifier.IsAuto)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00842}00842\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00843}00843\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00844}00844\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00845}00845\ \ \ \ \ \textcolor{keywordtype}{bool}\ act\ =\ this-\/>humidifier-\/>IsActivated();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00846}00846\ \ \ \ \ \textcolor{keywordtype}{bool}\ time\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00847}00847\ \ \ \ \ \textcolor{keywordtype}{bool}\ air\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00848}00848\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}{IsAlwaysActivity}}(this-\/>cfg.Humidifier.ActivityPeriod)\ ||\ !is\_active\_rtc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00849}00849\ \ \ \ \ \ \ \ \ time\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00850}00850\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00851}00851\ \ \ \ \ \ \ \ \ time\_flg\ =\ \doxymbox{\hyperlink{datetime_8h_ab195dafc45c7d235f40326912a0e6010}{IsTimeInRange}}(this-\/>pars.Now,\ this-\/>cfg.Humidifier.ActivityPeriod.StartH,\ this-\/>cfg.Humidifier.ActivityPeriod.StartM,\ 0,\ this-\/>cfg.Humidifier.ActivityPeriod.EndH,\ this-\/>cfg.Humidifier.ActivityPeriod.EndM,\ 0);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00852}00852\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00853}00853\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00854}00854\ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_active\_air)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00855}00855\ \ \ \ \ \ \ \ \ air\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00856}00856\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00857}00857\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>pars.AirSensor.Humidity\ <=\ this-\/>cfg.AirSensor.HumStartHum)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00858}00858\ \ \ \ \ \ \ \ \ \ \ \ \ air\_flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00859}00859\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>pars.AirSensor.Humidity\ >=\ this-\/>cfg.AirSensor.HumEndHum)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00860}00860\ \ \ \ \ \ \ \ \ \ \ \ \ air\_flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00861}00861\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00862}00862\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00863}00863\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00864}00864\ \ \ \ \ \textcolor{keywordflow}{if}\ (air\_flg\ \&\&\ time\_flg\ \&\&\ !act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00865}00865\ \ \ \ \ \ \ \ \ this-\/>humidifier-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00866}00866\ \ \ \ \ \ \ \ \ this-\/>pars.HumidifierActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00867}00867\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((!air\_flg\ ||\ !time\_flg)\ \&\&\ act)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00868}00868\ \ \ \ \ \ \ \ \ this-\/>humidifier-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00869}00869\ \ \ \ \ \ \ \ \ this-\/>pars.HumidifierActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00870}00870\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00871}00871\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00872}00872\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00873}\doxymbox{\hyperlink{class_controller_a41ebfe621fe2f6cca059147468f6cf50}{00873}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a41ebfe621fe2f6cca059147468f6cf50}{Controller::checkBTButton}}()}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00874}00874\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00875}00875\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>bt-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00876}00876\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00877}00877\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00878}00878\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00879}00879\ \ \ \ \ \textcolor{keywordtype}{bool}\ st\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00880}00880\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a8cbcd851a9ae7fba7d9e60aeffae0976}{DEV\_BT\_BUTTON}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00881}00881\ \ \ \ \ \ \ \ \ st\ =\ this-\/>btn-\/>IsPressed();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00882}00882\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00883}00883\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00884}00884\ \ \ \ \ \textcolor{keywordflow}{if}\ (st)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00885}00885\ \ \ \ \ \ \ \ \ this-\/>bt-\/>Activate(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00886}00886\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00887}00887\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00888}00888\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00889}\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{00889}}\ \doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller::Controller}}()\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00890}00890\ \ \ \ \ this-\/>device\_mask\ =\ 0x0000;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00891}00891\ \ \ \ \ this-\/>pump\_act\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00892}00892\ \ \ \ \ this-\/>pump\_sleep\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00893}00893\ \ \ \ \ this-\/>rtc\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_r_t_c_ada31c5120d18d2dd2863b3d440308da2}{RTC}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00894}00894\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>rtc-\/>IsInited())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00895}00895\ \ \ \ \ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00896}00896\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00897}00897\ \ \ \ \ this-\/>storage\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_storage_a80ef6af5e4c9fd4424ae16e808d05291}{Storage}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00898}00898\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>storage-\/>IsInited())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00899}00899\ \ \ \ \ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113}{SENS\_STORAGE}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00900}00900\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00901}00901\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00902}00902\ \textcolor{preprocessor}{\#ifdef\ AIR\_SENSOR\_PIN\ }}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00903}00903\ \ \ \ \ this-\/>air\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_air_a06c9331de6ffc64ef23b59c23e65b25c}{Air}}(\doxymbox{\hyperlink{hal_8h_a2f504be032367b69f0a326e994a64ca0}{AIR\_SENSOR\_PIN}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00904}00904\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>air-\/>IsInited())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00905}00905\ \ \ \ \ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00906}00906\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00907}00907\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00908}00908\ \ \ \ \ this-\/>air\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00909}00909\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00910}00910\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00911}00911\ \textcolor{preprocessor}{\#ifdef\ SOIL\_MOISTURE\_PIN1}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00912}00912\ \ \ \ \ this-\/>sensor1\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_soil_ae51f2ec133fed21e6f34f9c591926a30}{Soil}}(\doxymbox{\hyperlink{hal_8h_a98f144fd906cf157c0addde3f42bde0c}{SOIL\_MOISTURE\_PIN1}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00913}00913\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>sensor1-\/>IsInited())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00914}00914\ \ \ \ \ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00915}00915\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00916}00916\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00917}00917\ \ \ \ \ this-\/>sensor1\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00918}00918\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00919}00919\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00920}00920\ \textcolor{preprocessor}{\#ifdef\ SOIL\_MOISTURE\_PIN2}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00921}00921\ \ \ \ \ this-\/>sensor2\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_soil_ae51f2ec133fed21e6f34f9c591926a30}{Soil}}(\doxymbox{\hyperlink{hal_8h_a245dbc9054b5fe7e5e0c55e47498b6cd}{SOIL\_MOISTURE\_PIN2}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00922}00922\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>sensor2-\/>IsInited())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00923}00923\ \ \ \ \ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00924}00924\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00925}00925\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00926}00926\ \ \ \ \ this-\/>sensor2\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00927}00927\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00928}00928\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00929}00929\ \textcolor{preprocessor}{\#ifdef\ LAMP\_RELAY\_PIN}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00930}00930\ \ \ \ \ this-\/>lamp\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_relay_adae45e21118b9fa7f9b51a11f8513238}{Relay}}(\doxymbox{\hyperlink{hal_8h_a046a49bd08acf968b93841a7ab578fb3}{LAMP\_RELAY\_PIN}},\ \doxymbox{\hyperlink{hal_8h_ae6c62255d81c2b1d522184b8090e947e}{LAMP\_RELAY\_TYPE}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00931}00931\ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00932}00932\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00933}00933\ \ \ \ \ this-\/>lamp\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00934}00934\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00935}00935\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00936}00936\ \textcolor{preprocessor}{\#ifdef\ FAN\_RELAY\_PIN}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00937}00937\ \ \ \ \ this-\/>fan\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_relay_adae45e21118b9fa7f9b51a11f8513238}{Relay}}(\doxymbox{\hyperlink{hal_8h_acfb8938df8d06e8573bea2c084ca8a81}{FAN\_RELAY\_PIN}},\ \doxymbox{\hyperlink{hal_8h_a7ca747fa8e94238c6976c1cc710ddecb}{FAN\_RELAY\_TYPE}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00938}00938\ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00939}00939\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00940}00940\ \ \ \ \ this-\/>fan\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00941}00941\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00942}00942\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00943}00943\ \textcolor{preprocessor}{\#ifdef\ PUMP\_RELAY\_PIN}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00944}00944\ \ \ \ \ this-\/>pump\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_relay_adae45e21118b9fa7f9b51a11f8513238}{Relay}}(\doxymbox{\hyperlink{hal_8h_af993f7047a3904a5525ef56aafdc6f6d}{PUMP\_RELAY\_PIN}},\ \doxymbox{\hyperlink{hal_8h_a00b27f289776ebbc2d568e29db47aacf}{PUMP\_RELAY\_TYPE}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00945}00945\ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00946}00946\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00947}00947\ \ \ \ \ this-\/>pump\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00948}00948\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00949}00949\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00950}00950\ \textcolor{preprocessor}{\#ifdef\ HUMIDIFIER\_RELAY\_PIN}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00951}00951\ \ \ \ \ this-\/>humidifier\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_relay_adae45e21118b9fa7f9b51a11f8513238}{Relay}}(\doxymbox{\hyperlink{hal_8h_a48efbbc3e90a979e8977246eae79df1e}{HUMIDIFIER\_RELAY\_PIN}},\ \doxymbox{\hyperlink{hal_8h_a125bb5dd3065e3b0a1c025f6893740ad}{HUMIDIFIER\_RELAY\_TYPE}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00952}00952\ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00953}00953\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00954}00954\ \ \ \ \ this-\/>humidifier\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00955}00955\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00956}00956\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00957}00957\ \textcolor{preprocessor}{\#ifdef\ BT\_BUTTON\_PIN}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00958}00958\ \ \ \ \ this-\/>btn\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_button_a15ee922107df499b5aacb5dba783581b}{Button}}(\doxymbox{\hyperlink{hal_8h_a4879a25d5237d80d7a49c8d6dc3702ce}{BT\_BUTTON\_PIN}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00959}00959\ \ \ \ \ this-\/>device\_mask\ |=\ \doxymbox{\hyperlink{controller_8h_a8cbcd851a9ae7fba7d9e60aeffae0976}{DEV\_BT\_BUTTON}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00960}00960\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00961}00961\ \ \ \ \ this-\/>btn\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00962}00962\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00963}00963\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00964}00964\ \ \ \ \ this-\/>bt\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_bluetooth_adff22f9e5f2bd81b1fc5b8eeba71f68b}{Bluetooth}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00965}00965\ \ \ \ \ this-\/>bt-\/>Context\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00966}00966\ \ \ \ \ this-\/>bt-\/>OnReceiveData\ =\ Controller::onReceive;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00967}00967\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00968}00968\ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_ac39de7309267450fb731f83564fee62a}{ReadConfig}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00969}00969\ \ \ \ \ this-\/>bt-\/>Activate(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00970}00970\ \ \ \ \ this-\/>bt-\/>SetName(this-\/>cfg.Bluetooth.Name);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00971}00971\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[10]\ =\ \{0x00\};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00972}00972\ \ \ \ \ itoa(this-\/>cfg.Bluetooth.Password,\ buf,\ 10);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00973}00973\ \ \ \ \ this-\/>bt-\/>SetPassword(buf);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00974}00974\ \ \ \ \ this-\/>bt-\/>ChangeMode(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00975}00975\ \ \ \ \ delay(500);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00976}00976\ \ \ \ \ this-\/>last\_op\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00977}00977\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00978}00978\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00979}\doxymbox{\hyperlink{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}{00979}}\ \doxymbox{\hyperlink{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}{Controller::\string~Controller}}()\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00980}00980\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>rtc\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00981}00981\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>rtc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00982}00982\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00983}00983\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>storage\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00984}00984\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>storage;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00985}00985\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00986}00986\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>air\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00987}00987\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>air;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00988}00988\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00989}00989\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>sensor1\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00990}00990\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>sensor1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00991}00991\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00992}00992\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>sensor2\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00993}00993\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>sensor2;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00994}00994\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00995}00995\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>lamp\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00996}00996\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>lamp;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00997}00997\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00998}00998\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>fan\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l00999}00999\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>fan;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01000}01000\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01001}01001\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>pump\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01002}01002\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>pump;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01003}01003\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01004}01004\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>humidifier\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01005}01005\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>humidifier;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01006}01006\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01007}01007\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>btn\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01008}01008\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>btn;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01009}01009\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01010}01010\ \ \ \ \ \textcolor{keyword}{delete}\ this-\/>bt;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01011}01011\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01012}01012\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01013}\doxymbox{\hyperlink{class_controller_a10ea87d612c3959fbc3aa43bcfa18fe9}{01013}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_controller_a10ea87d612c3959fbc3aa43bcfa18fe9}{Controller::IsStdMode}}()\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01014}01014\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>isStdMode;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01015}01015\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01016}01016\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01017}\doxymbox{\hyperlink{class_controller_a39b9bc28093fe897d00f1d40c45a371e}{01017}}\ uint16\_t\ \doxymbox{\hyperlink{class_controller_a39b9bc28093fe897d00f1d40c45a371e}{Controller::Devices}}()\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01018}01018\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>device\_mask;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01019}01019\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01020}01020\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01021}\doxymbox{\hyperlink{class_controller_a38ca892c280e07af260320f5b22fa91e}{01021}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a38ca892c280e07af260320f5b22fa91e}{Controller::ResetConfig}}()}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01022}01022\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01023}01023\ \ \ \ \ this-\/>cfg\ =\ \doxymbox{\hyperlink{config_8h_aa2982de7dc2a5de80bbbba0862806f36}{DEFAULT\_CONFIGURATION}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01024}01024\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01025}01025\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01026}\doxymbox{\hyperlink{class_controller_ac39de7309267450fb731f83564fee62a}{01026}}\ uint8\_t\ \doxymbox{\hyperlink{class_controller_ac39de7309267450fb731f83564fee62a}{Controller::ReadConfig}}()\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01027}01027\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113}{SENS\_STORAGE}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01028}01028\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_a38ca892c280e07af260320f5b22fa91e}{ResetConfig}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01029}01029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 5;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01030}01030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01031}01031\ \ \ \ \ uint8\_t\ rc\ =\ this-\/>storage-\/>Read(this-\/>cfg);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01032}01032\ \ \ \ \ \textcolor{keywordflow}{if}\ (rc\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01033}01033\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_a38ca892c280e07af260320f5b22fa91e}{ResetConfig}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01034}01034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01035}01035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01036}01036\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01037}01037\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01038}01038\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01039}\doxymbox{\hyperlink{class_controller_a8db20fadd6023923f24f0571c913cacb}{01039}}\ uint8\_t\ \doxymbox{\hyperlink{class_controller_a8db20fadd6023923f24f0571c913cacb}{Controller::WriteConfig}}()\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01040}01040\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a3cdfe4bb098c7f8f55bb1f9e96e83113}{SENS\_STORAGE}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01041}01041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 5;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01042}01042\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01043}01043\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>storage-\/>Write(this-\/>cfg);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01044}01044\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01045}01045\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01046}\doxymbox{\hyperlink{class_controller_a8a048cd5db012bdcd49490eda76a06fb}{01046}}\ uint8\_t\ \doxymbox{\hyperlink{class_controller_a8a048cd5db012bdcd49490eda76a06fb}{Controller::SetTime}}(uint32\_t\ datetime)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01047}01047\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01048}01048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01049}01049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01050}01050\ \ \ \ \ uint8\_t\ rc\ =\ this-\/>rtc-\/>SetTime(datetime);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01051}01051\ \ \ \ \ \textcolor{keywordflow}{if}\ (rc\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01052}01052\ \ \ \ \ \ \ \ \ this-\/>pars.Now\ =\ datetime;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01053}01053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01054}01054\ \ \ \ \ \textcolor{keywordflow}{return}\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01055}01055\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01056}01056\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01057}\doxymbox{\hyperlink{class_controller_a64c8f76bbfbf2c47f1b7ac9cc8c6b439}{01057}}\ uint8\_t\ \doxymbox{\hyperlink{class_controller_a64c8f76bbfbf2c47f1b7ac9cc8c6b439}{Controller::GetTime}}(uint32\_t\ *datetime)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01058}01058\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01059}01059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01060}01060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01061}01061\ \ \ \ \ uint8\_t\ rc\ =\ this-\/>rtc-\/>GetTime(datetime);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01062}01062\ \ \ \ \ \textcolor{keywordflow}{if}\ (rc\ ==\ 0\ \&\&\ datetime\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01063}01063\ \ \ \ \ \ \ \ \ this-\/>pars.Now\ =\ *datetime;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01064}01064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01065}01065\ \ \ \ \ \textcolor{keywordflow}{return}\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01066}01066\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01067}01067\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01068}\doxymbox{\hyperlink{class_controller_a5765bb44682bf8e5b86f2041144ed50c}{01068}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a5765bb44682bf8e5b86f2041144ed50c}{Controller::ActivateDevices}}(uint16\_t\ dev\_mask)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01069}01069\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01070}01070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01071}01071\ \ \ \ \ \ \ \ \ uint8\_t\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01072}01072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dev\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01073}01073\ \ \ \ \ \ \ \ \ \ \ \ \ flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01074}01074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01075}01075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flg\ !=\ this-\/>lamp-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01076}01076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flg)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01077}01077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ this-\/>lamp-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01078}01078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01079}01079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.LampActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01080}01080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01081}01081\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01082}01082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ this-\/>lamp-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01083}01083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01084}01084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.LampActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01085}01085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01086}01086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01087}01087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01088}01088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01089}01089\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01090}01090\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01091}01091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01092}01092\ \ \ \ \ \ \ \ \ uint8\_t\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01093}01093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dev\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01094}01094\ \ \ \ \ \ \ \ \ \ \ \ \ flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01095}01095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01096}01096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flg\ !=\ this-\/>fan-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01097}01097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flg)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01098}01098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ this-\/>fan-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01099}01099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01100}01100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.FanActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01101}01101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01102}01102\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01103}01103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ this-\/>fan-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01104}01104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01105}01105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.FanActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01106}01106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01107}01107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01108}01108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01109}01109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01110}01110\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01111}01111\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01112}01112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01113}01113\ \ \ \ \ \ \ \ \ uint8\_t\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01114}01114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dev\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01115}01115\ \ \ \ \ \ \ \ \ \ \ \ \ flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01116}01116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01117}01117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flg\ !=\ this-\/>pump-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01118}01118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flg)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01119}01119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ now\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01120}01120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((now\ -\/\ this-\/>pump\_sleep)\ >=\ (this-\/>cfg.Pump.PauseBetweenStart*1000))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01121}01121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ this-\/>pump-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01122}01122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01123}01123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.PumpActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01124}01124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pump\_act\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01125}01125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01126}01126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01127}01127\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01128}01128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ this-\/>pump-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01129}01129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01130}01130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.PumpActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01131}01131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pump\_sleep\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01132}01132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01133}01133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01134}01134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01135}01135\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01136}01136\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01137}01137\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01138}01138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ flg\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01139}01139\ \ \ \ \ \ \ \ \ uint8\_t\ rc;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01140}01140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dev\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01141}01141\ \ \ \ \ \ \ \ \ \ \ \ \ flg\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01142}01142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01143}01143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flg\ !=\ this-\/>humidifier-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01144}01144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flg)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01145}01145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ this-\/>humidifier-\/>Activate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01146}01146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01147}01147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.HumidifierActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01148}01148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01149}01149\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01150}01150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ this-\/>humidifier-\/>Deactivate();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01151}01151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rc)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01152}01152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>pars.HumidifierActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01153}01153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01154}01154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01155}01155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01156}01156\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01157}01157\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01158}01158\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01159}\doxymbox{\hyperlink{class_controller_a0f97908c7489835d84708609c3f965b3}{01159}}\ uint16\_t\ \doxymbox{\hyperlink{class_controller_a0f97908c7489835d84708609c3f965b3}{Controller::GetActiveDevices}}()\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01160}01160\ \ \ \ \ uint16\_t\ res\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01161}01161\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01162}01162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>lamp-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01163}01163\ \ \ \ \ \ \ \ \ \ \ \ \ res\ |=\ \doxymbox{\hyperlink{controller_8h_aa7c756774ccb9c7e062faf504feee0d3}{DEV\_LAMP}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01164}01164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01165}01165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01166}01166\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01167}01167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>fan-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01168}01168\ \ \ \ \ \ \ \ \ \ \ \ \ res\ |=\ \doxymbox{\hyperlink{controller_8h_afd536a7b73fe326eab6259d7ba8c2bd0}{DEV\_FAN}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01169}01169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01170}01170\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01171}01171\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01172}01172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>pump-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01173}01173\ \ \ \ \ \ \ \ \ \ \ \ \ res\ |=\ \doxymbox{\hyperlink{controller_8h_adb3502c5cbd77fb17604df8e4dd90229}{DEV\_PUMP}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01174}01174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01175}01175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01176}01176\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}})\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01177}01177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>humidifier-\/>IsActivated())\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01178}01178\ \ \ \ \ \ \ \ \ \ \ \ \ res\ |=\ \doxymbox{\hyperlink{controller_8h_a7af449dcabaeb6e3f7789ca0200089df}{DEV\_HUMIDIFIER}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01179}01179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01180}01180\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01181}01181\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01182}01182\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01183}01183\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01184}\doxymbox{\hyperlink{class_controller_a2fc6e60e3a6ee1545ce4bc65b79235d3}{01184}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_a2fc6e60e3a6ee1545ce4bc65b79235d3}{Controller::SetMode}}(\textcolor{keywordtype}{bool}\ isStdandart)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01185}01185\ \ \ \ \ \textcolor{keywordflow}{if}\ (!isStdandart)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01186}01186\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_a5765bb44682bf8e5b86f2041144ed50c}{ActivateDevices}}(0x0000);}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01187}01187\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01188}01188\ \ \ \ \ this-\/>isStdMode\ =\ isStdandart;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01189}01189\ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01190}01190\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01191}\doxymbox{\hyperlink{class_controller_ad920ca3bf8fc1d163c0cc482d7c6226d}{01191}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_controller_ad920ca3bf8fc1d163c0cc482d7c6226d}{Controller::Process}}()}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01192}01192\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01193}01193\ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_a5bf8337b8ca3e7a48ac0635adaa4ff56}{checkPumpRunning}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01194}01194\ \ \ \ \ uint8\_t\ sens\ =\ this-\/>\doxymbox{\hyperlink{class_controller_aa7fe591e119d87fda3984085664b371c}{readSensors}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01195}01195\ \ \ \ \ \textcolor{keywordflow}{if}\ (sens\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01196}01196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01197}01197\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01198}01198\ \ \ \ \ uint8\_t\ devs\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01199}01199\ \ \ \ \ \textcolor{keywordflow}{if}\ ((sens\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}})\ \&\&\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01200}01200\ \ \ \ \ \ \ \ \ devs\ |=\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01201}01201\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01202}01202\ \ \ \ \ \textcolor{keywordflow}{if}\ ((sens\ \&\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}})\ \&\&\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01203}01203\ \ \ \ \ \ \ \ \ devs\ |=\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01204}01204\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01205}01205\ \ \ \ \ \textcolor{keywordflow}{if}\ ((sens\ \&\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}})\ \&\&\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01206}01206\ \ \ \ \ \ \ \ \ devs\ |=\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01207}01207\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01208}01208\ \ \ \ \ \textcolor{keywordflow}{if}\ ((sens\ \&\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}})\ \&\&\ (this-\/>device\_mask\ \&\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}}))\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01209}01209\ \ \ \ \ \ \ \ \ devs\ |=\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}};}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01210}01210\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01211}01211\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01212}01212\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>isStdMode)\ \{}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01213}01213\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_aac06bce3db2ce1aa73f74b589e83cfa4}{processLamp}}(devs\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01214}01214\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_a4143d08c376b66ddb488632b40413320}{processFan}}(devs\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}},\ devs\ \&\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01215}01215\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_a8b2d3422e3f490828c3c61c4985e011d}{processPump}}(devs\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}},\ devs\ \&\ \doxymbox{\hyperlink{controller_8h_ab879bfc6ff4671e2748624e79566b424}{SENS\_SOIL1}},\ devs\ \&\ \doxymbox{\hyperlink{controller_8h_a520472ec81977db010771191577720cb}{SENS\_SOIL2}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01216}01216\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_ab157533b6a81f5d7210ac63caa806758}{processHumidifier}}(devs\ \&\ \doxymbox{\hyperlink{controller_8h_aec15f51271494c6268bbe9ace3334e7c}{SENS\_RTC}},\ devs\ \&\ \doxymbox{\hyperlink{controller_8h_a8d8fa2d0c8f99f35a2ebdc4f38a4df2c}{SENS\_AIR}});}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01217}01217\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01218}01218\ }
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01219}01219\ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_controller_a41ebfe621fe2f6cca059147468f6cf50}{checkBTButton}}();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01220}01220\ \ \ \ \ this-\/>bt-\/>ProcessCommands();}
+\DoxyCodeLine{\Hypertarget{controller_8cpp_source_l01221}01221\ \}}
+
+\end{DoxyCode}

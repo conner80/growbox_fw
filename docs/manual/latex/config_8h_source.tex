@@ -1,0 +1,78 @@
+\doxysection{config.\+h}
+\hypertarget{config_8h_source}{}\label{config_8h_source}\index{include/config/config.h@{include/config/config.h}}
+\doxymbox{\hyperlink{config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{hal_8h}{hal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{version_8h}{version.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00017}\doxymbox{\hyperlink{struct_bluetooth_config}{00017}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_bluetooth_config}{BluetoothConfig}}\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00021}\doxymbox{\hyperlink{struct_bluetooth_config_a6ffadbc5f124357207e81e27b4980e80}{00021}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{struct_bluetooth_config_a6ffadbc5f124357207e81e27b4980e80}{Name}}[21]\ =\ \{\textcolor{stringliteral}{"{}Growbox\(\backslash\)0"{}}\};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00025}\doxymbox{\hyperlink{struct_bluetooth_config_a301507ef07a9c279b17db5ff0b9e9ee6}{00025}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_bluetooth_config_a301507ef07a9c279b17db5ff0b9e9ee6}{Password}}\ =\ 1234;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00030}\doxymbox{\hyperlink{struct_bluetooth_config_ae8151f789faff427dbb4d5037d5917f7}{00030}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_bluetooth_config_ae8151f789faff427dbb4d5037d5917f7}{OnlineDelay}}\ =\ 300;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00031}00031\ \};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00037}\doxymbox{\hyperlink{struct_period_config}{00037}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_period_config}{PeriodConfig}}\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00041}\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{00041}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ =\ 6;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00045}\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{00045}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00049}\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{00049}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00053}\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{00053}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00054}00054\ \};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00059}\doxymbox{\hyperlink{struct_relay_config}{00059}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_relay_config}{RelayConfig}}\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00063}\doxymbox{\hyperlink{struct_relay_config_a68929a157d2b98528d8a2f58c31d5cea}{00063}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_relay_config_a68929a157d2b98528d8a2f58c31d5cea}{IsAuto}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00067}\doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{00067}}\ \ \ \ \ \doxymbox{\hyperlink{struct_period_config}{PeriodConfig}}\ \doxymbox{\hyperlink{struct_relay_config_a14212453f2e54e90573506d03abe5b2a}{ActivityPeriod}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00068}00068\ \};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00073}\doxymbox{\hyperlink{struct_pump_config}{00073}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_pump_config}{PumpConfig}}\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00077}\doxymbox{\hyperlink{struct_pump_config_aba86865f1244058249327c973f769fd5}{00077}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_pump_config_aba86865f1244058249327c973f769fd5}{IsAuto}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00082}\doxymbox{\hyperlink{struct_pump_config_a5cd539ac2f0acdcd0e6e9eee8af375da}{00082}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_pump_config_a5cd539ac2f0acdcd0e6e9eee8af375da}{MaxWorkTime}}\ =\ 300;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00087}\doxymbox{\hyperlink{struct_pump_config_a73b968c4ff0774b8b1322b8afa486435}{00087}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_pump_config_a73b968c4ff0774b8b1322b8afa486435}{PauseBetweenStart}}\ =\ 600;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00092}\doxymbox{\hyperlink{struct_pump_config_a9190c3cd8cef25709a959c95c2134952}{00092}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_pump_config_a9190c3cd8cef25709a959c95c2134952}{FreqWatering}}\ =\ 72;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00096}\doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{00096}}\ \ \ \ \ \doxymbox{\hyperlink{struct_period_config}{PeriodConfig}}\ \doxymbox{\hyperlink{struct_pump_config_aef6db79dbde8bccca41730450e41da43}{ActivityPeriod}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00097}00097\ \};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00102}\doxymbox{\hyperlink{struct_soil_moisture_config}{00102}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_soil_moisture_config}{SoilMoistureConfig}}\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00106}\doxymbox{\hyperlink{struct_soil_moisture_config_a525dac21c2e167aef5738a09b63b12eb}{00106}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_soil_moisture_config_a525dac21c2e167aef5738a09b63b12eb}{StartWatering}}\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00110}\doxymbox{\hyperlink{struct_soil_moisture_config_a884839f91e78e09ed47478889a379611}{00110}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_soil_moisture_config_a884839f91e78e09ed47478889a379611}{EndWatering}}\ =\ 60;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00115}\doxymbox{\hyperlink{struct_soil_moisture_config_a60cc8713920197199428127612a0d9ac}{00115}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_soil_moisture_config_a60cc8713920197199428127612a0d9ac}{MinValue}}\ =\ \doxymbox{\hyperlink{hal_8h_ae873d956a807911ddb548a2b6765560e}{SOIL\_MOISTURE\_MIN}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00120}\doxymbox{\hyperlink{struct_soil_moisture_config_a692d0d9d5c016d1dac9b3fa2eace27f8}{00120}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_soil_moisture_config_a692d0d9d5c016d1dac9b3fa2eace27f8}{MaxValue}}\ =\ \doxymbox{\hyperlink{hal_8h_a557cb25137679619d3929fda72ab82ee}{SOIL\_MOISTURE\_MAX}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00121}00121\ \};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00126}\doxymbox{\hyperlink{struct_air_config}{00126}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_air_config}{AirConfig}}\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00130}\doxymbox{\hyperlink{struct_air_config_ace706b38541aaa9d620aee13b36688f7}{00130}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_air_config_ace706b38541aaa9d620aee13b36688f7}{TempStartVent}}\ =\ 24.0;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00134}\doxymbox{\hyperlink{struct_air_config_a714a12610fce24ec75d6918adb6eb2d5}{00134}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_air_config_a714a12610fce24ec75d6918adb6eb2d5}{TempEndVent}}\ =\ 20.0;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00138}\doxymbox{\hyperlink{struct_air_config_a4a28c6e66c9388f7cfc4646e5c4bb5e0}{00138}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_air_config_a4a28c6e66c9388f7cfc4646e5c4bb5e0}{HumStartVent}}\ =\ 70;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00142}\doxymbox{\hyperlink{struct_air_config_a22f13e3c83b922c8cb405a730e74f0c9}{00142}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_air_config_a22f13e3c83b922c8cb405a730e74f0c9}{HumEndVent}}\ =\ 50;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00146}\doxymbox{\hyperlink{struct_air_config_a90188d6539a110dcc013e6a092c6dfda}{00146}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_air_config_a90188d6539a110dcc013e6a092c6dfda}{HumStartHum}}\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00150}\doxymbox{\hyperlink{struct_air_config_aa897824fca3a81e9c3bfcf86167b70ba}{00150}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_air_config_aa897824fca3a81e9c3bfcf86167b70ba}{HumEndHum}}\ =\ 40;}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00151}00151\ \};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00156}\doxymbox{\hyperlink{struct_grow_config}{00156}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_grow_config}{GrowConfig}}\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00160}\doxymbox{\hyperlink{struct_grow_config_aae08a38ed1484273fac214b80eeba109}{00160}}\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_grow_config_aae08a38ed1484273fac214b80eeba109}{Version}}\ =\ \doxymbox{\hyperlink{version_8h_ad92c289c08add8c9288e601d1066b8a0}{CONFIG\_VERSION}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00164}\doxymbox{\hyperlink{struct_grow_config_a354a5c7fe680ffe8d6710692aef59b91}{00164}}\ \ \ \ \ \doxymbox{\hyperlink{struct_bluetooth_config}{BluetoothConfig}}\ \doxymbox{\hyperlink{struct_grow_config_a354a5c7fe680ffe8d6710692aef59b91}{Bluetooth}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00168}\doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{00168}}\ \ \ \ \ \doxymbox{\hyperlink{struct_relay_config}{RelayConfig}}\ \doxymbox{\hyperlink{struct_grow_config_a04803d1f40a15a26a073461a437bba2e}{Lamp}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00172}\doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{00172}}\ \ \ \ \ \doxymbox{\hyperlink{struct_pump_config}{PumpConfig}}\ \doxymbox{\hyperlink{struct_grow_config_a5580c864e8ea3e6fc16f0631c721e30e}{Pump}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00176}\doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{00176}}\ \ \ \ \ \doxymbox{\hyperlink{struct_relay_config}{RelayConfig}}\ \doxymbox{\hyperlink{struct_grow_config_aad4e34517e434daa157111b0cb7b72f2}{Fan}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00180}\doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{00180}}\ \ \ \ \ \doxymbox{\hyperlink{struct_relay_config}{RelayConfig}}\ \doxymbox{\hyperlink{struct_grow_config_aeb581639ee30a09c5dad22db0fc25333}{Humidifier}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00184}\doxymbox{\hyperlink{struct_grow_config_a63096e2567aa7ca05b01e4c136be1634}{00184}}\ \ \ \ \ \doxymbox{\hyperlink{struct_soil_moisture_config}{SoilMoistureConfig}}\ \doxymbox{\hyperlink{struct_grow_config_a63096e2567aa7ca05b01e4c136be1634}{SoilSensor1}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00188}\doxymbox{\hyperlink{struct_grow_config_a1b0e4cb8ab2bc35a9512553dfc390377}{00188}}\ \ \ \ \ \doxymbox{\hyperlink{struct_soil_moisture_config}{SoilMoistureConfig}}\ \doxymbox{\hyperlink{struct_grow_config_a1b0e4cb8ab2bc35a9512553dfc390377}{SoilSensor2}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00192}\doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{00192}}\ \ \ \ \ \doxymbox{\hyperlink{struct_air_config}{AirConfig}}\ \doxymbox{\hyperlink{struct_grow_config_a72e42da5c313ec6ef7d79772d59b279a}{AirSensor}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00193}00193\ \};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00198}\doxymbox{\hyperlink{config_8h_aa2982de7dc2a5de80bbbba0862806f36}{00198}}\ \textcolor{keyword}{constexpr}\ \doxymbox{\hyperlink{struct_grow_config}{GrowConfig}}\ \doxymbox{\hyperlink{config_8h_aa2982de7dc2a5de80bbbba0862806f36}{DEFAULT\_CONFIGURATION}};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00205}\doxymbox{\hyperlink{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}{00205}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{config_8h_ae40863a9a6c0a1e5afe69c854ebd6009}{IsAlwaysActivity}}(\doxymbox{\hyperlink{struct_period_config}{PeriodConfig}}\ \&period)\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00206}00206\ \ \ \ \ \textcolor{keywordflow}{if}\ (period.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ <\ 0\ ||\ period.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ >\ 23\ ||\ period.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ <\ 0\ ||\ period.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ >\ 59\ ||\ period.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ <\ 0\ ||\ period.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ >\ 23\ ||\ period.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ <\ 0\ ||\ period.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}}\ >\ 59)\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00208}00208\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00209}00209\ \ \ \ \ \textcolor{keywordflow}{if}\ (period.\doxymbox{\hyperlink{struct_period_config_a93fa37ff5341a4b45eeaaa87c5537a23}{StartH}}\ ==\ period.\doxymbox{\hyperlink{struct_period_config_ac593bf978b44e1d814b822efea3df6fd}{EndH}}\ \&\&\ period.\doxymbox{\hyperlink{struct_period_config_a03509ada8102c5cff74e8ef2b62c8878}{StartM}}\ ==\ period.\doxymbox{\hyperlink{struct_period_config_a64c6bbe5b68f01ceece24940bdf14245}{EndM}})\ \{}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00210}00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00211}00211\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00212}00212\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{config_8h_source_l00213}00213\ \}}
+
+\end{DoxyCode}

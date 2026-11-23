@@ -1,0 +1,54 @@
+\doxysection{main.\+cpp}
+\hypertarget{main_8cpp_source}{}\label{main_8cpp_source}\index{src/main.cpp@{src/main.cpp}}
+\doxymbox{\hyperlink{main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <\doxymbox{\hyperlink{controller_8h}{controller.h}}>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00011}\doxymbox{\hyperlink{main_8cpp_a10976a52c046b6ef1231a592089a72f2}{00011}}\ \doxymbox{\hyperlink{class_controller}{Controller}}\ *\doxymbox{\hyperlink{main_8cpp_a10976a52c046b6ef1231a592089a72f2}{ctrl}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00012}00012\ \textcolor{comment}{//RTC\ *rtc;}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}00013\ \textcolor{comment}{//Air\ *air;}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}\doxymbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{00018}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}00019\ \ \ \textcolor{comment}{//Serial.begin(9600);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020\ \ \ \textcolor{comment}{//rtc\ =\ new\ RTC();}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021\ \ \ \textcolor{comment}{//air\ =\ new\ Air(11);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}00022\ \ \ \textcolor{comment}{//uint8\_t\ reset\_flags\ =\ MCUSR;}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}00023\ \ \ \textcolor{comment}{//MCUSR\ =\ 0;\ }}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}00024\ \ \ \doxymbox{\hyperlink{main_8cpp_a10976a52c046b6ef1231a592089a72f2}{ctrl}}\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00025}00025\ \ \ \textcolor{comment}{//char\ buf[10];}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00026}00026\ \ \ \textcolor{comment}{//sprintf(buf,\ "{}MCUSR:\ \%02X"{},\ reset\_flags);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00027}00027\ \ \ \textcolor{comment}{//ctrl-\/>LogDbg(buf);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00028}00028\ \textcolor{comment}{//\ \ Serial.println("{}SETUP"{});}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00029}00029\ \textcolor{comment}{//\ \ Serial.flush();}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00035}\doxymbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{00035}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00036}00036\ \textcolor{comment}{/*\ \ uint32\_t\ unixtime;}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00037}00037\ \textcolor{comment}{\ \ uint8\_t\ rc\ =\ rtc-\/>GetTime(\&unixtime);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00038}00038\ \textcolor{comment}{\ \ if\ (!rc)\ \{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00039}00039\ \textcolor{comment}{\ \ \ \ Serial.print("{}Time:\ "{});}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00040}00040\ \textcolor{comment}{\ \ \ \ Serial.println(unixtime,\ DEC);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00041}00041\ \textcolor{comment}{\ \ \}\ else\ \{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}00042\ \textcolor{comment}{\ \ \ \ Serial.print("{}RTC\ error:\ "{});}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043\ \textcolor{comment}{\ \ \ \ Serial.println(rc,\ HEX);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044\ \textcolor{comment}{\ \ \}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045\ \textcolor{comment}{\ \ Serial.flush();}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046\ \textcolor{comment}{\ \ AirData\ dat;}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047\ \textcolor{comment}{\ \ rc\ =\ air-\/>GetData(\&dat);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048\ \textcolor{comment}{\ \ if\ (!rc)\ \{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049\ \textcolor{comment}{\ \ \ \ Serial.print("{}Air\ temp:\ "{});}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050\ \textcolor{comment}{\ \ \ \ Serial.println((int)dat.Temperature,\ DEC);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051\ \textcolor{comment}{\ \ \ \ Serial.print("{}Air\ humidity:\ "{});}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052\ \textcolor{comment}{\ \ \ \ Serial.println(dat.Humidity,\ DEC);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053\ \textcolor{comment}{\ \ \}\ else\ \{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00054}00054\ \textcolor{comment}{\ \ \ \ Serial.print("{}Air\ error:\ "{});}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00055}00055\ \textcolor{comment}{\ \ \ \ Serial.println(rc,\ HEX);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00056}00056\ \textcolor{comment}{\ \ \}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00057}00057\ \textcolor{comment}{\ \ Serial.flush();}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00058}00058\ \textcolor{comment}{\ \ delay(2000);*/}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00059}00059\ \ \ \doxymbox{\hyperlink{main_8cpp_a10976a52c046b6ef1231a592089a72f2}{ctrl}}-\/>\doxymbox{\hyperlink{class_controller_ad920ca3bf8fc1d163c0cc482d7c6226d}{Process}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00060}00060\ \}}
+
+\end{DoxyCode}

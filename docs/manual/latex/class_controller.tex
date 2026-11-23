@@ -1,0 +1,475 @@
+\doxysection{Controller Class Reference}
+\hypertarget{class_controller}{}\label{class_controller}\index{Controller@{Controller}}
+
+
+The main Growbox controller class.  
+
+
+
+
+{\ttfamily \+\#include $<$controller.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}{\texorpdfstring{$\sim$}{\string~}\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_controller_a10ea87d612c3959fbc3aa43bcfa18fe9}{Is\+Std\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Get device mode. \end{DoxyCompactList}\item 
+virtual uint16\+\_\+t \doxymbox{\hyperlink{class_controller_a39b9bc28093fe897d00f1d40c45a371e}{Devices}} ()
+\begin{DoxyCompactList}\small\item\em Initialized modules/\+devices mask. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_a38ca892c280e07af260320f5b22fa91e}{Reset\+Config}} ()
+\begin{DoxyCompactList}\small\item\em Reset user configuration to default. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_controller_ac39de7309267450fb731f83564fee62a}{Read\+Config}} ()
+\begin{DoxyCompactList}\small\item\em Read user configuration from EEPROM. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_controller_a8db20fadd6023923f24f0571c913cacb}{Write\+Config}} ()
+\begin{DoxyCompactList}\small\item\em Write current user configuration to EEPROM. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_controller_a8a048cd5db012bdcd49490eda76a06fb}{Set\+Time}} (uint32\+\_\+t datetime)
+\begin{DoxyCompactList}\small\item\em Set new date and time to \doxylink{class_r_t_c}{RTC} (Unix-\/time format). \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_controller_a64c8f76bbfbf2c47f1b7ac9cc8c6b439}{Get\+Time}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}datetime)
+\begin{DoxyCompactList}\small\item\em Get current date and time from \doxylink{class_r_t_c}{RTC} (Unix-\/time format). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_a5765bb44682bf8e5b86f2041144ed50c}{Activate\+Devices}} (uint16\+\_\+t dev\+\_\+mask)
+\begin{DoxyCompactList}\small\item\em Devices activation management. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{class_controller_a0f97908c7489835d84708609c3f965b3}{Get\+Active\+Devices}} ()
+\begin{DoxyCompactList}\small\item\em Get active devices at the moment bit mask. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_a2fc6e60e3a6ee1545ce4bc65b79235d3}{Set\+Mode}} (bool is\+Stdandart=true)
+\begin{DoxyCompactList}\small\item\em Set device mode: callibrate or standart opearion mode. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_ad920ca3bf8fc1d163c0cc482d7c6226d}{Process}} ()
+\begin{DoxyCompactList}\small\item\em Process loop iteration and manage sensors and devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_controller_aa7fe591e119d87fda3984085664b371c}{read\+Sensors}} ()
+\begin{DoxyCompactList}\small\item\em Read all initialized sensors values. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_a5bf8337b8ca3e7a48ac0635adaa4ff56}{check\+Pump\+Running}} ()
+\begin{DoxyCompactList}\small\item\em Check the pump running time and deactivate it after timeout exceed. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_aac06bce3db2ce1aa73f74b589e83cfa4}{process\+Lamp}} (bool is\+\_\+active\+\_\+rtc)
+\begin{DoxyCompactList}\small\item\em Process lamp relay. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_a4143d08c376b66ddb488632b40413320}{process\+Fan}} (bool is\+\_\+active\+\_\+rtc, bool is\+\_\+active\+\_\+air)
+\begin{DoxyCompactList}\small\item\em Process fan relay. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_a8b2d3422e3f490828c3c61c4985e011d}{process\+Pump}} (bool is\+\_\+active\+\_\+rtc, bool is\+\_\+active\+\_\+soil1, bool is\+\_\+active\+\_\+soil2)
+\begin{DoxyCompactList}\small\item\em Process pump relay. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_ab157533b6a81f5d7210ac63caa806758}{process\+Humidifier}} (bool is\+\_\+active\+\_\+rtc, bool is\+\_\+active\+\_\+air)
+\begin{DoxyCompactList}\small\item\em Process humidifier relay. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_controller_a41ebfe621fe2f6cca059147468f6cf50}{check\+BTButton}} ()
+\begin{DoxyCompactList}\small\item\em Check \doxylink{class_bluetooth}{Bluetooth} activate button state and activate device if needed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main Growbox controller class. 
+
+Definition at line \doxymbox{\hyperlink{controller_8h_source_l00076}{76}} of file \doxymbox{\hyperlink{controller_8h_source}{controller.\+h}}.
+
+
+
+\label{class_controller_doc-constructors}
+\Hypertarget{class_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_controller_a95c56822d667e94b031451729ce069a9}\index{Controller@{Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Controller()}{Controller()}}
+{\footnotesize\ttfamily \label{class_controller_a95c56822d667e94b031451729ce069a9} 
+Controller::\+\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00889}{889}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}\index{Controller@{Controller}!````~Controller@{\texorpdfstring{$\sim$}{\string~}Controller}}
+\index{````~Controller@{\texorpdfstring{$\sim$}{\string~}Controller}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Controller()}{\string~Controller()}}
+{\footnotesize\ttfamily \label{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5} 
+Controller::\+\texorpdfstring{$\sim$}{\string~}\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00979}{979}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+
+
+\label{class_controller_doc-func-members}
+\Hypertarget{class_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_controller_a5765bb44682bf8e5b86f2041144ed50c}\index{Controller@{Controller}!ActivateDevices@{ActivateDevices}}
+\index{ActivateDevices@{ActivateDevices}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ActivateDevices()}{ActivateDevices()}}
+{\footnotesize\ttfamily \label{class_controller_a5765bb44682bf8e5b86f2041144ed50c} 
+void Controller::\+\+Activate\+Devices (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{dev\+\_\+mask}{}\end{DoxyParamCaption})}
+
+
+
+Devices activation management. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em dev\+\_\+mask} & Bit mask for device activation \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01068}{1068}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a41ebfe621fe2f6cca059147468f6cf50}\index{Controller@{Controller}!checkBTButton@{checkBTButton}}
+\index{checkBTButton@{checkBTButton}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{checkBTButton()}{checkBTButton()}}
+{\footnotesize\ttfamily \label{class_controller_a41ebfe621fe2f6cca059147468f6cf50} 
+void Controller::\+check\+BTButton (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Check \doxylink{class_bluetooth}{Bluetooth} activate button state and activate device if needed. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00873}{873}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a5bf8337b8ca3e7a48ac0635adaa4ff56}\index{Controller@{Controller}!checkPumpRunning@{checkPumpRunning}}
+\index{checkPumpRunning@{checkPumpRunning}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{checkPumpRunning()}{checkPumpRunning()}}
+{\footnotesize\ttfamily \label{class_controller_a5bf8337b8ca3e7a48ac0635adaa4ff56} 
+void Controller::\+check\+Pump\+Running (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Check the pump running time and deactivate it after timeout exceed. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00707}{707}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a39b9bc28093fe897d00f1d40c45a371e}\index{Controller@{Controller}!Devices@{Devices}}
+\index{Devices@{Devices}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Devices()}{Devices()}}
+{\footnotesize\ttfamily \label{class_controller_a39b9bc28093fe897d00f1d40c45a371e} 
+uint16\+\_\+t Controller::\+\+Devices (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Initialized modules/\+devices mask. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01017}{1017}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a0f97908c7489835d84708609c3f965b3}\index{Controller@{Controller}!GetActiveDevices@{GetActiveDevices}}
+\index{GetActiveDevices@{GetActiveDevices}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{GetActiveDevices()}{GetActiveDevices()}}
+{\footnotesize\ttfamily \label{class_controller_a0f97908c7489835d84708609c3f965b3} 
+uint16\+\_\+t Controller::\+\+Get\+Active\+Devices (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get active devices at the moment bit mask. 
+
+\begin{DoxyReturn}{Returns}
+Bit mask of active relay devices 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01159}{1159}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a64c8f76bbfbf2c47f1b7ac9cc8c6b439}\index{Controller@{Controller}!GetTime@{GetTime}}
+\index{GetTime@{GetTime}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{GetTime()}{GetTime()}}
+{\footnotesize\ttfamily \label{class_controller_a64c8f76bbfbf2c47f1b7ac9cc8c6b439} 
+uint8\+\_\+t Controller::\+\+Get\+Time (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{datetime}{}\end{DoxyParamCaption})}
+
+
+
+Get current date and time from \doxylink{class_r_t_c}{RTC} (Unix-\/time format). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em datetime} & Buffer for saving current date and time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Get datetime error due to device error or uninitialized \\
+\hline
+{\em 2} & Parameter is nil \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01057}{1057}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a10ea87d612c3959fbc3aa43bcfa18fe9}\index{Controller@{Controller}!IsStdMode@{IsStdMode}}
+\index{IsStdMode@{IsStdMode}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{IsStdMode()}{IsStdMode()}}
+{\footnotesize\ttfamily \label{class_controller_a10ea87d612c3959fbc3aa43bcfa18fe9} 
+bool Controller::\+\+Is\+Std\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get device mode. 
+
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} -\/ Standart mode otherwise Callibrate mode 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01013}{1013}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_ad920ca3bf8fc1d163c0cc482d7c6226d}\index{Controller@{Controller}!Process@{Process}}
+\index{Process@{Process}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Process()}{Process()}}
+{\footnotesize\ttfamily \label{class_controller_ad920ca3bf8fc1d163c0cc482d7c6226d} 
+void Controller::\+\+Process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Process loop iteration and manage sensors and devices. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01191}{1191}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a4143d08c376b66ddb488632b40413320}\index{Controller@{Controller}!processFan@{processFan}}
+\index{processFan@{processFan}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{processFan()}{processFan()}}
+{\footnotesize\ttfamily \label{class_controller_a4143d08c376b66ddb488632b40413320} 
+void Controller::\+process\+Fan (\begin{DoxyParamCaption}\item[{bool}]{is\+\_\+active\+\_\+rtc}{, }\item[{bool}]{is\+\_\+active\+\_\+air}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Process fan relay. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em is\+\_\+active\+\_\+rtc} & \doxylink{class_r_t_c}{RTC} device is active \\
+\hline
+\doxymbox{\texttt{in}}  & {\em is\+\_\+active\+\_\+air} & \doxylink{class_air}{Air} humidity and temperature sensor os active \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00748}{748}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_ab157533b6a81f5d7210ac63caa806758}\index{Controller@{Controller}!processHumidifier@{processHumidifier}}
+\index{processHumidifier@{processHumidifier}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{processHumidifier()}{processHumidifier()}}
+{\footnotesize\ttfamily \label{class_controller_ab157533b6a81f5d7210ac63caa806758} 
+void Controller::\+process\+Humidifier (\begin{DoxyParamCaption}\item[{bool}]{is\+\_\+active\+\_\+rtc}{, }\item[{bool}]{is\+\_\+active\+\_\+air}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Process humidifier relay. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em is\+\_\+active\+\_\+rtc} & \doxylink{class_r_t_c}{RTC} device is active \\
+\hline
+\doxymbox{\texttt{in}}  & {\em is\+\_\+active\+\_\+air} & \doxylink{class_air}{Air} humidity and temperature sensor os active \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00840}{840}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_aac06bce3db2ce1aa73f74b589e83cfa4}\index{Controller@{Controller}!processLamp@{processLamp}}
+\index{processLamp@{processLamp}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{processLamp()}{processLamp()}}
+{\footnotesize\ttfamily \label{class_controller_aac06bce3db2ce1aa73f74b589e83cfa4} 
+void Controller::\+process\+Lamp (\begin{DoxyParamCaption}\item[{bool}]{is\+\_\+active\+\_\+rtc}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Process lamp relay. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em is\+\_\+active\+\_\+rtc} & \doxylink{class_r_t_c}{RTC} device is active \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00723}{723}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a8b2d3422e3f490828c3c61c4985e011d}\index{Controller@{Controller}!processPump@{processPump}}
+\index{processPump@{processPump}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{processPump()}{processPump()}}
+{\footnotesize\ttfamily \label{class_controller_a8b2d3422e3f490828c3c61c4985e011d} 
+void Controller::\+process\+Pump (\begin{DoxyParamCaption}\item[{bool}]{is\+\_\+active\+\_\+rtc}{, }\item[{bool}]{is\+\_\+active\+\_\+soil1}{, }\item[{bool}]{is\+\_\+active\+\_\+soil2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Process pump relay. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em is\+\_\+active\+\_\+rtc} & \doxylink{class_r_t_c}{RTC} device is active \\
+\hline
+\doxymbox{\texttt{in}}  & {\em is\+\_\+active\+\_\+soil1} & \doxylink{class_soil}{Soil} moisture sensor 1 is active \\
+\hline
+\doxymbox{\texttt{in}}  & {\em is\+\_\+active\+\_\+soil2} & \doxylink{class_soil}{Soil} moisture sensor 2 is active \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00781}{781}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_ac39de7309267450fb731f83564fee62a}\index{Controller@{Controller}!ReadConfig@{ReadConfig}}
+\index{ReadConfig@{ReadConfig}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ReadConfig()}{ReadConfig()}}
+{\footnotesize\ttfamily \label{class_controller_ac39de7309267450fb731f83564fee62a} 
+uint8\+\_\+t Controller::\+\+Read\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Read user configuration from EEPROM. 
+
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect data block \\
+\hline
+{\em 2} & Incorrect data block length \\
+\hline
+{\em 3} & Incorrect EEPROM memory address \\
+\hline
+{\em 4} & Device wasn\textquotesingle{}t initialized (no data found) \\
+\hline
+{\em 5} & Device isn\textquotesingle{}t active \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01026}{1026}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_aa7fe591e119d87fda3984085664b371c}\index{Controller@{Controller}!readSensors@{readSensors}}
+\index{readSensors@{readSensors}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{readSensors()}{readSensors()}}
+{\footnotesize\ttfamily \label{class_controller_aa7fe591e119d87fda3984085664b371c} 
+uint8\+\_\+t Controller::\+read\+Sensors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Read all initialized sensors values. 
+
+\begin{DoxyReturn}{Returns}
+Bit mask of sensors which successfully processed 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l00664}{664}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a38ca892c280e07af260320f5b22fa91e}\index{Controller@{Controller}!ResetConfig@{ResetConfig}}
+\index{ResetConfig@{ResetConfig}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ResetConfig()}{ResetConfig()}}
+{\footnotesize\ttfamily \label{class_controller_a38ca892c280e07af260320f5b22fa91e} 
+void Controller::\+\+Reset\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reset user configuration to default. 
+
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01021}{1021}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a2fc6e60e3a6ee1545ce4bc65b79235d3}\index{Controller@{Controller}!SetMode@{SetMode}}
+\index{SetMode@{SetMode}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{SetMode()}{SetMode()}}
+{\footnotesize\ttfamily \label{class_controller_a2fc6e60e3a6ee1545ce4bc65b79235d3} 
+void Controller::\+\+Set\+Mode (\begin{DoxyParamCaption}\item[{bool}]{is\+Stdandart}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Set device mode: callibrate or standart opearion mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em is\+Stdandart} & Is standart operation mode or callibrate mode \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01184}{1184}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a8a048cd5db012bdcd49490eda76a06fb}\index{Controller@{Controller}!SetTime@{SetTime}}
+\index{SetTime@{SetTime}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{SetTime()}{SetTime()}}
+{\footnotesize\ttfamily \label{class_controller_a8a048cd5db012bdcd49490eda76a06fb} 
+uint8\+\_\+t Controller::\+\+Set\+Time (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{datetime}{}\end{DoxyParamCaption})}
+
+
+
+Set new date and time to \doxylink{class_r_t_c}{RTC} (Unix-\/time format). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em datetime} & New date and time in Unix-\/time format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Set datetime error due to device error or uninitialized \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01046}{1046}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+\Hypertarget{class_controller_a8db20fadd6023923f24f0571c913cacb}\index{Controller@{Controller}!WriteConfig@{WriteConfig}}
+\index{WriteConfig@{WriteConfig}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{WriteConfig()}{WriteConfig()}}
+{\footnotesize\ttfamily \label{class_controller_a8db20fadd6023923f24f0571c913cacb} 
+uint8\+\_\+t Controller::\+\+Write\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Write current user configuration to EEPROM. 
+
+\begin{DoxyReturn}{Returns}
+Operation result code 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Success \\
+\hline
+{\em 1} & Incorrect data block \\
+\hline
+{\em 2} & Incorrect data block length \\
+\hline
+{\em 3} & Incorrect EEPROM memory address \\
+\hline
+{\em 4} & Data write error \\
+\hline
+{\em 5} & Device isn\textquotesingle{}t active \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \doxymbox{\hyperlink{controller_8cpp_source_l01039}{1039}} of file \doxymbox{\hyperlink{controller_8cpp_source}{controller.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+lib/\+controller/\doxymbox{\hyperlink{controller_8h}{controller.\+h}}\item 
+lib/\+controller/\doxymbox{\hyperlink{controller_8cpp}{controller.\+cpp}}\end{DoxyCompactItemize}

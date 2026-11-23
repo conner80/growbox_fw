@@ -1,0 +1,357 @@
+\doxysection{include/\+common/\+datetime.h File Reference}
+\hypertarget{datetime_8h}{}\label{datetime_8h}\index{include/common/datetime.h@{include/common/datetime.h}}
+
+
+Functions for working with date and time.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_date_time}{Date\+Time}}
+\begin{DoxyCompactList}\small\item\em Structure describes the main parameters of date and time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}{is\+Leap\+Year}} (int year)
+\begin{DoxyCompactList}\small\item\em Is leap year. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{datetime_8h_a3e57833cf896dce34a07e67e256e2571}{Date\+Time\+To\+Unix}} (const \doxymbox{\hyperlink{struct_date_time}{Date\+Time}} \&dt)
+\begin{DoxyCompactList}\small\item\em Convert \doxylink{struct_date_time}{Date\+Time} structure to Unix-\/time. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_date_time}{Date\+Time}} \doxymbox{\hyperlink{datetime_8h_a111c4dd91ee3e9fe490a2387b3c0db4f}{Unix\+To\+Date\+Time}} (uint32\+\_\+t unixtime)
+\begin{DoxyCompactList}\small\item\em Convert Unix-\/time to \doxylink{struct_date_time}{Date\+Time} structure. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{datetime_8h_aeb9987896b9703ae941d7f30127aca33}{hms\+To\+Seconds}} (int hour, int minute, int second)
+\begin{DoxyCompactList}\small\item\em Auxiliary function for converting HH:\+\+MM:SS to seconds since the start of the day. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{datetime_8h_ab195dafc45c7d235f40326912a0e6010}{Is\+Time\+In\+Range}} (uint32\+\_\+t unixtime, int startH, int startM, int startS, int endH, int endM, int endS)
+\begin{DoxyCompactList}\small\item\em Checking whether the current Unix-\/time falls within the specified time interval of the day. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{datetime_8h_ad6ef4b660a029809a8fd7ddf811c273c}{Add\+Seconds}} (uint32\+\_\+t unixtime, int32\+\_\+t seconds)
+\begin{DoxyCompactList}\small\item\em Add or Substract specified seconds to specified datetime in Unix-\/time format. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{datetime_8h_af0b0b298568ef9e3d35e84ba7cf6f299}{Add\+Minutes}} (uint32\+\_\+t unixtime, int32\+\_\+t minutes)
+\begin{DoxyCompactList}\small\item\em Add or Substract specified minutes to specified datetime in Unix-\/time format. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{datetime_8h_af0bc80be9e59b039f732cbf6e1cd84ac}{Add\+Hours}} (uint32\+\_\+t unixtime, int32\+\_\+t hours)
+\begin{DoxyCompactList}\small\item\em Add or Substract specified hours to specified datetime in Unix-\/time format. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{datetime_8h_a43d9467908641b10db470da18bbc7769}{Add\+Days}} (uint32\+\_\+t unixtime, int32\+\_\+t days)
+\begin{DoxyCompactList}\small\item\em Add or Substract specified days to specified datetime in Unix-\/time format. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{datetime_8h_ae22acbcea920faef82a8e8318dd9ddcc}{get\+Days\+In\+Month}} (int year, int month)
+\begin{DoxyCompactList}\small\item\em A helper function to determine the number of days in a specific month. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{datetime_8h_ae3f173e05a8ffab1b19b3b7966a96085}{Add\+Months}} (uint32\+\_\+t unixtime, int32\+\_\+t months)
+\begin{DoxyCompactList}\small\item\em Add or Substract specified months to specified datetime in Unix-\/time format. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{datetime_8h_a4af8161b0aebc5049adcaf232e812b31}{Add\+Years}} (uint32\+\_\+t unixtime, int32\+\_\+t years)
+\begin{DoxyCompactList}\small\item\em Add or Substract specified years to specified datetime in Unix-\/time format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for working with date and time. 
+
+\begin{DoxyAuthor}{Authors}
+John Doe 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026-\/11-\/09 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+Definition in file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+
+
+\label{datetime_8h_doc-func-members}
+\Hypertarget{datetime_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{datetime_8h_a43d9467908641b10db470da18bbc7769}\index{datetime.h@{datetime.h}!AddDays@{AddDays}}
+\index{AddDays@{AddDays}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{AddDays()}{AddDays()}}
+{\footnotesize\ttfamily \label{datetime_8h_a43d9467908641b10db470da18bbc7769} 
+uint32\+\_\+t Add\+Days (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{, }\item[{int32\+\_\+t}]{days}{}\end{DoxyParamCaption})}
+
+
+
+Add or Substract specified days to specified datetime in Unix-\/time format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & Specified datetime in Unix-\/time format \\
+\hline
+\doxymbox{\texttt{in}}  & {\em days} & Days count for add or substract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unix-\/time 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00202}{202}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_af0bc80be9e59b039f732cbf6e1cd84ac}\index{datetime.h@{datetime.h}!AddHours@{AddHours}}
+\index{AddHours@{AddHours}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{AddHours()}{AddHours()}}
+{\footnotesize\ttfamily \label{datetime_8h_af0bc80be9e59b039f732cbf6e1cd84ac} 
+uint32\+\_\+t Add\+Hours (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{, }\item[{int32\+\_\+t}]{hours}{}\end{DoxyParamCaption})}
+
+
+
+Add or Substract specified hours to specified datetime in Unix-\/time format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & Specified datetime in Unix-\/time format \\
+\hline
+\doxymbox{\texttt{in}}  & {\em hours} & Hours count for add or substract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unix-\/time 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00192}{192}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_af0b0b298568ef9e3d35e84ba7cf6f299}\index{datetime.h@{datetime.h}!AddMinutes@{AddMinutes}}
+\index{AddMinutes@{AddMinutes}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{AddMinutes()}{AddMinutes()}}
+{\footnotesize\ttfamily \label{datetime_8h_af0b0b298568ef9e3d35e84ba7cf6f299} 
+uint32\+\_\+t Add\+Minutes (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{, }\item[{int32\+\_\+t}]{minutes}{}\end{DoxyParamCaption})}
+
+
+
+Add or Substract specified minutes to specified datetime in Unix-\/time format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & Specified datetime in Unix-\/time format \\
+\hline
+\doxymbox{\texttt{in}}  & {\em minutes} & Minutes count for add or substract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unix-\/time 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00182}{182}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_ae3f173e05a8ffab1b19b3b7966a96085}\index{datetime.h@{datetime.h}!AddMonths@{AddMonths}}
+\index{AddMonths@{AddMonths}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{AddMonths()}{AddMonths()}}
+{\footnotesize\ttfamily \label{datetime_8h_ae3f173e05a8ffab1b19b3b7966a96085} 
+uint32\+\_\+t Add\+Months (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{, }\item[{int32\+\_\+t}]{months}{}\end{DoxyParamCaption})}
+
+
+
+Add or Substract specified months to specified datetime in Unix-\/time format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & Specified datetime in Unix-\/time format \\
+\hline
+\doxymbox{\texttt{in}}  & {\em months} & Months count for add or substract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unix-\/time 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00226}{226}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_ad6ef4b660a029809a8fd7ddf811c273c}\index{datetime.h@{datetime.h}!AddSeconds@{AddSeconds}}
+\index{AddSeconds@{AddSeconds}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{AddSeconds()}{AddSeconds()}}
+{\footnotesize\ttfamily \label{datetime_8h_ad6ef4b660a029809a8fd7ddf811c273c} 
+uint32\+\_\+t Add\+Seconds (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{, }\item[{int32\+\_\+t}]{seconds}{}\end{DoxyParamCaption})}
+
+
+
+Add or Substract specified seconds to specified datetime in Unix-\/time format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & Specified datetime in Unix-\/time format \\
+\hline
+\doxymbox{\texttt{in}}  & {\em seconds} & Seconds count for add or substract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unix-\/time 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00172}{172}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_a4af8161b0aebc5049adcaf232e812b31}\index{datetime.h@{datetime.h}!AddYears@{AddYears}}
+\index{AddYears@{AddYears}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{AddYears()}{AddYears()}}
+{\footnotesize\ttfamily \label{datetime_8h_a4af8161b0aebc5049adcaf232e812b31} 
+uint32\+\_\+t Add\+Years (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{, }\item[{int32\+\_\+t}]{years}{}\end{DoxyParamCaption})}
+
+
+
+Add or Substract specified years to specified datetime in Unix-\/time format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & Specified datetime in Unix-\/time format \\
+\hline
+\doxymbox{\texttt{in}}  & {\em years} & Years count for add or substract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unix-\/time 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00253}{253}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_a3e57833cf896dce34a07e67e256e2571}\index{datetime.h@{datetime.h}!DateTimeToUnix@{DateTimeToUnix}}
+\index{DateTimeToUnix@{DateTimeToUnix}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{DateTimeToUnix()}{DateTimeToUnix()}}
+{\footnotesize\ttfamily \label{datetime_8h_a3e57833cf896dce34a07e67e256e2571} 
+uint32\+\_\+t Date\+Time\+To\+Unix (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_date_time}{Date\+Time}} \&}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Convert \doxylink{struct_date_time}{Date\+Time} structure to Unix-\/time. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em dt} & \doxylink{struct_date_time}{Date\+Time} structure with specified date and time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unix-\/time 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00055}{55}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_ae22acbcea920faef82a8e8318dd9ddcc}\index{datetime.h@{datetime.h}!getDaysInMonth@{getDaysInMonth}}
+\index{getDaysInMonth@{getDaysInMonth}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{getDaysInMonth()}{getDaysInMonth()}}
+{\footnotesize\ttfamily \label{datetime_8h_ae22acbcea920faef82a8e8318dd9ddcc} 
+uint8\+\_\+t get\+Days\+In\+Month (\begin{DoxyParamCaption}\item[{int}]{year}{, }\item[{int}]{month}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A helper function to determine the number of days in a specific month. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em year} & The year of datetime (0000-\/9999) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em month} & The month of datetime (1-\/12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of days in a specific month 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00212}{212}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_aeb9987896b9703ae941d7f30127aca33}\index{datetime.h@{datetime.h}!hmsToSeconds@{hmsToSeconds}}
+\index{hmsToSeconds@{hmsToSeconds}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{hmsToSeconds()}{hmsToSeconds()}}
+{\footnotesize\ttfamily \label{datetime_8h_aeb9987896b9703ae941d7f30127aca33} 
+uint32\+\_\+t hms\+To\+Seconds (\begin{DoxyParamCaption}\item[{int}]{hour}{, }\item[{int}]{minute}{, }\item[{int}]{second}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Auxiliary function for converting HH:\+\+MM:SS to seconds since the start of the day. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em hour} & The hour value of time (0-\/23) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em minute} & The minute value of time (0-\/59) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em second} & The second value of time (0-\/59) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unix-\/time 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00137}{137}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f}\index{datetime.h@{datetime.h}!isLeapYear@{isLeapYear}}
+\index{isLeapYear@{isLeapYear}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{isLeapYear()}{isLeapYear()}}
+{\footnotesize\ttfamily \label{datetime_8h_ab7f4b8fdca66d7d67a1fb2d2a18db50f} 
+bool is\+Leap\+Year (\begin{DoxyParamCaption}\item[{int}]{year}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Is leap year. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em year} & Specified year (0000-\/9999) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}} Specified year is leap year, otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00046}{46}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_ab195dafc45c7d235f40326912a0e6010}\index{datetime.h@{datetime.h}!IsTimeInRange@{IsTimeInRange}}
+\index{IsTimeInRange@{IsTimeInRange}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{IsTimeInRange()}{IsTimeInRange()}}
+{\footnotesize\ttfamily \label{datetime_8h_ab195dafc45c7d235f40326912a0e6010} 
+bool Is\+Time\+In\+Range (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{, }\item[{int}]{startH}{, }\item[{int}]{startM}{, }\item[{int}]{startS}{, }\item[{int}]{endH}{, }\item[{int}]{endM}{, }\item[{int}]{endS}{}\end{DoxyParamCaption})}
+
+
+
+Checking whether the current Unix-\/time falls within the specified time interval of the day. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & Specified date and time in Unix-\/time format \\
+\hline
+\doxymbox{\texttt{in}}  & {\em startH} & The hour of time of the begin period (0-\/23) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em startM} & The minute of time of the begin period (0-\/59) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em startS} & The second of time if the begin period (0-\/59) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em endH} & The hour of time of the end period (0-\/23) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em endtM} & The minute of time of the end period (0-\/59) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em endS} & The second of time if the end period (0-\/59) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{TRUE}}Specified datetime is included of the specified period, otherwise {\bfseries{FALSE}} 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00152}{152}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
+\Hypertarget{datetime_8h_a111c4dd91ee3e9fe490a2387b3c0db4f}\index{datetime.h@{datetime.h}!UnixToDateTime@{UnixToDateTime}}
+\index{UnixToDateTime@{UnixToDateTime}!datetime.h@{datetime.h}}
+\doxysubsubsection{\texorpdfstring{UnixToDateTime()}{UnixToDateTime()}}
+{\footnotesize\ttfamily \label{datetime_8h_a111c4dd91ee3e9fe490a2387b3c0db4f} 
+\doxymbox{\hyperlink{struct_date_time}{Date\+Time}} Unix\+To\+Date\+Time (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{unixtime}{}\end{DoxyParamCaption})}
+
+
+
+Convert Unix-\/time to \doxylink{struct_date_time}{Date\+Time} structure. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em unixtime} & Specified date and time in Unix-\/format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_date_time}{Date\+Time} structure 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{datetime_8h_source_l00084}{84}} of file \doxymbox{\hyperlink{datetime_8h_source}{datetime.\+h}}.
+
