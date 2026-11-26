@@ -700,6 +700,16 @@ uint8_t Controller::readSensors() {
     }
 
     this->last_op = millis();
+    Serial.println(res, HEX);
+    Serial.println(this->pars.Now, DEC);
+    Serial.println(this->pars.AirSensor.Humidity, DEC);
+    Serial.println(this->pars.AirSensor.Temperature, 2);
+    Serial.println(this->pars.SoilSensor1, DEC);
+    Serial.println(this->pars.SoilSensor2, DEC);
+    Serial.println(this->pars.LampActive);
+    Serial.println(this->pars.FanActive);
+    Serial.println(this->pars.PumpActive);
+    Serial.println(this->pars.HumidifierActive);
     return res;
 }
 
@@ -885,6 +895,7 @@ void Controller::checkBTButton() {
 }
 
 Controller::Controller() {
+    Serial.println("S");
     this->device_mask = 0x0000;
     this->pump_act = 0;
     this->pump_sleep = millis();
@@ -960,6 +971,7 @@ Controller::Controller() {
 #endif
 
     this->bt = new Bluetooth();
+    this->bt->IdleOfflineDelay = this->cfg.Bluetooth.OnlineDelay;
     this->bt->Context = this;
     this->bt->OnReceiveData = Controller::onReceive;
 
@@ -972,6 +984,7 @@ Controller::Controller() {
     this->bt->ChangeMode(false);
     delay(500);
     this->last_op = 0;
+    Serial.println("E");
 }
 
 Controller::~Controller() {
